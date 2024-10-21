@@ -6,25 +6,20 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
-	minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0"
-	prefWidth="1080.0" xmlns="http://javafx.com/javafx/23.0.1"
-	xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="application.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
 	<children>
 		<Rectangle arcHeight="5.0" arcWidth="5.0">
 			<fill>
-				<LinearGradient startX="0.0" startY="0.0" endX="1.0"
-					endY="1.0" proportional="true" cycleMethod="NO_CYCLE">
+				<LinearGradient cycleMethod="NO_CYCLE" endX="1.0" endY="1.0" proportional="true" startX="0.0" startY="0.0">
 					<stops>
-						<Stop offset="0.0" color="#04880d" />
-						<Stop offset="1.0" color="#23cbc7" />
+						<Stop color="#04880d" offset="0.0" />
+						<Stop color="#23cbc7" offset="1.0" />
 					</stops>
 				</LinearGradient>
 			</fill>
@@ -36,72 +31,54 @@
 			<strokeWidth>0.0</strokeWidth>
 			<width>700.0</width>
 		</Rectangle>
-		<Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE"
-			height="720.0" layoutX="380.0" stroke="BLACK" strokeType="INSIDE"
-			strokeWidth="0.0" width="700.0" />
-		<DatePicker layoutX="444.0" layoutY="292.0"
-			prefHeight="40.0" prefWidth="550.0" promptText="MM/DD/YYYY" />
-		<TextField layoutX="444.0" layoutY="187.0" prefHeight="40.0"
-			prefWidth="550.0" promptText="e.g. Chase Checking, BoA Savings, etc.">
+		<Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="720.0" layoutX="380.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="700.0" />
+		<DatePicker fx:id="openingDate" layoutX="444.0" layoutY="292.0" prefHeight="40.0" prefWidth="550.0" promptText="MM/DD/YYYY" />
+		<TextField fx:id="accountName" layoutX="444.0" layoutY="187.0" prefHeight="40.0" prefWidth="550.0" promptText="e.g. Chase Checking, BoA Savings, etc.">
 			<font>
 				<Font name="Inter Regular" size="16.0" />
 			</font>
 		</TextField>
-		<TextField layoutX="444.0" layoutY="399.0" prefHeight="40.0"
-			prefWidth="550.0" promptText="\$15101.04">
+		<TextField fx:id="openingBalance" layoutX="444.0" layoutY="399.0" prefHeight="40.0" prefWidth="550.0" promptText="\$15101.04">
 			<font>
 				<Font size="16.0" />
 			</font>
 		</TextField>
-		<Button layoutX="140.0" layoutY="560.0" mnemonicParsing="false"
-			onAction="#switchToHome" text="Home" styleClass="rounded-button">
+		<Button layoutX="140.0" layoutY="560.0" mnemonicParsing="false" onAction="#switchToHome" styleClass="rounded-button" text="Home">
 			<font>
 				<Font size="50.0" />
 			</font>
 		</Button>
-		<Text layoutX="444.0" layoutY="113.0" strokeType="OUTSIDE"
-			strokeWidth="0.0" text="New Account" wrappingWidth="402.0">
+		<Text layoutX="444.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Account" wrappingWidth="402.0">
 			<font>
 				<Font name="Lato Bold" size="50.0" />
 			</font>
 		</Text>
-		<Button layoutX="439.0" layoutY="490.0" prefHeight="60.0"
-			prefWidth="224.0" text="Submit" textFill="WHITE"
-			styleClass="rounded-button">
+		<Button fx:id="submit" layoutX="439.0" layoutY="490.0" onAction="#submitButton" prefHeight="60.0" prefWidth="224.0" styleClass="rounded-button" text="Submit" textFill="WHITE">
 			<font>
 				<Font name="Lato Regular" size="28.0" />
 			</font>
 		</Button>
-		<Button layoutX="438.0" layoutY="577.0"
-			onAction="#switchToHome" prefHeight="43.0" prefWidth="116.0"
-			text="Cancel" styleClass="rounded-cancel-button">
+		<Button layoutX="438.0" layoutY="577.0" onAction="#switchToHome" prefHeight="43.0" prefWidth="116.0" styleClass="rounded-cancel-button" text="Cancel">
 			<font>
 				<Font size="20.0" />
 			</font>
 		</Button>
-		<Text layoutX="446.0" layoutY="391.0" strokeType="OUTSIDE"
-			strokeWidth="0.0" text="Opening Balance (required)"
-			wrappingWidth="261.0001220703125">
+		<Text layoutX="446.0" layoutY="391.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opening Balance (required)" wrappingWidth="261.0001220703125">
 			<font>
 				<Font name="Lato Regular" size="16.0" />
 			</font>
 		</Text>
-		<Text layoutX="447.0" layoutY="285.0" strokeType="OUTSIDE"
-			strokeWidth="0.0" text="Opening Date (required)"
-			wrappingWidth="261.0001220703125">
+		<Text layoutX="447.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opening Date (required)" wrappingWidth="261.0001220703125">
 			<font>
 				<Font name="Lato Regular" size="16.0" />
 			</font>
 		</Text>
-		<Text layoutX="446.0" layoutY="181.0" strokeType="OUTSIDE"
-			strokeWidth="0.0" text="Account Name (required)"
-			wrappingWidth="261.0001220703125">
+		<Text layoutX="446.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account Name (required)" wrappingWidth="261.0001220703125">
 			<font>
 				<Font name="Lato Regular" size="16.0" />
 			</font>
 		</Text>
-		<ImageView fitHeight="192.0" fitWidth="288.0" layoutX="47.0"
-			layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+		<ImageView fitHeight="192.0" fitWidth="288.0" layoutX="47.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
 			<image>
 				<Image url="@Budget%20Buddy%20Logo.png" />
 			</image>
