@@ -1,4 +1,4 @@
-package application;
+package application.controller;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -15,7 +15,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class Controller {
+public class AccountController {
 	@FXML
 	TextField accountName;
 	@FXML
@@ -32,11 +32,15 @@ public class Controller {
 	private Scene scene;
 	private Parent root;
 	
+	public void initialize() {
+		openingDate.setValue(LocalDate.now());
+	}
+	
     private void loadScene(String fxmlFile, ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource(fxmlFile));
         scene = new Scene(root);
 
-        String css = getClass().getResource("application.css").toExternalForm();
+        String css = getClass().getResource("/css/application.css").toExternalForm();
         scene.getStylesheets().add(css);
 
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -45,11 +49,7 @@ public class Controller {
     }
 
     public void switchToHome(ActionEvent event) throws IOException {
-        loadScene("Homepage.fxml", event); // Use the loadScene method
-    }
-
-    public void switchToNewAccount(ActionEvent event) throws IOException {
-        loadScene("NewAccount.fxml", event); // Use the loadScene method
+        loadScene("/view/Homepage.fxml", event); // Use the loadScene method
     }
 	
 	public void submitButton(ActionEvent event) {

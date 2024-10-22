@@ -3,6 +3,7 @@ package application;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
 
@@ -11,9 +12,9 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("Homepage.fxml"));
+			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/view/homepage.fxml"));
 			Scene scene = new Scene(root);
-			String css = this.getClass().getResource("application.css").toExternalForm();
+			String css = this.getClass().getResource("/css/application.css").toExternalForm();
 			scene.getStylesheets().add(css);
 			primaryStage.setTitle("Budget Buddy");
 			primaryStage.setScene(scene);
