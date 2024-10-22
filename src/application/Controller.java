@@ -11,7 +11,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -21,8 +20,6 @@ public class Controller {
 	TextField accountName;
 	@FXML
 	TextField openingBalance;
-	@FXML
-	Button submit;
 	@FXML
 	DatePicker openingDate;
 	
@@ -35,22 +32,25 @@ public class Controller {
 	private Scene scene;
 	private Parent root;
 	
-	public void switchToHome(ActionEvent event) throws IOException {
-		root = FXMLLoader.load(getClass().getResource("homepage.fxml"));
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
-		
-	}
-	
-	public void switchToNewAccount(ActionEvent event) throws IOException {
-		root = FXMLLoader.load(getClass().getResource("newAccount.fxml"));
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
-	}
+    private void loadScene(String fxmlFile, ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource(fxmlFile));
+        scene = new Scene(root);
+
+        String css = getClass().getResource("application.css").toExternalForm();
+        scene.getStylesheets().add(css);
+
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void switchToHome(ActionEvent event) throws IOException {
+        loadScene("Homepage.fxml", event); // Use the loadScene method
+    }
+
+    public void switchToNewAccount(ActionEvent event) throws IOException {
+        loadScene("NewAccount.fxml", event); // Use the loadScene method
+    }
 	
 	public void submitButton(ActionEvent event) {
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

@@ -1,2 +1,27 @@
-/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.rounded-button {
+    -fx-background-color: #1464f6;
+    -fx-text-fill: white;
+    -fx-font-size: 25px;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-border-color: transparent;
+}
 
+.rounded-button:hover {
+    -fx-background-color: #0a3d9c;
+}
+
+.rounded-cancel-button {
+    -fx-background-color: #F55356;
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-border-color: transparent;
+}
+
+.rounded-cancel-button:hover {
+    -fx-background-color: #c14446
+}

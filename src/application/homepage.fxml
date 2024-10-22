@@ -7,35 +7,65 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
-   <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#edebf6" height="720.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="380.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="720.0" layoutX="380.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="700.0" />
-      <Button layoutX="90.0" layoutY="560.0" mnemonicParsing="false" onAction="#switchToHome" text="Home">
-         <font>
-            <Font size="50.0" />
-         </font>
-      </Button>
-      <Button layoutX="578.0" layoutY="470.0" mnemonicParsing="false" onAction="#switchToNewAccount" style="-fx-background-color: #1464f6;" text="New Account" textFill="WHITE">
-         <font>
-            <Font size="42.0" />
-         </font>
-      </Button>
-      <Text layoutX="550.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Buddy's got it all covered." textAlignment="CENTER" wrappingWidth="359.84442138671875">
-         <font>
-            <Font name="Lato Bold" size="53.0" />
-         </font>
-      </Text>
-      <Text layoutX="599.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Budget Buddy will help you keep track of transactions, bank accounts, and any upcoming charges you need to be aware of." textAlignment="CENTER" wrappingWidth="261.0001220703125">
-         <font>
-            <Font name="Lato Regular" size="20.0" />
-         </font>
-      </Text>
-      <ImageView fitHeight="192.0" fitWidth="288.0" layoutX="47.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Budget%20Buddy%20Logo.png" />
-         </image>
-      </ImageView>
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
+	minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0"
+	prefWidth="1080.0" xmlns="http://javafx.com/javafx/23.0.1"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="application.Controller">
+	<children>
+		<Rectangle arcHeight="5.0" arcWidth="5.0">
+			<fill>
+				<LinearGradient startX="0.0" startY="0.0" endX="1.0"
+					endY="1.0" proportional="true" cycleMethod="NO_CYCLE">
+					<stops>
+						<Stop offset="0.0" color="#2643de" />
+						<Stop offset="1.0" color="#edebf6" />
+					</stops>
+				</LinearGradient>
+			</fill>
+			<height>720.0</height>
+			<layoutX>0.0</layoutX>
+			<layoutY>0.0</layoutY>
+			<stroke>BLACK</stroke>
+			<strokeType>INSIDE</strokeType>
+			<strokeWidth>0.0</strokeWidth>
+			<width>700.0</width>
+		</Rectangle>
+		<Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE"
+			height="720.0" layoutX="380.0" stroke="BLACK" strokeType="INSIDE"
+			strokeWidth="0.0" width="700.0" />
+		<Button layoutX="140.0" layoutY="560.0" mnemonicParsing="false"
+	onAction="#switchToHome" text="Home" styleClass="rounded-button" />
+		<Button layoutX="635.0" layoutY="470.0" mnemonicParsing="false"
+			onAction="#switchToNewAccount" text="New Account"
+			styleClass="rounded-button">
+			<font>
+				<Font size="42.0" />
+			</font>
+		</Button>
+		<Text layoutX="550.0" layoutY="181.0" strokeType="OUTSIDE"
+			strokeWidth="0.0" text="Buddy's got it all covered."
+			textAlignment="CENTER" wrappingWidth="359.84442138671875">
+			<font>
+				<Font name="Lato Bold" size="53.0" />
+			</font>
+		</Text>
+		<Text layoutX="599.0" layoutY="307.0" strokeType="OUTSIDE"
+			strokeWidth="0.0"
+			text="Budget Buddy will help you keep track of transactions, bank accounts, and any upcoming charges you need to be aware of."
+			textAlignment="CENTER" wrappingWidth="261.0001220703125">
+			<font>
+				<Font name="Lato Regular" size="20.0" />
+			</font>
+		</Text>
+		<ImageView fitHeight="192.0" fitWidth="288.0" layoutX="47.0"
+			layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+			<image>
+				<Image url="@Budget%20Buddy%20Logo.png" />
+			</image>
+		</ImageView>
+	</children>
 </AnchorPane>
