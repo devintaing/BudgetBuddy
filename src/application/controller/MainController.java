@@ -37,5 +37,10 @@ public class MainController {
     public void switchToNewAccount(ActionEvent event) throws IOException {
         loadScene("/view/NewAccount.fxml", event); // Use the loadScene method
     }
+    
+    @FXML
+    public void switchToViewAccounts(ActionEvent event) throws IOException {
+        loadScene("/view/viewAccounts.fxml", event); // Use the loadScene method
+    }
 
 }
