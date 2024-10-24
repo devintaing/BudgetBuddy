@@ -49,10 +49,15 @@
 				<Font name="Lato Regular" size="20.0" />
 			</font>
 		</Text>
-		<ImageView fitHeight="192.0" fitWidth="288.0" layoutX="47.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
-			<image>
-				<Image url="@../images/BudgetBuddyLogo.png" />
-			</image>
-		</ImageView>
+      <Button layoutX="612.0" layoutY="571.0" mnemonicParsing="false" onAction="#switchToViewAccounts" styleClass="rounded-button" stylesheets="@../css/application.css" text="View Accounts">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="287.0" fitWidth="406.0" layoutX="1.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/BudgetBuddyLogo.png" />
+         </image>
+      </ImageView>
 	</children>
 </AnchorPane>
