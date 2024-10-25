@@ -26,7 +26,7 @@ public class AccountController {
 	double balance;
 	String name;
 	
-    private static HashSet<String> accountNames = new HashSet<>();
+    private static final HashSet<String> accountNames = new HashSet<>();
 
 	private Stage stage;
 	private Scene scene;
@@ -79,7 +79,7 @@ public class AccountController {
         // If all validations pass, add account name to set
         accountNames.add(name);
 
-        // Save information to be used on other pages or database
+        // Save information to be used on other pages or application.database
         saveAccount(name, date, balance);
 
         // Show success message

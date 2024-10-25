@@ -1,18 +1,22 @@
 package application;
 	
+import application.connection.SqliteConnection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.Parent;
 import javafx.stage.Stage;
+
+import java.sql.Connection;
 
 
 public class Main extends Application {
+	Connection connection;
 	@Override
 	public void start(Stage primaryStage) {
+		connection = SqliteConnection.Connector();
 		try {
-			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/view/homepage.fxml"));
+			AnchorPane root = FXMLLoader.load(getClass().getResource("/view/homepage.fxml"));
 			Scene scene = new Scene(root);
 			String css = this.getClass().getResource("/css/application.css").toExternalForm();
 			scene.getStylesheets().add(css);
