@@ -18,6 +18,7 @@ public class Main extends Application {
 			scene.getStylesheets().add(css);
 			primaryStage.setTitle("Budget Buddy");
 			primaryStage.setScene(scene);
+			primaryStage.setResizable(false);
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
