@@ -18,7 +18,7 @@
          <fill>
             <LinearGradient cycleMethod="NO_CYCLE" endX="1.0" endY="1.0" proportional="true" startX="0.0" startY="0.0">
                <stops>
-                  <Stop color="#2643de" offset="0.0" />
+                  <Stop color="#ba3404" offset="0.0" />
                   <Stop color="#edebf6" offset="1.0" />
                </stops>
             </LinearGradient>
