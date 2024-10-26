@@ -52,13 +52,8 @@ public class AccountDAO {
 	public static ObservableList<AccountBean> getAccounts(){
 		ObservableList<AccountBean> list = FXCollections.observableArrayList();
 		try {
-//			String sql = "SELECT * "
-//					+ "FROM "
-//					+ "Accounts "
-//					+ "ORDER BY "
-//					+ "OpeningDate DESC";
-			Path filePath = Paths.get("Fix This");
-			String sql = Files.readString(filePath);
+			Path filePath = Paths.get("resources","database", "queries", "AccountDateOrder_Query.sql");
+			String sql = Files.readString(filePath).replace("\n", "");
 			
 			Statement statement = connection.createStatement();
 			
@@ -86,9 +81,8 @@ public class AccountDAO {
 		HashSet<String> set = new HashSet<>();
 		
 		try {
-			String sql = "SELECT AccountName "
-					+ "FROM "
-					+ "Accounts ";
+			Path filePath = Paths.get("resources","database", "queries", "AccountNames_Query.sql");
+			String sql = Files.readString(filePath).replace("\n", "");
 			Statement statement = connection.createStatement();
 			
 			ResultSet result = statement.executeQuery(sql);
