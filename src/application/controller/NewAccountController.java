@@ -28,7 +28,7 @@ public class NewAccountController {
 	double balance;
 	String name;
 	
-    private static final HashSet<String> accountNames = new HashSet<>();
+    private static HashSet<String> accountNames;
 
 	private Stage stage;
 	private Scene scene;
@@ -55,6 +55,8 @@ public class NewAccountController {
     }
 	
 	public void submitButton(ActionEvent event) {
+		accountNames = AccountDAO.getAccountNames();
+		
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         String name = accountName.getText().trim();
         String balanceStr = openingBalance.getText().trim();

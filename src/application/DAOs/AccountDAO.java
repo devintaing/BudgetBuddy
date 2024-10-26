@@ -1,10 +1,15 @@
 package application.DAOs;
 
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashSet;
 
 import application.CommonObjs;
 import application.beans.AccountBean;
@@ -47,12 +52,14 @@ public class AccountDAO {
 	public static ObservableList<AccountBean> getAccounts(){
 		ObservableList<AccountBean> list = FXCollections.observableArrayList();
 		try {
-			String sql = "SELECT * "
-					+ "FROM "
-					+ "Accounts "
-					+ "ORDER BY "
-					+ "OpeningDate DESC";
-			System.out.println(sql);
+//			String sql = "SELECT * "
+//					+ "FROM "
+//					+ "Accounts "
+//					+ "ORDER BY "
+//					+ "OpeningDate DESC";
+			Path filePath = Paths.get("Fix This");
+			String sql = Files.readString(filePath);
+			
 			Statement statement = connection.createStatement();
 			
 			ResultSet result = statement.executeQuery(sql);
@@ -67,11 +74,36 @@ public class AccountDAO {
 			}
 			
 			
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			System.out.println("Error getting Accounts");
 			e.printStackTrace();
 		}
 		
 		return list;
+	}
+	
+	public static HashSet<String> getAccountNames(){
+		HashSet<String> set = new HashSet<>();
+		
+		try {
+			String sql = "SELECT AccountName "
+					+ "FROM "
+					+ "Accounts ";
+			Statement statement = connection.createStatement();
+			
+			ResultSet result = statement.executeQuery(sql);
+			
+			while (result.next()) {
+				String accountName = result.getString("AccountName");
+				set.add(accountName);	
+			}
+			
+		}
+		catch (Exception e) {
+			System.out.println("Error getting Account Names");
+			e.printStackTrace();
+		}
+		
+		return set;
 	}
 }
