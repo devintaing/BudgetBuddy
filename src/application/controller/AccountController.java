@@ -58,9 +58,6 @@ public class AccountController {
         String name = accountName.getText().trim();
         String balanceStr = openingBalance.getText().trim();
         LocalDate date = openingDate.getValue();
-        String dateString = date.toString();
-        
-        AccountDAO.addAccount(name, dateString, Double.parseDouble(balanceStr));
         
         
         // Prevents user from leaving the required fields empty
@@ -96,6 +93,8 @@ public class AccountController {
     private void saveAccount(String name, LocalDate date, double balance) {
         // Save account information
         System.out.printf("Saved %s with balance %.2f on %s%n", name, balance, date.toString());
+        AccountDAO.addAccount(name, date.toString(), balance);
+        
     }
     
     private void showAlert(String message) {
