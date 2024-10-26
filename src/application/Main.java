@@ -1,5 +1,6 @@
 package application;
 	
+import application.DAOs.AccountDAO;
 import application.connection.SqliteConnection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,13 +17,15 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			connection = SqliteConnection.Connector();
-			
 			//Keep a reference of the connection inside the commonObjs object
 			CommonObjs commonObjs = CommonObjs.getInstance();
 			commonObjs.setConnection(connection);
+			
+			AccountDAO.createAccountTable();
 		}
 		catch (Exception e){
 			System.out.println("Connection Error");
+			e.printStackTrace();
 		}
 		
 		try {

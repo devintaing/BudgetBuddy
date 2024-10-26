@@ -2,10 +2,14 @@ package application.DAOs;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import application.CommonObjs;
+import application.beans.AccountBean;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class AccountDAO {
 	private static CommonObjs commonObjs = CommonObjs.getInstance();
@@ -25,7 +29,6 @@ public class AccountDAO {
 	}
 	public static void addAccount(String accountName, String openingDate, Double accountBalance ){
 		try {
-			createAccountTable();
 			String insertSQL = "INSERT INTO Accounts(AccountName, OpeningDate, AccountBalance) VALUES(?,?,?)";
 			PreparedStatement pstmt = connection.prepareStatement(insertSQL);
 			pstmt.setString(1, accountName);
@@ -39,5 +42,36 @@ public class AccountDAO {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public static ObservableList<AccountBean> getAccounts(){
+		ObservableList<AccountBean> list = FXCollections.observableArrayList();
+		try {
+			String sql = "SELECT * "
+					+ "FROM "
+					+ "Accounts "
+					+ "ORDER BY "
+					+ "OpeningDate DESC";
+			System.out.println(sql);
+			Statement statement = connection.createStatement();
+			
+			ResultSet result = statement.executeQuery(sql);
+			
+			while (result.next()) {
+				String accountName = result.getString("AccountName");
+				String openingDate = result.getString("OpeningDate");
+				double balance = result.getDouble("AccountBalance");
+				
+				AccountBean bean = new AccountBean(accountName, openingDate, balance);
+				list.add(bean);
+			}
+			
+			
+		} catch (SQLException e) {
+			System.out.println("Error getting Accounts");
+			e.printStackTrace();
+		}
+		
+		return list;
 	}
 }

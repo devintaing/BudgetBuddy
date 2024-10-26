@@ -37,9 +37,9 @@
       </Text>
       <TableView fx:id="accountTableView" layoutX="452.0" layoutY="163.0" prefHeight="447.0" prefWidth="556.0">
         <columns>
-          <TableColumn fx:id="accountCol" prefWidth="212.0" text="Account Name" />
-          <TableColumn fx:id="dateCol" minWidth="0.0" prefWidth="217.0" text="Opening Date" />
-            <TableColumn fx:id="balCol" minWidth="0.0" prefWidth="126.0" text="Opening Balance" />
+          <TableColumn fx:id="accountCol" prefWidth="233.0" resizable="false" text="Account Name" />
+          <TableColumn fx:id="dateCol" minWidth="0.0" prefWidth="143.0" resizable="false" text="Opening Date" />
+            <TableColumn fx:id="balCol" minWidth="0.0" prefWidth="179.0" resizable="false" text="Balance" />
         </columns>
       </TableView>
       <ImageView fitHeight="287.0" fitWidth="406.0" layoutX="1.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">

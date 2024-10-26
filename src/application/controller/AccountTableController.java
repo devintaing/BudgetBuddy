@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.DAOs.AccountDAO;
 import application.beans.AccountBean;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,10 +37,12 @@ public class AccountTableController implements Initializable {
 	@FXML
 	private TableColumn<AccountBean, Double> balCol;
 	
-	ObservableList<AccountBean> list = FXCollections.observableArrayList(
-		new AccountBean("testName", "10/24/24", 193),
-		new AccountBean("testName2", "10/25/24", 201)
-	);
+//	ObservableList<AccountBean> list = FXCollections.observableArrayList(
+//		new AccountBean("testName", "10/24/24", 193),
+//		new AccountBean("testName2", "10/25/24", 201)
+//	);
+	
+	ObservableList<AccountBean> list;
 			
 
 	@Override
@@ -47,6 +50,8 @@ public class AccountTableController implements Initializable {
 		accountCol.setCellValueFactory(new PropertyValueFactory<AccountBean, String>("accountName"));
 		dateCol.setCellValueFactory(new PropertyValueFactory<AccountBean, String>("openingDate"));
 		balCol.setCellValueFactory(new PropertyValueFactory<AccountBean, Double>("balance"));
+		
+		list = AccountDAO.getAccounts();
 		accountTableView.setItems(list);
 	}
 	
