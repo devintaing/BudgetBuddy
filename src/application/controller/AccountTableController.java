@@ -53,6 +53,7 @@ public class AccountTableController implements Initializable {
 		dateCol.setCellValueFactory(new PropertyValueFactory<AccountBean, String>("openingDate"));
 		balCol.setCellValueFactory(new PropertyValueFactory<AccountBean, Double>("balance"));
 		
+		//sets how the balance column formats the cells
 		balCol.setCellFactory(tc -> new TableCell<AccountBean, Double>() {
 		    @Override
 		    protected void updateItem(Double balance, boolean empty) {
@@ -60,14 +61,13 @@ public class AccountTableController implements Initializable {
 		        if (empty || balance == null) {
 		            setText(null); // Clear the cell if it's empty or balance is null
 		        } else {
-		            // Use String representation to avoid floating-point precision issues
+		            // Round the balance to 2 decimal places and add a $ in front
 		            BigDecimal roundedBalance = new BigDecimal(String.valueOf(balance)).setScale(2, RoundingMode.HALF_UP);
 		            setText("$" + roundedBalance.toString());
 		        }
 		    }
 		});
 
-		
 		list = AccountDAO.getAccounts();
 		accountTableView.setItems(list);
 	}
