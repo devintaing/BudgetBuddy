@@ -27,7 +27,8 @@ public class AccountTableController implements Initializable {
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		// TODO Auto-generated method stub
 		accountCol.setCellValueFactory(new PropertyValueFactory<AccountBean, String>("accountName"));
-		dateCol.setCellValueFactory(new PropertyValueFactory<AccountBean, String>("accountName"));
-		balCol.setCellValueFactory(new PropertyValueFactory<AccountBean, Double>("accountName"));
+		dateCol.setCellValueFactory(new PropertyValueFactory<AccountBean, String>("openingDate"));
+		balCol.setCellValueFactory(new PropertyValueFactory<AccountBean, Double>("balance"));
+		
 	}
 }
