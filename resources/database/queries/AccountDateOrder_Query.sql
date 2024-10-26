@@ -1,6 +1,6 @@
-SELECT 
-    "AccountName", "OpeningDate", "AccountBalance" 
-FROM 
-    Accounts 
+SELECT
+    AccountName, OpeningDate, ROUND(AccountBalance, 2) AS AccountBalance
+FROM
+    Accounts
 ORDER BY
-    "OpeningDate" DESC;
+    OpeningDate DESC
