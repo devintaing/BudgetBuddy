@@ -1,6 +1,8 @@
 package application.controller;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -14,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -49,6 +52,21 @@ public class AccountTableController implements Initializable {
 		accountCol.setCellValueFactory(new PropertyValueFactory<AccountBean, String>("accountName"));
 		dateCol.setCellValueFactory(new PropertyValueFactory<AccountBean, String>("openingDate"));
 		balCol.setCellValueFactory(new PropertyValueFactory<AccountBean, Double>("balance"));
+		
+		balCol.setCellFactory(tc -> new TableCell<AccountBean, Double>() {
+		    @Override
+		    protected void updateItem(Double balance, boolean empty) {
+		        super.updateItem(balance, empty);
+		        if (empty || balance == null) {
+		            setText(null); // Clear the cell if it's empty or balance is null
+		        } else {
+		            // Use String representation to avoid floating-point precision issues
+		            BigDecimal roundedBalance = new BigDecimal(String.valueOf(balance)).setScale(2, RoundingMode.HALF_UP);
+		            setText("$" + roundedBalance.toString());
+		        }
+		    }
+		});
+
 		
 		list = AccountDAO.getAccounts();
 		accountTableView.setItems(list);

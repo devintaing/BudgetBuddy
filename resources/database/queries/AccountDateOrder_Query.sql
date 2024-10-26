@@ -1,5 +1,5 @@
 SELECT
-    AccountName, OpeningDate, ROUND(AccountBalance, 2) AS AccountBalance
+    AccountName, OpeningDate, AccountBalance
 FROM
     Accounts
 ORDER BY
