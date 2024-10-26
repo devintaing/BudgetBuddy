@@ -6,7 +6,6 @@ import java.util.ResourceBundle;
 
 import application.DAOs.AccountDAO;
 import application.beans.AccountBean;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

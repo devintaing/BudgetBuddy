@@ -60,8 +60,7 @@ public class AccountDAO {
 		try {
 			// Path to the SQLite query file that retrieves accounts ordered by date
 			Path filePath = Paths.get("resources","database", "queries", "AccountDateOrder_Query.sql");
-			String sql = Files.readString(filePath).replace("\n", ""); // Read and process the SQL query
-			
+			String sql = Files.readString(filePath).trim(); // Read and process the SQL query
 			Statement statement = connection.createStatement();
 			
 			ResultSet result = statement.executeQuery(sql); // Execute the query
@@ -91,7 +90,7 @@ public class AccountDAO {
 		try {
 			// Path to the SQL query file that retrieves account names
 			Path filePath = Paths.get("resources","database", "queries", "AccountNames_Query.sql");
-			String sql = Files.readString(filePath).replace("\n", "");
+			String sql = Files.readString(filePath).trim();
 			Statement statement = connection.createStatement(); // Read and process the SQL query
 			
 			ResultSet result = statement.executeQuery(sql);
