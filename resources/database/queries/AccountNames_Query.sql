@@ -1,2 +1,2 @@
 SELECT AccountName
-FROM Accounts 
+FROM Accounts;
