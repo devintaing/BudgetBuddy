@@ -5,6 +5,12 @@ public class AccountBean {
 	private String openingDate;
 	private double balance;
 	
+	public AccountBean(String accName, String openDate, double bal) {
+		accountName = accName;
+		openingDate = openDate;
+		balance = bal;
+	}
+	
 	public String getAccountName() {
 		return accountName;
 	}
