@@ -16,13 +16,14 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class AccountController {
+public class NewAccountController {
 	@FXML
 	TextField accountName;
 	@FXML
 	TextField openingBalance;
 	@FXML
 	DatePicker openingDate;
+	
 	
 	double balance;
 	String name;
