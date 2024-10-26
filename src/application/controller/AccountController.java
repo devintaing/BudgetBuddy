@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.HashSet;
 
+import application.DAOs.AccountDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -57,6 +58,10 @@ public class AccountController {
         String name = accountName.getText().trim();
         String balanceStr = openingBalance.getText().trim();
         LocalDate date = openingDate.getValue();
+        String dateString = date.toString();
+        
+        AccountDAO.addAccount(name, dateString, Double.parseDouble(balanceStr));
+        
         
         // Prevents user from leaving the required fields empty
         if (name.isEmpty() || balanceStr.isEmpty() || date == null) {

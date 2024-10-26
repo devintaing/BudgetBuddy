@@ -1,4 +1,5 @@
 /application/
-/view/
+/css/
+/database/
 /images/
-/database/BudgetDb.sqlite
+/view/

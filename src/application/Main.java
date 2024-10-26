@@ -14,7 +14,17 @@ public class Main extends Application {
 	Connection connection;
 	@Override
 	public void start(Stage primaryStage) {
-		connection = SqliteConnection.Connector();
+		try {
+			connection = SqliteConnection.Connector();
+			
+			//Keep a reference of the connection inside the commonObjs object
+			CommonObjs commonObjs = CommonObjs.getInstance();
+			commonObjs.setConnection(connection);
+		}
+		catch (Exception e){
+			System.out.println("Connection Error");
+		}
+		
 		try {
 			AnchorPane root = FXMLLoader.load(getClass().getResource("/view/homepage.fxml"));
 			Scene scene = new Scene(root);
