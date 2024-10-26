@@ -1,6 +1,5 @@
 package application.DAOs;
 
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -17,11 +16,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class AccountDAO {
+	// Get an instance of CommonOnjs and retrieve a shared database connection
 	private static CommonObjs commonObjs = CommonObjs.getInstance();
 	private static Connection connection = commonObjs.getConnection();
 	
+	// Method to create the Accounts table if it doesn't exist
 	public static void createAccountTable() {
 		try {
+		// SQLite query to create Accounts table with specified columns
 		String createTablesql = "CREATE TABLE if not exists Accounts(AccountName TEXT, OpeningDate TEXT, AccountBalance REAL)";
 		Statement stmt = connection.createStatement();
 		stmt.execute(createTablesql);
@@ -32,13 +34,16 @@ public class AccountDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	// Method to add a new account to the Accounts table
 	public static void addAccount(String accountName, String openingDate, Double accountBalance ){
 		try {
+			//SQL query to insert a new account with placeholder for values
 			String insertSQL = "INSERT INTO Accounts(AccountName, OpeningDate, AccountBalance) VALUES(?,?,?)";
 			PreparedStatement pstmt = connection.prepareStatement(insertSQL);
-			pstmt.setString(1, accountName);
-			pstmt.setString(2, openingDate);
-			pstmt.setDouble(3, accountBalance);
+			pstmt.setString(1, accountName); // Set Account name
+			pstmt.setString(2, openingDate); // Set opening date
+			pstmt.setDouble(3, accountBalance); // Set account balance
 			pstmt.executeUpdate();
 			
 		}
@@ -49,16 +54,19 @@ public class AccountDAO {
 		
 	}
 	
+	// Method that retrieves all accounts and returns them as an ObservableList
 	public static ObservableList<AccountBean> getAccounts(){
 		ObservableList<AccountBean> list = FXCollections.observableArrayList();
 		try {
+			// Path to the SQLite query file that retrieves accounts ordered by date
 			Path filePath = Paths.get("resources","database", "queries", "AccountDateOrder_Query.sql");
-			String sql = Files.readString(filePath).replace("\n", "");
+			String sql = Files.readString(filePath).replace("\n", ""); // Read and process the SQL query
 			
 			Statement statement = connection.createStatement();
 			
-			ResultSet result = statement.executeQuery(sql);
+			ResultSet result = statement.executeQuery(sql); // Execute the query
 			
+			// Loops through the result set and add each account to the ObservableList
 			while (result.next()) {
 				String accountName = result.getString("AccountName");
 				String openingDate = result.getString("OpeningDate");
@@ -74,19 +82,21 @@ public class AccountDAO {
 			e.printStackTrace();
 		}
 		
-		return list;
+		return list; // Returns the list of accounts
 	}
 	
 	public static HashSet<String> getAccountNames(){
 		HashSet<String> set = new HashSet<>();
 		
 		try {
+			// Path to the SQL query file that retrieves account names
 			Path filePath = Paths.get("resources","database", "queries", "AccountNames_Query.sql");
 			String sql = Files.readString(filePath).replace("\n", "");
-			Statement statement = connection.createStatement();
+			Statement statement = connection.createStatement(); // Read and process the SQL query
 			
 			ResultSet result = statement.executeQuery(sql);
 			
+			// Loops through the result set and add each account name to the Hashset
 			while (result.next()) {
 				String accountName = result.getString("AccountName");
 				set.add(accountName);	
@@ -98,6 +108,6 @@ public class AccountDAO {
 			e.printStackTrace();
 		}
 		
-		return set;
+		return set; // Return the set of unique account names
 	}
 }

@@ -28,16 +28,19 @@ public class MainController {
         stage.show();
     }
     
+    // Switches to the home screen
     @FXML
     public void switchToHome(ActionEvent event) throws IOException {
         loadScene("/view/Homepage.fxml", event); // Use the loadScene method
     }
 
+    // Switches to the "New Account" screen
     @FXML
     public void switchToNewAccount(ActionEvent event) throws IOException {
         loadScene("/view/NewAccount.fxml", event); // Use the loadScene method
     }
     
+    // Switches to the "View Accounts" screen
     @FXML
     public void switchToViewAccounts(ActionEvent event) throws IOException {
         loadScene("/view/viewAccounts.fxml", event); // Use the loadScene method

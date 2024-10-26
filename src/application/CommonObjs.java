@@ -14,16 +14,15 @@ public class CommonObjs {
 		return commonObjs;
 	}
 
+	// Getter
 	public Connection getConnection() {
 		return connection;
 	}
 
+	// Setter
 	public void setConnection(Connection connection) {
 		this.connection = connection;
 	}
-	
-	
-	
 	
 	
 }
