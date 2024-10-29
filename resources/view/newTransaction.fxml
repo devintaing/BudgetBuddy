@@ -16,7 +16,7 @@
             <Font name="Lato Bold" size="50.0" />
          </font>
       </Text>
-      <Button layoutX="181.0" layoutY="602.0" prefHeight="40.0" prefWidth="110.0" stylesheets="@../css/application.css" text="Submit" textFill="WHITE">
+      <Button fx:id="submit" layoutX="181.0" layoutY="602.0" onAction="#submitButton" prefHeight="40.0" prefWidth="110.0" stylesheets="@../css/application.css" text="Submit" textFill="WHITE">
          <font>
             <Font size="25.0" />
          </font>
@@ -50,26 +50,26 @@
             <Font name="Lato Regular" size="16.0" />
          </font>
       </Text>
-      <ChoiceBox layoutX="62.0" layoutY="192.0" prefHeight="26.0" prefWidth="179.0" />
-      <ChoiceBox layoutX="62.0" layoutY="257.0" prefHeight="26.0" prefWidth="179.0" />
-      <TextField layoutX="62.0" layoutY="387.0" prefHeight="26.0" prefWidth="347.0" />
+      <ChoiceBox fx:id="accountName" layoutX="62.0" layoutY="192.0" prefHeight="26.0" prefWidth="179.0" />
+      <ChoiceBox fx:id="transactionType" layoutX="62.0" layoutY="257.0" prefHeight="26.0" prefWidth="179.0" />
+      <TextField fx:id="transactionDescription" layoutX="62.0" layoutY="387.0" prefHeight="26.0" prefWidth="347.0" />
       <Text layoutX="62.0" layoutY="312.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Date" wrappingWidth="261.0001220703125">
          <font>
             <Font name="Lato Regular" size="16.0" />
          </font>
       </Text>
-      <DatePicker layoutX="62.0" layoutY="322.0" prefHeight="26.0" prefWidth="225.0" />
+      <DatePicker fx:id="transactionDate" layoutX="62.0" layoutY="322.0" prefHeight="26.0" prefWidth="225.0" />
       <Text layoutX="62.0" layoutY="442.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Amount" wrappingWidth="261.0001220703125">
          <font>
             <Font name="Lato Regular" size="16.0" />
          </font>
       </Text>
-      <TextField layoutX="62.0" layoutY="452.0" prefHeight="26.0" prefWidth="179.0" />
+      <TextField fx:id="paymentAmount" layoutX="62.0" layoutY="452.0" prefHeight="26.0" prefWidth="179.0" />
       <Text layoutX="62.0" layoutY="507.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Deposit Amount" wrappingWidth="261.0001220703125">
          <font>
             <Font name="Lato Regular" size="16.0" />
          </font>
       </Text>
-      <TextField layoutX="62.0" layoutY="517.0" prefHeight="26.0" prefWidth="179.0" />
+      <TextField fx:id="depositAmount" layoutX="62.0" layoutY="517.0" prefHeight="26.0" prefWidth="179.0" />
    </children>
 </AnchorPane>

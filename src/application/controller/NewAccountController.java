@@ -89,9 +89,6 @@ public class NewAccountController {
             return;
         }
 
-        // If all validations pass, add account name to set
-        accountNames.add(name);
-
         // Save information to be used on other pages or application.database
         saveAccount(name, date, balance);
 
