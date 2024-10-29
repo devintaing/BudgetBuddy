@@ -14,16 +14,12 @@ public class MainController {
 	
 	@FXML
 	public void initialize() {
-		try {
-			switchToHome();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			System.out.println("error loading homepage");
-			e.printStackTrace();
-		}
+		// Show the homepage on startup
+		switchToHome();
 	}
 	
-    private void loadScene(String fxmlFile) throws IOException {
+	//loads the given URL, and replaces the 2nd child of main/ the content to the right of the sidebar
+    private void loadScene(String fxmlFile) {
     	URL url = getClass().getResource(fxmlFile);
     	
     	try {
@@ -35,31 +31,31 @@ public class MainController {
 			mainBox.getChildren().add(paneHome);
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			System.out.println("erorr loading scene from " + fxmlFile);
 			e.printStackTrace();
 		}
     }
     
     // Switches to the home screen
     @FXML
-    public void switchToHome() throws IOException {
+    public void switchToHome() {
         loadScene("/view/homepage.fxml"); // Use the loadScene method
     }
 
     // Switches to the "New Account" screen
     @FXML
-    public void switchToNewAccount() throws IOException {
+    public void switchToNewAccount() {
         loadScene("/view/newAccount.fxml"); // Use the loadScene method
     }
     
     // Switches to the "View Accounts" screen
     @FXML
-    public void switchToViewAccounts() throws IOException {
+    public void switchToViewAccounts() {
         loadScene("/view/viewAccounts.fxml"); // Use the loadScene method
     }
     // Switches to the "New Transaction" screen
     @FXML
-    public void switchToNewTransaction() throws IOException {
+    public void switchToNewTransaction() {
         loadScene("/view/newTransaction.fxml"); // Use the loadScene method
     }
 

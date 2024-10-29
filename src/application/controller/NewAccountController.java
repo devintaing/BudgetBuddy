@@ -10,15 +10,11 @@ import application.DAOs.AccountDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
 
 public class NewAccountController {
 	@FXML
@@ -41,7 +37,8 @@ public class NewAccountController {
 		openingDate.setValue(LocalDate.now());
 	}
 	
-	private void loadScene(String fxmlFile) throws IOException {
+	//same loadScene as mainController, replaces 2nd child of mainBox
+	private void loadScene(String fxmlFile){
     	URL url = getClass().getResource(fxmlFile);
     	
     	try {
@@ -53,15 +50,17 @@ public class NewAccountController {
 			mainBox.getChildren().add(paneHome);
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			System.out.println("error loading scene from " + fxmlFile);
 			e.printStackTrace();
 		}
     }
 
-    public void switchToHome() throws IOException {
+	//switch to homepage if cancel button is clicked
+    public void switchToHome() {
         loadScene("/view/Homepage.fxml"); // Use the loadScene method
     }
 	
+    //handler for user submitting the form
 	public void submitButton(ActionEvent event) {
 		accountNames = AccountDAO.getAccountNames();
 		

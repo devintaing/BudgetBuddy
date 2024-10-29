@@ -15,6 +15,7 @@ import java.sql.Connection;
 public class Main extends Application {
 	private CommonObjs commonObjs = CommonObjs.getInstance();
 	private Connection connection;
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -47,6 +48,7 @@ public class Main extends Application {
 			
 			commonObjs.setMainBox(mainBox);
 		} catch(Exception e) {
+			System.out.println("Error loading main Class");
 			e.printStackTrace();
 		}
 	}
