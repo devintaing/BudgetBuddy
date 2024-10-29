@@ -14,7 +14,7 @@
             <Font name="Lato Bold" size="50.0" />
          </font>
       </Text>
-      <Button layoutX="181.0" layoutY="251.0" prefHeight="40.0" prefWidth="110.0" stylesheets="@../css/application.css" text="Submit" textFill="WHITE">
+      <Button layoutX="181.0" layoutY="251.0" onAction="#submitButton" prefHeight="40.0" prefWidth="110.0" stylesheets="@../css/application.css" text="Submit" textFill="WHITE">
          <font>
             <Font size="25.0" />
          </font>
@@ -38,6 +38,6 @@
             <Font name="Lato Regular" size="16.0" />
          </font>
       </Text>
-      <TextField layoutX="63.0" layoutY="191.0" prefHeight="26.0" prefWidth="347.0" />
+      <TextField fx:id="TypeName" layoutX="63.0" layoutY="191.0" prefHeight="26.0" prefWidth="347.0" />
    </children>
 </AnchorPane>

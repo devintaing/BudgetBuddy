@@ -1,6 +1,7 @@
 package application;
 	
 import application.DAOs.AccountDAO;
+import application.DAOs.TransactionTypeDAO;
 import application.connection.SqliteConnection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +24,7 @@ public class Main extends Application {
 			//Keep a reference of the connection inside the commonObjs object
 			commonObjs.setConnection(connection);
 			AccountDAO.createAccountTable();
+			TransactionTypeDAO.createTransactionTypeTable();
 		}
 		catch (Exception e){
 			System.out.println("Connection Error");

@@ -13,7 +13,7 @@
             <Button layoutY="500.0" mnemonicParsing="false" onAction="#switchToNewAccount" prefHeight="40.0" prefWidth="380.0" text="New Account" />
             <Button layoutY="540.0" mnemonicParsing="false" onAction="#switchToNewTransaction" prefHeight="40.0" prefWidth="380.0" text="New Transaction" />
             <Button layoutY="580.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="380.0" text="New Scheduled Transaction (WIP)" />
-            <Button layoutY="620.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="380.0" text="New Transaction Type" />
+            <Button layoutY="620.0" mnemonicParsing="false" onAction="#switchToNewTransactionType" prefHeight="40.0" prefWidth="380.0" text="New Transaction Type" />
             <Button layoutY="290.0" mnemonicParsing="false" onAction="#switchToViewAccounts" prefHeight="40.0" prefWidth="380.0" text="View Accounts" />
             <Button layoutY="330.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="380.0" text="View Transactions (WIP)" />
             <ImageView fitHeight="270.0" fitWidth="380.0" pickOnBounds="true" preserveRatio="true">

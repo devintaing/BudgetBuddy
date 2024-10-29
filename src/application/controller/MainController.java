@@ -58,6 +58,11 @@ public class MainController {
     public void switchToNewTransaction() {
         loadScene("/view/newTransaction.fxml"); // Use the loadScene method
     }
+ // Switches to the "New Transaction Type" screen
+    @FXML
+    public void switchToNewTransactionType() {
+        loadScene("/view/newTransactionType.fxml"); // Use the loadScene method
+    }
 
 
 }

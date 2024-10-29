@@ -57,14 +57,13 @@ public class NewAccountController {
 
 	//switch to homepage if cancel button is clicked
     public void switchToHome() {
-        loadScene("/view/Homepage.fxml"); // Use the loadScene method
+        loadScene("/view/homepage.fxml"); // Use the loadScene method
     }
 	
     //handler for user submitting the form
 	public void submitButton(ActionEvent event) {
 		accountNames = AccountDAO.getAccountNames();
 		
-		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         String name = accountName.getText().trim();
         String balanceStr = openingBalance.getText().trim();
         LocalDate date = openingDate.getValue();
@@ -92,6 +91,7 @@ public class NewAccountController {
         saveAccount(name, date, balance);
 
         // Show success message
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Success");
         alert.setHeaderText("Account successfully added!");
         alert.showAndWait();

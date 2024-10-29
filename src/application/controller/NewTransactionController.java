@@ -1,7 +1,9 @@
 package application.controller;
 
 import java.io.IOException;
+import java.net.URL;
 
+import application.CommonObjs;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +14,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class NewTransactionController {
@@ -36,24 +40,30 @@ public class NewTransactionController {
 	double payment;
 	double deposit;
 	
-	private Stage stage;
-	private Scene scene;
-	private Parent root;
+	private CommonObjs commonObjs = CommonObjs.getInstance();
+    private HBox mainBox = commonObjs.getMainBox();
 	
-    private void loadScene(String fxmlFile, ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource(fxmlFile));
-        scene = new Scene(root);
-
-        String css = getClass().getResource("/css/application.css").toExternalForm();
-        scene.getStylesheets().add(css);
-
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-    }
+    //same loadScene as mainController, replaces 2nd child of mainBox
+  	private void loadScene(String fxmlFile){
+      	URL url = getClass().getResource(fxmlFile);
+      	
+      	try {
+  			AnchorPane paneHome = (AnchorPane)FXMLLoader.load(url);
+  			
+  			if (mainBox.getChildren().size() >1)
+  				mainBox.getChildren().remove(1);
+  			
+  			mainBox.getChildren().add(paneHome);
+  			
+  		} catch (IOException e) {
+  			System.out.println("error loading scene from " + fxmlFile);
+  			e.printStackTrace();
+  		}
+      }
     
-    public void switchToHome(ActionEvent event) throws IOException {
-        loadScene("/view/Homepage.fxml", event); // Use the loadScene method
+  	//switch to homepage if cancel button is clicked
+    public void switchToHome() {
+        loadScene("/view/homepage.fxml"); // Use the loadScene method
     }
     
     public void submitButton(ActionEvent event) {
