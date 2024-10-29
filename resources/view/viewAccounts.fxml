@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.AccountTableController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="720.0" layoutX="0.0" layoutY="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="700.0">
          <fill>
@@ -35,11 +35,11 @@
             <Font name="Lato Bold" size="50.0" />
          </font>
       </Text>
-      <TableView layoutX="452.0" layoutY="163.0" prefHeight="447.0" prefWidth="556.0">
+      <TableView fx:id="accountTableView" layoutX="452.0" layoutY="163.0" prefHeight="447.0" prefWidth="556.0">
         <columns>
-          <TableColumn prefWidth="212.0" text="Account Name" />
-          <TableColumn minWidth="0.0" prefWidth="217.0" text="Opening Date" />
-            <TableColumn minWidth="0.0" prefWidth="126.0" text="Opening Balance" />
+          <TableColumn fx:id="accountCol" prefWidth="233.0" resizable="false" text="Account Name" />
+          <TableColumn fx:id="dateCol" minWidth="0.0" prefWidth="143.0" resizable="false" text="Opening Date" />
+            <TableColumn fx:id="balCol" minWidth="0.0" prefWidth="179.0" resizable="false" text="Balance" />
         </columns>
       </TableView>
       <ImageView fitHeight="287.0" fitWidth="406.0" layoutX="1.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">

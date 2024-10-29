@@ -1,0 +1,2 @@
+SELECT AccountName
+FROM Accounts;
