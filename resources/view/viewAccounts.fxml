@@ -1,51 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.AccountTableController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.AccountTableController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="720.0" layoutX="0.0" layoutY="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="700.0">
-         <fill>
-            <LinearGradient cycleMethod="NO_CYCLE" endX="1.0" endY="1.0" proportional="true" startX="0.0" startY="0.0">
-               <stops>
-                  <Stop color="#ba3404" offset="0.0" />
-                  <Stop color="#edebf6" offset="1.0" />
-               </stops>
-            </LinearGradient>
-         </fill>
-      </Rectangle>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="720.0" layoutX="380.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="700.0" />
-      <Button layoutX="130.0" layoutY="537.0" mnemonicParsing="false" onAction="#switchToHome" styleClass="rounded-button" stylesheets="@../css/application.css" text="Home">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Button>
-      <Text layoutX="454.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Accounts" wrappingWidth="402.0">
+      <Text layoutX="74.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Accounts" wrappingWidth="402.0">
          <font>
             <Font name="Lato Bold" size="50.0" />
          </font>
       </Text>
-      <TableView fx:id="accountTableView" layoutX="452.0" layoutY="163.0" prefHeight="447.0" prefWidth="556.0">
-        <columns>
-          <TableColumn fx:id="accountCol" prefWidth="233.0" resizable="false" text="Account Name" />
-          <TableColumn fx:id="dateCol" minWidth="0.0" prefWidth="143.0" resizable="false" text="Opening Date" />
+      <TableView fx:id="accountTableView" layoutX="72.0" layoutY="181.0" prefHeight="447.0" prefWidth="556.0">
+         <columns>
+            <TableColumn fx:id="accountCol" prefWidth="233.0" resizable="false" text="Account Name" />
+            <TableColumn fx:id="dateCol" minWidth="0.0" prefWidth="143.0" resizable="false" text="Opening Date" />
             <TableColumn fx:id="balCol" minWidth="0.0" prefWidth="179.0" resizable="false" text="Balance" />
-        </columns>
+         </columns>
       </TableView>
-      <ImageView fitHeight="287.0" fitWidth="406.0" layoutX="1.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/BudgetBuddyLogo.png" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>

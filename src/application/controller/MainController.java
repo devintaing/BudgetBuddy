@@ -1,54 +1,66 @@
 package application.controller;
 
 import java.io.IOException;
+import java.net.URL;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 
 public class MainController {
 
-	private Stage stage;
-	private Scene scene;
-	private Parent root;
+	@FXML HBox mainBox;
 	
-    private void loadScene(String fxmlFile, ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource(fxmlFile));
-        scene = new Scene(root);
-
-        String css = getClass().getResource("/css/application.css").toExternalForm();
-        scene.getStylesheets().add(css);
-
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+	@FXML
+	public void initialize() {
+		try {
+			switchToHome();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("error loading homepage");
+			e.printStackTrace();
+		}
+	}
+	
+    private void loadScene(String fxmlFile) throws IOException {
+    	URL url = getClass().getResource(fxmlFile);
+    	
+    	try {
+			AnchorPane paneHome = (AnchorPane)FXMLLoader.load(url);
+			
+			if (mainBox.getChildren().size() >1)
+				mainBox.getChildren().remove(1);
+			
+			mainBox.getChildren().add(paneHome);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
     
     // Switches to the home screen
     @FXML
-    public void switchToHome(ActionEvent event) throws IOException {
-        loadScene("/view/Homepage.fxml", event); // Use the loadScene method
+    public void switchToHome() throws IOException {
+        loadScene("/view/homepage.fxml"); // Use the loadScene method
     }
 
     // Switches to the "New Account" screen
     @FXML
-    public void switchToNewAccount(ActionEvent event) throws IOException {
-        loadScene("/view/NewAccount.fxml", event); // Use the loadScene method
+    public void switchToNewAccount() throws IOException {
+        loadScene("/view/newAccount.fxml"); // Use the loadScene method
     }
     
     // Switches to the "View Accounts" screen
     @FXML
-    public void switchToViewAccounts(ActionEvent event) throws IOException {
-        loadScene("/view/viewAccounts.fxml", event); // Use the loadScene method
+    public void switchToViewAccounts() throws IOException {
+        loadScene("/view/viewAccounts.fxml"); // Use the loadScene method
     }
     // Switches to the "New Transaction" screen
     @FXML
-    public void switchToNewTransaction(ActionEvent event) throws IOException {
-        loadScene("/view/newTransaction.fxml", event); // Use the loadScene method
+    public void switchToNewTransaction() throws IOException {
+        loadScene("/view/newTransaction.fxml"); // Use the loadScene method
     }
 
 

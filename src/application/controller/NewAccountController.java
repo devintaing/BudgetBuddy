@@ -1,9 +1,11 @@
 package application.controller;
 
 import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDate;
 import java.util.HashSet;
 
+import application.CommonObjs;
 import application.DAOs.AccountDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +16,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class NewAccountController {
@@ -29,29 +33,33 @@ public class NewAccountController {
 	String name;
 	
     private static HashSet<String> accountNames;
-
-	private Stage stage;
-	private Scene scene;
-	private Parent root;
+    
+    private CommonObjs commonObjs = CommonObjs.getInstance();
+    private HBox mainBox = commonObjs.getMainBox();
 	
 	public void initialize() {
 		openingDate.setValue(LocalDate.now());
 	}
 	
-    private void loadScene(String fxmlFile, ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource(fxmlFile));
-        scene = new Scene(root);
-
-        String css = getClass().getResource("/css/application.css").toExternalForm();
-        scene.getStylesheets().add(css);
-
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+	private void loadScene(String fxmlFile) throws IOException {
+    	URL url = getClass().getResource(fxmlFile);
+    	
+    	try {
+			AnchorPane paneHome = (AnchorPane)FXMLLoader.load(url);
+			
+			if (mainBox.getChildren().size() >1)
+				mainBox.getChildren().remove(1);
+			
+			mainBox.getChildren().add(paneHome);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
-    public void switchToHome(ActionEvent event) throws IOException {
-        loadScene("/view/Homepage.fxml", event); // Use the loadScene method
+    public void switchToHome() throws IOException {
+        loadScene("/view/Homepage.fxml"); // Use the loadScene method
     }
 	
 	public void submitButton(ActionEvent event) {
