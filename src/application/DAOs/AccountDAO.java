@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 import application.CommonObjs;
@@ -84,7 +85,7 @@ public class AccountDAO {
 		return list; // Returns the list of accounts
 	}
 	
-	public static HashSet<String> getAccountNames(){
+	public static HashSet<String> getAccountNamesSet(){
 		HashSet<String> set = new HashSet<>();
 		
 		try {
@@ -109,4 +110,31 @@ public class AccountDAO {
 		
 		return set; // Return the set of unique account names
 	}
+	
+	public static ArrayList<String> getAccountNamesList(){
+		ArrayList<String> list = new ArrayList<>();
+		
+		try {
+			String sql = "SELECT AccountName "
+					+ "FROM Accounts "
+					+ "ORDER BY AccountName ASC;";
+			Statement statement = connection.createStatement(); // Read and process the SQL query
+			
+			ResultSet result = statement.executeQuery(sql);
+			
+			// Loops through the result set and add each account name to the Hashset
+			while (result.next()) {
+				String typeName = result.getString("AccountName");
+				list.add(typeName);	
+			}
+			
+		}
+		catch (Exception e) {
+			System.out.println("Error getting account names (list)");
+			e.printStackTrace();
+		}
+		
+		return list; // Return the set of transaction types
+	}
+	
 }

@@ -2,28 +2,29 @@ package application.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
 
 import application.CommonObjs;
+import application.DAOs.AccountDAO;
+import application.DAOs.TransactionTypeDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
 
 public class NewTransactionController {
 	@FXML
-	ChoiceBox accountName;
+	ChoiceBox<String> accountName;
 
 	@FXML
-	ChoiceBox transactionType;
+	ChoiceBox<String> transactionType;
 
 	@FXML
 	DatePicker transactionDate;
@@ -37,12 +38,25 @@ public class NewTransactionController {
 	@FXML
 	TextField depositAmount;
 	
-	double payment;
-	double deposit;
+	double payment = 0;
+	double deposit = 0;
 	
 	private CommonObjs commonObjs = CommonObjs.getInstance();
     private HBox mainBox = commonObjs.getMainBox();
 	
+    private ArrayList<String> accountNames = new ArrayList<>();
+    private ArrayList<String> transactionTypes = new ArrayList<>();
+    
+    public void initialize() {
+    	accountNames = AccountDAO.getAccountNamesList();
+    	accountName.getItems().addAll(accountNames);
+    	accountName.setValue(accountNames.get(0));
+    	transactionTypes = TransactionTypeDAO.getTransactionTypesList();
+    	transactionType.getItems().addAll(transactionTypes);
+    	transactionType.setValue(transactionTypes.get(0));
+		transactionDate.setValue(LocalDate.now());
+	}
+    
     //same loadScene as mainController, replaces 2nd child of mainBox
   	private void loadScene(String fxmlFile){
       	URL url = getClass().getResource(fxmlFile);
@@ -81,8 +95,8 @@ public class NewTransactionController {
         	return;
         }
         
-        // If user does not input a deposit amount, validate payment amount
-        if(depositStr.isEmpty()) {
+        // Validate payment amount
+        if(!paymentStr.isEmpty()) {
         	try {
         		payment = Double.parseDouble(paymentStr);
         	} catch(NumberFormatException e) {
@@ -91,8 +105,8 @@ public class NewTransactionController {
         	}
         }
         
-        // If user does not input a payment amount, validate deposit amount
-        if(paymentStr.isEmpty()) {
+        // Validate deposit amount
+        if(!depositStr.isEmpty()) {
         	try {
         		deposit = Double.parseDouble(depositStr);
         	} catch(NumberFormatException e) {
@@ -109,7 +123,7 @@ public class NewTransactionController {
     }
     
     private void saveTransaction (String account, String type, String date, String description, Double payment, Double deposit) {
-        System.out.printf("Saved a transaction of %.");
+        //System.out.printf("Saved a transaction of %.");
         //TODO: ACTUALLY SAVE TRANSACTION INFORMATION
     }
     

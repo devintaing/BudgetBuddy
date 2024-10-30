@@ -62,7 +62,7 @@ public class NewAccountController {
 	
     //handler for user submitting the form
 	public void submitButton(ActionEvent event) {
-		accountNames = AccountDAO.getAccountNames();
+		accountNames = AccountDAO.getAccountNamesSet();
 		
         String name = accountName.getText().trim();
         String balanceStr = openingBalance.getText().trim();

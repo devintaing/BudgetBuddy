@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 import application.CommonObjs;
@@ -47,7 +48,7 @@ public class TransactionTypeDAO {
 	}
 	
 	
-	public static HashSet<String> getTransactionTypes(){
+	public static HashSet<String> getTransactionTypesSet(){
 		HashSet<String> set = new HashSet<>();
 		
 		try {
@@ -70,5 +71,31 @@ public class TransactionTypeDAO {
 		}
 		
 		return set; // Return the set of transaction types
+	}
+	
+	public static ArrayList<String> getTransactionTypesList(){
+		ArrayList<String> list = new ArrayList<>();
+		
+		try {
+			String sql = "SELECT TypeName "
+					+ "FROM TransactionTypes "
+					+ "ORDER BY TypeName ASC;";
+			Statement statement = connection.createStatement(); // Read and process the SQL query
+			
+			ResultSet result = statement.executeQuery(sql);
+			
+			// Loops through the result set and add each account name to the Hashset
+			while (result.next()) {
+				String typeName = result.getString("TypeName");
+				list.add(typeName);	
+			}
+			
+		}
+		catch (Exception e) {
+			System.out.println("Error getting Transaction Types");
+			e.printStackTrace();
+		}
+		
+		return list; // Return the set of transaction types
 	}
 }

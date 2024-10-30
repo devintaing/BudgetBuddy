@@ -47,7 +47,7 @@ public class NewTransactionTypeController {
     
   //handler for user submitting the form
   	public void submitButton() {
-  		HashSet<String> transactionTypes = TransactionTypeDAO.getTransactionTypes();
+  		HashSet<String> transactionTypes = TransactionTypeDAO.getTransactionTypesSet();
   		
   		String typeName = TypeName.getText().trim();
   		
