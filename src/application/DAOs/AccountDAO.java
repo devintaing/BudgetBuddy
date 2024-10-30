@@ -115,6 +115,7 @@ public class AccountDAO {
 		ArrayList<String> list = new ArrayList<>();
 		
 		try {
+			//gets names in alphabetical order
 			String sql = "SELECT AccountName "
 					+ "FROM Accounts "
 					+ "ORDER BY AccountName COLLATE NOCASE;";
@@ -122,7 +123,7 @@ public class AccountDAO {
 			
 			ResultSet result = statement.executeQuery(sql);
 			
-			// Loops through the result set and add each account name to the Hashset
+			// Loops through the result set and add each account name to the arraylist
 			while (result.next()) {
 				String typeName = result.getString("AccountName");
 				list.add(typeName);	

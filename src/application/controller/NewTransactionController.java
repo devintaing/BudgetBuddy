@@ -48,12 +48,19 @@ public class NewTransactionController {
     private ArrayList<String> transactionTypes = new ArrayList<>();
     
     public void initialize() {
+    	//get all account names, set default value of dropdown to first value in list
     	accountNames = AccountDAO.getAccountNamesList();
     	accountName.getItems().addAll(accountNames);
-    	accountName.setValue(accountNames.get(0));
+    	if (accountNames.size()>0)
+    		accountName.setValue(accountNames.get(0));
+    	
+    	//get all transaction types, set default value of dropdown to first value in list
     	transactionTypes = TransactionTypeDAO.getTransactionTypesList();
     	transactionType.getItems().addAll(transactionTypes);
-    	transactionType.setValue(transactionTypes.get(0));
+    	if (transactionTypes.size()>0)
+    		transactionType.setValue(transactionTypes.get(0));
+    	
+    	//set default value of date picker to current date
 		transactionDate.setValue(LocalDate.now());
 	}
     
@@ -82,18 +89,23 @@ public class NewTransactionController {
     
     public void submitButton(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        
+        
+        // Prevents user from leaving the required fields empty
+        if(accountName.getValue()==null || transactionType.getValue()==null|| transactionDate.getValue()==null || 
+        		transactionDescription.getText().isEmpty() || (paymentAmount.getText().isEmpty() && depositAmount.getText().isEmpty())) {
+        	
+        	showAlert("Please fill in the required fields.");
+        	return;
+        }
+        
+        //get all information from the form
         String account = accountName.getValue().toString();
         String type = transactionType.getValue().toString();
         String date = transactionDate.getValue().toString();
         String description = transactionDescription.getText();
         String paymentStr = paymentAmount.getText();
         String depositStr = depositAmount.getText();
-        
-        // Prevents user from leaving the required fields empty
-        if(account.isEmpty() || type.isEmpty() || date.isEmpty() || description.isEmpty() || (paymentStr.isEmpty() && depositStr.isEmpty())) {
-        	showAlert("Please fill in the required fields.");
-        	return;
-        }
         
         // Validate payment amount
         if(!paymentStr.isEmpty()) {
@@ -104,6 +116,11 @@ public class NewTransactionController {
         		return;
         	}
         }
+        // previous bug: if paymentStr is empty, previous value of field is returned
+        // overwrites previous value with 0 to fix
+        else {
+        	payment = 0;
+        }
         
         // Validate deposit amount
         if(!depositStr.isEmpty()) {
@@ -113,6 +130,9 @@ public class NewTransactionController {
         		showAlert("Deposit amount must be a number!");
         		return;
         	}
+        }
+        else {
+        	deposit = 0;
         }
         
         TransactionDAO.addTransaction(account, type, date, description, payment, deposit);

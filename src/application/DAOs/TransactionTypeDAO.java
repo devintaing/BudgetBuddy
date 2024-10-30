@@ -77,6 +77,7 @@ public class TransactionTypeDAO {
 		ArrayList<String> list = new ArrayList<>();
 		
 		try {
+			//gets names in alphabetical order
 			String sql = "SELECT TypeName "
 					+ "FROM TransactionTypes "
 					+ "ORDER BY TypeName COLLATE NOCASE;";
@@ -84,7 +85,7 @@ public class TransactionTypeDAO {
 			
 			ResultSet result = statement.executeQuery(sql);
 			
-			// Loops through the result set and add each account name to the Hashset
+			// Loops through the result set and add each account name to the arraylist
 			while (result.next()) {
 				String typeName = result.getString("TypeName");
 				list.add(typeName);	
