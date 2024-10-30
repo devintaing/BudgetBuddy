@@ -117,7 +117,7 @@ public class AccountDAO {
 		try {
 			String sql = "SELECT AccountName "
 					+ "FROM Accounts "
-					+ "ORDER BY AccountName ASC;";
+					+ "ORDER BY AccountName COLLATE NOCASE;";
 			Statement statement = connection.createStatement(); // Read and process the SQL query
 			
 			ResultSet result = statement.executeQuery(sql);

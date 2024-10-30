@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashSet;
 
 import application.CommonObjs;
 import application.DAOs.AccountDAO;
+import application.DAOs.TransactionDAO;
 import application.DAOs.TransactionTypeDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -115,16 +115,11 @@ public class NewTransactionController {
         	}
         }
         
-        saveTransaction(account, type, date, description, payment, deposit);
-        
+        TransactionDAO.addTransaction(account, type, date, description, payment, deposit);
+        System.out.printf("Saved a \"%s\" transaction for the account \"%s\" on %s with a description of \"%s\", a payment amount of %.2f, and a deposit amount of %.2f.%n", type, account, date, description, payment, deposit);
         alert.setTitle("Success!");
         alert.setHeaderText("Transaction successfully added");
         alert.showAndWait();
-    }
-    
-    private void saveTransaction (String account, String type, String date, String description, Double payment, Double deposit) {
-        //System.out.printf("Saved a transaction of %.");
-        //TODO: ACTUALLY SAVE TRANSACTION INFORMATION
     }
     
     private void showAlert(String message) {

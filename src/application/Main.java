@@ -1,6 +1,7 @@
 package application;
 	
 import application.DAOs.AccountDAO;
+import application.DAOs.TransactionDAO;
 import application.DAOs.TransactionTypeDAO;
 import application.connection.SqliteConnection;
 import javafx.application.Application;
@@ -25,6 +26,7 @@ public class Main extends Application {
 			commonObjs.setConnection(connection);
 			AccountDAO.createAccountTable();
 			TransactionTypeDAO.createTransactionTypeTable();
+			TransactionDAO.createTransactionTable();
 		}
 		catch (Exception e){
 			System.out.println("Connection Error");

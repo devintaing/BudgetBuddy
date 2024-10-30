@@ -79,7 +79,7 @@ public class TransactionTypeDAO {
 		try {
 			String sql = "SELECT TypeName "
 					+ "FROM TransactionTypes "
-					+ "ORDER BY TypeName ASC;";
+					+ "ORDER BY TypeName COLLATE NOCASE;";
 			Statement statement = connection.createStatement(); // Read and process the SQL query
 			
 			ResultSet result = statement.executeQuery(sql);
