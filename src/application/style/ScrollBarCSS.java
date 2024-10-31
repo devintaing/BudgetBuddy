@@ -6,19 +6,21 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.util.Objects;
+
 public class ScrollBarCSS extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        ScrollPane pane = new ScrollPane();
-        pane.getStylesheets().add(this.getClass().getResource("style.css").toExternalForm());
+        ScrollPane fillPane = new ScrollPane();
+        fillPane.getStylesheets().add(Objects.requireNonNull(this.getClass().getResource("style.css")).toExternalForm());
 
-        Pane emptyPane = new Pane();
-        emptyPane.setPrefSize(600, 600);
+        Pane scrollPane = new Pane();
+        scrollPane.setPrefSize(600, 600);
 
-        pane.setContent(emptyPane);
+        fillPane.setContent(scrollPane);
 
-        stage.setScene(new Scene(pane, 200, 200));
+        stage.setScene(new Scene(fillPane, 200, 200));
         stage.show();
     }
 
