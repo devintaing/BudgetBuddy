@@ -1,5 +1,16 @@
-.sidebar {
+/* Default gradient */
+.default-sidebar {
     -fx-background-color: linear-gradient(to bottom right, rgba(0,50,255,0.75) 10%, rgba(67,86,184,0.45) 100%);
+}
+
+/* Green gradient */
+.green-sidebar {
+    -fx-background-color: linear-gradient(to bottom right, rgba(0,50,255,0.75) 10%, rgba(67,184,135,0.87) 100%);
+}
+
+/* Red gradient */
+.red-sidebar {
+    -fx-background-color: linear-gradient(to bottom right, rgba(0,50,255,0.75) 10%, rgba(128, 0, 0, 0.87) 100%);
 }
 
 .imgPanel {
@@ -47,3 +58,58 @@
 .sidebar-button:hover {
     -fx-background-color: #063285;
 }
+
+.sidebarSectionHeader {
+    -fx-font-size: 13px;
+    -fx-text-fill: white;
+}
+
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track {
+    -fx-background-color: #ffffff;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0.0em;
+}
+
+
+.scroll-bar:horizontal .increment-button ,
+.scroll-bar:horizontal .decrement-button {
+    -fx-background-color :transparent;
+    -fx-background-radius : 0.0em;
+    -fx-padding :0.0 0.0 10.0 0.0;
+
+}
+
+.scroll-bar:vertical .increment-button ,
+.scroll-bar:vertical .decrement-button {
+    -fx-background-color :transparent;
+    -fx-background-radius : 0.0em;
+    -fx-padding :0.0 10.0 0.0 0.0;
+
+}
+
+ .scroll-bar .increment-arrow,
+ .scroll-bar .decrement-arrow{
+    -fx-shape : " ";
+    -fx-padding :0.15em 0.0;
+}
+
+ .scroll-bar:vertical .increment-arrow,
+ .scroll-bar:vertical .decrement-arrow{
+    -fx-shape : " ";
+    -fx-padding :0.0 0.15em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color :derive(black,80.0%);
+    -fx-background-insets: 2.0, 0.0, 0.0;
+    -fx-background-radius: 2.0em;
+}
+
+.scroll-bar:horizontal .thumb:hover,
+.scroll-bar:vertical .thumb:hover {
+    -fx-background-color :derive(black,100.0%);
+}
+
