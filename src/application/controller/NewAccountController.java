@@ -1,20 +1,20 @@
 package application.controller;
 
 import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDate;
 import java.util.HashSet;
 
+import application.CommonObjs;
 import application.DAOs.AccountDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 
 public class NewAccountController {
 	@FXML
@@ -29,35 +29,41 @@ public class NewAccountController {
 	String name;
 	
     private static HashSet<String> accountNames;
-
-	private Stage stage;
-	private Scene scene;
-	private Parent root;
+    
+    private CommonObjs commonObjs = CommonObjs.getInstance();
+    private HBox mainBox = commonObjs.getMainBox();
 	
 	public void initialize() {
 		openingDate.setValue(LocalDate.now());
 	}
 	
-    private void loadScene(String fxmlFile, ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource(fxmlFile));
-        scene = new Scene(root);
-
-        String css = getClass().getResource("/css/application.css").toExternalForm();
-        scene.getStylesheets().add(css);
-
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+	//same loadScene as mainController, replaces 2nd child of mainBox
+	private void loadScene(String fxmlFile){
+    	URL url = getClass().getResource(fxmlFile);
+    	
+    	try {
+			AnchorPane paneHome = (AnchorPane)FXMLLoader.load(url);
+			
+			if (mainBox.getChildren().size() >1)
+				mainBox.getChildren().remove(1);
+			
+			mainBox.getChildren().add(paneHome);
+			
+		} catch (IOException e) {
+			System.out.println("error loading scene from " + fxmlFile);
+			e.printStackTrace();
+		}
     }
 
-    public void switchToHome(ActionEvent event) throws IOException {
-        loadScene("/view/Homepage.fxml", event); // Use the loadScene method
+	//switch to homepage if cancel button is clicked
+    public void switchToHome() {
+        loadScene("/view/homepage.fxml"); // Use the loadScene method
     }
 	
+    //handler for user submitting the form
 	public void submitButton(ActionEvent event) {
-		accountNames = AccountDAO.getAccountNames();
+		accountNames = AccountDAO.getAccountNamesSet();
 		
-		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         String name = accountName.getText().trim();
         String balanceStr = openingBalance.getText().trim();
         LocalDate date = openingDate.getValue();
@@ -81,13 +87,11 @@ public class NewAccountController {
             return;
         }
 
-        // If all validations pass, add account name to set
-        accountNames.add(name);
-
         // Save information to be used on other pages or application.database
         saveAccount(name, date, balance);
 
         // Show success message
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Success");
         alert.setHeaderText("Account successfully added!");
         alert.showAndWait();

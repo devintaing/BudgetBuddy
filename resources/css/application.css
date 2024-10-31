@@ -1,4 +1,27 @@
-.rounded-button {
+.sidebar {
+    -fx-background-color: linear-gradient(to bottom right, rgba(0,50,255,0.75) 10%, rgba(67,86,184,0.45) 100%);
+}
+
+.imgPanel {
+    -fx-background-color: rgba(0, 0, 0, 0.02);
+    -fx-background-radius: 30;
+}
+
+.buttonPanel {
+    -fx-background-color: rgba(0, 0, 0, 0.42);
+    -fx-background-radius: 30;
+}
+
+.formButton-cancel {
+    -fx-background-color: #F55356;
+}
+
+.formButton-cancel:hover {
+    -fx-background-color: #c14446
+}
+
+.formButton {
+    -fx-font-size: 15px;
     -fx-background-color: #1464f6;
     -fx-text-fill: white;
     -fx-padding: 10px 20px;
@@ -7,18 +30,20 @@
     -fx-border-color: transparent;
 }
 
-.rounded-button:hover {
+.formButton:hover {
     -fx-background-color: #0a3d9c;
 }
 
-.rounded-cancel-button {
-    -fx-background-color: #F55356;
+.sidebar-button {
+    -fx-background-color: #1464f6;
+    -fx-border-color: transparent;
+    -fx-font-size: 13px;
+    -fx-text-fill: white;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
 }
 
-.rounded-cancel-button:hover {
-    -fx-background-color: #c14446
-}
-
-.formButton{
-	-fx-font-size: 20px;
+.sidebar-button:hover {
+    -fx-background-color: #063285;
 }
