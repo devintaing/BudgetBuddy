@@ -21,8 +21,9 @@ public class MainController {
 	//loads the given URL, and replaces the 2nd child of main/ the content to the right of the sidebar
     private void loadScene(String fxmlFile) {
     	URL url = getClass().getResource(fxmlFile);
-    	
-    	try {
+        String css = getClass().getResource("/css/application.css").toExternalForm();
+
+        try {
 			AnchorPane paneHome = (AnchorPane)FXMLLoader.load(url);
 			
 			if (mainBox.getChildren().size() >1)
