@@ -43,6 +43,7 @@
 
 .formButton:hover {
     -fx-background-color: #0a3d9c;
+    -fx-border-color: white;
 }
 
 .sidebar-button {
@@ -57,6 +58,7 @@
 
 .sidebar-button:hover {
     -fx-background-color: #063285;
+    -fx-border-color: white;
 }
 
 .sidebarSectionHeader {
