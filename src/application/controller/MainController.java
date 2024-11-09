@@ -98,5 +98,12 @@ public class MainController {
 	    sidebar.getStyleClass().setAll("red-sidebar");
 	    loadScene("/view/newScheduledTransaction.fxml");
 	}
+	
+	// Switches to the "New Scheduled Transaction" screen
+	@FXML
+	public void switchToViewTransactions() {
+		sidebar.getStyleClass().setAll("red-sidebar");
+		loadScene("/view/viewTransactions.fxml");
+	}
 }
 
