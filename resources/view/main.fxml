@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 
-<HBox fx:id="mainBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
+<HBox fx:id="mainBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
    <children>
       <ScrollPane fitToWidth="true" minViewportWidth="380.0" prefHeight="720.0" prefWidth="420.0" HBox.hgrow="NEVER">
          <content>
@@ -67,7 +67,7 @@
 						        <VBox fx:id="newSection" managed="false" spacing="10.0" visible="false">
 						            <Button mnemonicParsing="false" onAction="#switchToNewAccount" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-button" stylesheets="@../css/application.css" text="New Account" />
 						            <Button mnemonicParsing="false" onAction="#switchToNewTransaction" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-button" stylesheets="@../css/application.css" text="New Transaction" />
-						            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-button" stylesheets="@../css/application.css" text="New Scheduled Transaction (WIP)" />
+						            <Button mnemonicParsing="false" onAction="#switchToNewScheduledTransaction" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-button" stylesheets="@../css/application.css" text="New Scheduled Transaction (WIP)" />
 						            <Button mnemonicParsing="false" onAction="#switchToNewTransactionType" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-button" stylesheets="@../css/application.css" text="New Transaction Type" />
 						        </VBox>
 						    </children>
