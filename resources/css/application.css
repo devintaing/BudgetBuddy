@@ -58,7 +58,22 @@
 
 .sidebar-button:hover {
     -fx-background-color: #063285;
-    -fx-border-color: white;
+    -fx-border-color: #3875e8;
+}
+
+.sidebar-child-button {
+    -fx-background-color: #0b46b3;
+    -fx-border-color: transparent;
+    -fx-font-size: 13px;
+    -fx-text-fill: white;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+}
+
+.sidebar-child-button:hover {
+    -fx-background-color: #07255e;
+    -fx-border-color: #2152ad;
 }
 
 .sidebarSectionHeader {
