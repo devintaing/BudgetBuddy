@@ -61,7 +61,7 @@ public class TransactionTypeDAO {
 			// Loops through the result set and add each account name to the Hashset
 			while (result.next()) {
 				String typeName = result.getString("TypeName");
-				set.add(typeName);	
+				set.add(typeName.toLowerCase());	
 			}
 			
 		}

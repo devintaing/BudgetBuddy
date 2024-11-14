@@ -2,20 +2,18 @@ package application.controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import application.CommonObjs;
 import application.DAOs.AccountDAO;
 import application.DAOs.ScheduledTransactionDAO;
-import application.DAOs.TransactionDAO;
 import application.DAOs.TransactionTypeDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -109,6 +107,13 @@ public class NewScheduledTransactionController {
         String frequencyStr = frequency.getValue().toString();
         String dateStr = dueDate.getText();
         String paymentStr = paymentAmount.getText();
+        
+        // Duplicate name handling
+        HashSet<String> scheduledTransactionNames = ScheduledTransactionDAO.getScheduledTransactionsSet();
+        if(scheduledTransactionNames.contains(scheduleNameStr.toLowerCase())) {
+        	showAlert("Transaction name already exists!");
+        	return;
+        }
         
         // Validate payment amount
         if(!paymentStr.isEmpty()) {

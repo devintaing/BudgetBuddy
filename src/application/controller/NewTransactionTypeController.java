@@ -55,7 +55,7 @@ public class NewTransactionTypeController {
   			showAlert("Transaction type name is required!");
   			return;
   		}
-  		if(transactionTypes.contains(typeName)) {
+  		if(transactionTypes.contains(typeName.toLowerCase())) {
   			showAlert("Transaction type already exists!");
   			return;
   		}

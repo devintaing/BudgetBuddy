@@ -76,7 +76,7 @@ public class NewAccountController {
         }
         
         // Check for duplicate account names
-        if (accountNames.contains(name)) {
+        if (accountNames.contains(name.toLowerCase())) {
             showAlert("Account name already exists!");
             return;
         }

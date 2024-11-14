@@ -5,10 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashSet;
 
 import application.CommonObjs;
 import application.beans.ScheduledTransactionBean;
-import application.beans.TransactionBean;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -35,7 +35,6 @@ public class ScheduledTransactionDAO {
 	}
 
 	public static void addScheduledTransaction(String scheduleNameStr, String account, String type, String frequencyStr, int date, double payment) {
-		// TODO Auto-generated method stub
 		try {
 			//SQL query to insert a new account with placeholder for values
 			String insertSQL = "INSERT INTO ScheduledTransactions(ScheduleName, AccountName, TransactionType, Frequency, Date, PaymentAmount) VALUES(?,?,?,?,?,?)";
@@ -80,11 +79,37 @@ public class ScheduledTransactionDAO {
 			
 			
 		} catch (Exception e) {
-			System.out.println("Error getting Accounts");
+			System.out.println("Error getting scheduled transactions");
 			e.printStackTrace();
 		}
 		
 		return list; // Returns the list of scheduled transactions
+	}
+
+	public static HashSet<String> getScheduledTransactionsSet() {
+		HashSet<String> set = new HashSet<>();
+		
+		try {
+			String sql = "SELECT * "+ 
+						"FROM ScheduledTransactions " +
+						"ORDER BY Date ASC";
+			Statement statement = connection.createStatement();
+			
+			ResultSet result = statement.executeQuery(sql); // Execute the query
+			
+			// Loops through the result set and add each account to the ObservableList
+			while (result.next()) {
+				String scheduleName = result.getString("ScheduleName");
+				set.add(scheduleName.toLowerCase());
+			}
+			
+			
+		} catch (Exception e) {
+			System.out.println("Error getting scheduled transaction names");
+			e.printStackTrace();
+		}
+		
+		return set;
 	}
 	
 	

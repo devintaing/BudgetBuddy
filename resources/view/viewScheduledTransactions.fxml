@@ -16,7 +16,7 @@
       <TableView fx:id="schedTransTableView" layoutX="12.0" layoutY="176.0" prefHeight="447.0" prefWidth="663.0">
          <columns>
             <TableColumn fx:id="nameCol" prefWidth="138.0" text="Transaction Name" />
-            <TableColumn fx:id="accountCol" prefWidth="128.0" resizable="false" text="Account Name" />
+            <TableColumn fx:id="accountCol" prefWidth="128.0" resizable="false" text="Account" />
             <TableColumn fx:id="typeCol" minWidth="0.0" prefWidth="116.0" resizable="false" text="Type" />
             <TableColumn fx:id="freqCol" minWidth="0.0" prefWidth="106.0" resizable="false" text="Frequency" />
             <TableColumn fx:id="dateCol" minWidth="0.0" prefWidth="91.0" resizable="false" text="Due Date (Day)" />

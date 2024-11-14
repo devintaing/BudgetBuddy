@@ -99,7 +99,7 @@ public class AccountDAO {
 			// Loops through the result set and add each account name to the Hashset
 			while (result.next()) {
 				String accountName = result.getString("AccountName");
-				set.add(accountName);	
+				set.add(accountName.toLowerCase());	
 			}
 			
 		}
