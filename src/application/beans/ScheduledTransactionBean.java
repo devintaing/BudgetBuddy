@@ -50,11 +50,11 @@ public class ScheduledTransactionBean {
 		this.transactionFreq = transactionFreq;
 	}
 
-	public int getTransactionDate() {
+	public int getDueDate() {
 		return dueDate;
 	}
 
-	public void setTransactionDate(int transactionDate) {
+	public void setDueDate(int transactionDate) {
 		this.dueDate = transactionDate;
 	}
 
