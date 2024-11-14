@@ -6,7 +6,6 @@ import java.util.HashSet;
 
 import application.CommonObjs;
 import application.DAOs.TransactionTypeDAO;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
@@ -47,23 +46,27 @@ public class NewTransactionTypeController {
     
   //handler for user submitting the form
   	public void submitButton() {
-  		HashSet<String> transactionTypes = TransactionTypeDAO.getTransactionTypesSet();
-  		
-  		String typeName = TypeName.getText().trim();
-  		
-  		if(typeName.isEmpty()) {
+  		// Prevents user from leaving the required fields empty
+  		if(TypeName.getText().isEmpty()) {
   			showAlert("Transaction type name is required!");
   			return;
   		}
+  		
+  		// Collect form information
+  		String typeName = TypeName.getText().trim();
+  		
+  		// Duplicate type handling
+  		HashSet<String> transactionTypes = TransactionTypeDAO.getTransactionTypesSet();
   		if(transactionTypes.contains(typeName.toLowerCase())) {
   			showAlert("Transaction type already exists!");
   			return;
   		}
   		
-  		System.out.println("Transaction type: "+typeName + " added.");
+  		// Add transaction type to DB
   		TransactionTypeDAO.addTransactionType(typeName);
+  		System.out.printf("Successfully saved a transaction type!%n - Name: %s%n", typeName);
   		
-  		// Show success message
+  		// Success pop-up
   		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Success");
         alert.setHeaderText("Transaction type successfully added!");

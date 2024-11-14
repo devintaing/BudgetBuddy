@@ -88,9 +88,6 @@ public class NewTransactionController {
     }
     
     public void submitButton(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        
-        
         // Prevents user from leaving the required fields empty
         if(accountName.getValue()==null || transactionType.getValue()==null|| transactionDate.getValue()==null || 
         		transactionDescription.getText().isEmpty() || (paymentAmount.getText().isEmpty() && depositAmount.getText().isEmpty())) {
@@ -135,8 +132,12 @@ public class NewTransactionController {
         	deposit = 0;
         }
         
+        // Add transaction to DB
         TransactionDAO.addTransaction(account, type, date, description, payment, deposit);
-        System.out.printf("Saved a \"%s\" transaction for the account \"%s\" on %s with a description of \"%s\", a payment amount of %.2f, and a deposit amount of %.2f.%n", type, account, date, description, payment, deposit);
+        System.out.printf("Sucessfully saved a transaction!%n - Account: %s%n - Type: %s%n - Date: %s%n - Descriptiion: %s%n - Payment Amount: $%.2f%n - Deposit Amount: $%.2f%n", account, type, date, description, payment, deposit);
+        
+        // Success pop-up
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Success!");
         alert.setHeaderText("Transaction successfully added");
         alert.showAndWait();

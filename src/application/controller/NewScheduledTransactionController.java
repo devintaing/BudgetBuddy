@@ -89,9 +89,6 @@ public class NewScheduledTransactionController {
     }
     
     public void submitButton(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        
-        
         // Prevents user from leaving the required fields empty
         if(scheduleName.getText().isEmpty() || accountName.getValue()==null || transactionType.getValue()==null || 
         	frequency.getValue()==null || dueDate.getText().isEmpty() || paymentAmount.getText().isEmpty()) {
@@ -100,7 +97,7 @@ public class NewScheduledTransactionController {
         	return;
         }
         
-        //get all information from the form
+        // Collect form information
         String scheduleNameStr = scheduleName.getText();
         String account = accountName.getValue().toString();
         String type = transactionType.getValue().toString();
@@ -115,39 +112,31 @@ public class NewScheduledTransactionController {
         	return;
         }
         
-        // Validate payment amount
-        if(!paymentStr.isEmpty()) {
-        	try {
-        		payment = Double.parseDouble(paymentStr);
-        	} catch(NumberFormatException e) {
-        		showAlert("Payment amount must be a number!");
-        		return;
-        	}
-        }
-        // previous bug: if paymentStr is empty, previous value of field is returned
-        // overwrites previous value with 0 to fix
-        else {
-        	payment = 0;
-        }
-     // Validate date
-        if(!paymentStr.isEmpty()) {
-        	try {
-        		date = Integer.parseInt(dateStr);
-        	} catch(NumberFormatException e) {
-        		showAlert("Due date amount must be an Integer!");
-        		return;
-        	}
-        	if (date < 1 || date > 31) {
-        		showAlert("Due date must be a valid day of the month! (between 1-31)");
-        	}
-        }
-        else {
-        	date = 0;
-        }
+        // Payment amount validation
+    	try {
+    		payment = Double.parseDouble(paymentStr);
+    	} catch(NumberFormatException e) {
+    		showAlert("Payment amount must be a number!");
+    		return;
+    	}
         
+        // Date validation
+    	try {
+    		date = Integer.parseInt(dateStr);
+    	} catch(NumberFormatException e) {
+    		showAlert("Due date must be an Integer!");
+    		return;
+    	}
+    	if (date < 1 || date > 31) {
+    		showAlert("Due date must be a valid day of the month! (between 1-31)");
+    	}
         
+        // Add scheduled transaction to DB
         ScheduledTransactionDAO.addScheduledTransaction(scheduleNameStr, account, type, frequencyStr, date, payment);
-        System.out.printf("Saved a \"%s\" scheduled transaction for the account \"%s\" with due date %d with a name of \"%s\", a payment amount of %.2f.%n", type, account, date, scheduleNameStr, payment);
+        System.out.printf("Successfully saved a scheduled transaction!%n - Name: %s%n - Account: %s%n - Type: %s%n - Frequency: %s%n - Due Date: %s%n - Payment: %s%n", scheduleNameStr, account, type, frequencyStr, dateStr, paymentStr);
+        
+        // Success pop-up
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Success!");
         alert.setHeaderText("Scheduled Transaction successfully added");
         alert.showAndWait();
