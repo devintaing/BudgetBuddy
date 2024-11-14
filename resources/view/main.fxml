@@ -48,7 +48,8 @@
 						        <!-- VBox for the sub-buttons of the View section -->
 						        <VBox fx:id="viewSection" managed="false" spacing="10.0" visible="false">
 						            <Button mnemonicParsing="false" onAction="#switchToViewAccounts" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-button" stylesheets="@../css/application.css" text="View Accounts" />
-						            <Button mnemonicParsing="false" onAction="#switchToViewTransactions" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-button" stylesheets="@../css/application.css" text="View Transactions (WIP)" />
+						            <Button mnemonicParsing="false" onAction="#switchToViewTransactions" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-button" stylesheets="@../css/application.css" text="View Transactions " />
+                                 <Button mnemonicParsing="false" onAction="#switchToViewScheduledTransactions" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-button" stylesheets="@../css/application.css" text="View Scheduled Transactions" />
 						        </VBox>
 						    </children>
 						</VBox>

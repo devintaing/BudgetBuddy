@@ -34,12 +34,13 @@ public class NewScheduledTransactionController {
 	ChoiceBox<String> frequency;
 
 	@FXML
-	DatePicker dueDate;
+	TextField dueDate;
 
 	@FXML
 	TextField paymentAmount;
 	
 	double payment = 0;
+	int date = 0;
 	
 	private CommonObjs commonObjs = CommonObjs.getInstance();
     private HBox mainBox = commonObjs.getMainBox();
@@ -64,8 +65,6 @@ public class NewScheduledTransactionController {
     	frequency.getItems().add("Monthly");
     	frequency.setValue("Monthly");
     	
-    	//set default value of date picker to current date
-		dueDate.setValue(LocalDate.now());
 	}
     
     //same loadScene as mainController, replaces 2nd child of mainBox
@@ -97,7 +96,7 @@ public class NewScheduledTransactionController {
         
         // Prevents user from leaving the required fields empty
         if(scheduleName.getText().isEmpty() || accountName.getValue()==null || transactionType.getValue()==null || 
-        	frequency.getValue()==null || dueDate.getValue()==null || paymentAmount.getText().isEmpty()) {
+        	frequency.getValue()==null || dueDate.getText().isEmpty() || paymentAmount.getText().isEmpty()) {
         	
         	showAlert("Please fill in the required fields.");
         	return;
@@ -108,7 +107,7 @@ public class NewScheduledTransactionController {
         String account = accountName.getValue().toString();
         String type = transactionType.getValue().toString();
         String frequencyStr = frequency.getValue().toString();
-        String date = dueDate.getValue().toString();
+        String dateStr = dueDate.getText();
         String paymentStr = paymentAmount.getText();
         
         // Validate payment amount
@@ -125,10 +124,25 @@ public class NewScheduledTransactionController {
         else {
         	payment = 0;
         }
+     // Validate date
+        if(!paymentStr.isEmpty()) {
+        	try {
+        		date = Integer.parseInt(dateStr);
+        	} catch(NumberFormatException e) {
+        		showAlert("Due date amount must be an Integer!");
+        		return;
+        	}
+        	if (date < 1 || date > 31) {
+        		showAlert("Due date must be a valid day of the month! (between 1-31)");
+        	}
+        }
+        else {
+        	date = 0;
+        }
         
         
         ScheduledTransactionDAO.addScheduledTransaction(scheduleNameStr, account, type, frequencyStr, date, payment);
-        System.out.printf("Saved a \"%s\" scheduled transaction for the account \"%s\" with due date %s with a name of \"%s\", a payment amount of %.2f.%n", type, account, date, scheduleNameStr, payment);
+        System.out.printf("Saved a \"%s\" scheduled transaction for the account \"%s\" with due date %d with a name of \"%s\", a payment amount of %.2f.%n", type, account, date, scheduleNameStr, payment);
         alert.setTitle("Success!");
         alert.setHeaderText("Scheduled Transaction successfully added");
         alert.showAndWait();

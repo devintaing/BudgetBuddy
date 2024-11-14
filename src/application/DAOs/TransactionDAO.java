@@ -38,7 +38,7 @@ public class TransactionDAO {
 		}
 	}
 	
-	// Method to add a new account to the Accounts table
+	// Method to add a new transaction into the Transactions table
 	public static void addTransaction(String accountName, String transactionType, String date, String description, Double payment, Double deposit){
 		try {
 			//SQL query to insert a new account with placeholder for values
@@ -89,7 +89,7 @@ public class TransactionDAO {
 			e.printStackTrace();
 		}
 		
-		return list; // Returns the list of accounts
+		return list; // Returns the list of transactions
 	}
 	
 	
