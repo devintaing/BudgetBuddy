@@ -8,12 +8,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.TransactionTableController">
    <children>
-      <Text layoutX="74.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transactions" wrappingWidth="402.0">
-         <font>
-            <Font name="Lato Bold" size="50.0" />
-         </font>
-      </Text>
-      <TableView fx:id="transactionTableView" layoutX="16.0" layoutY="181.0" prefHeight="447.0" prefWidth="675.0">
+      <TableView fx:id="transactionTableView" layoutX="6.0" layoutY="176.0" prefHeight="447.0" prefWidth="675.0">
          <columns>
             <TableColumn fx:id="accountCol" prefWidth="111.0" resizable="false" text="Account Name" />
             <TableColumn fx:id="typeCol" minWidth="0.0" prefWidth="123.0" resizable="false" text="Transaction Type" />
@@ -23,5 +18,10 @@
             <TableColumn fx:id="depositCol" prefWidth="70.0" resizable="false" text="Deposit" />
          </columns>
       </TableView>
+      <Text layoutX="54.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transactions" textAlignment="CENTER" wrappingWidth="578.0">
+         <font>
+            <Font name="Lato Bold" size="50.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
