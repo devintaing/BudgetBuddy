@@ -28,7 +28,7 @@
                        <VBox spacing="13.0">
 						    <children>
 						        <!-- Header button for Views that will control collapse/expand -->
-						        <Button fx:id="toggleViewButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-button" stylesheets="@../css/application.css" text="View Saved Information" />
+						        <Button fx:id="toggleViewButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-button" stylesheets="@../css/application.css" text="Show Saved Information" />
 						        <!-- VBox for the sub-buttons of the View section -->
 						        <VBox fx:id="viewSection" managed="false" spacing="10.0" visible="false">
 						            <Button mnemonicParsing="false" onAction="#switchToViewAccounts" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-child-button" stylesheets="@../css/application.css" text="View Accounts" />
@@ -40,7 +40,7 @@
 						<VBox spacing="13.0">
 						    <children>
 						        <!-- Header button for New that will control collapse/expand -->
-						        <Button fx:id="toggleNewButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-button" stylesheets="@../css/application.css" text="Add New (account, transaction, etc.)" />
+						        <Button fx:id="toggleNewButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-button" stylesheets="@../css/application.css" text="Show New (account, transaction, etc.)" />
 						        <!-- VBox for the sub-buttons of the New section -->
 						        <VBox fx:id="newSection" managed="false" spacing="10.0" visible="false">
 						            <Button mnemonicParsing="false" onAction="#switchToNewAccount" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-child-button" stylesheets="@../css/application.css" text="New Account" />
