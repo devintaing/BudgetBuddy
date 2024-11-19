@@ -7,12 +7,16 @@ import java.util.ResourceBundle;
 
 import application.DAOs.ScheduledTransactionDAO;
 import application.beans.ScheduledTransactionBean;
+import application.beans.TransactionBean;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class ScheduledTransactionTableController implements Initializable {
@@ -37,10 +41,16 @@ public class ScheduledTransactionTableController implements Initializable {
 	@FXML
 	private TableColumn<ScheduledTransactionBean, Double> payCol;
 
+	@FXML
+	private TextField scheduledSearchTextBox;
+	
 	ObservableList<ScheduledTransactionBean> list;
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
+		
+		list = ScheduledTransactionDAO.getScheduledTransactions();
+
 		nameCol.setCellValueFactory(new PropertyValueFactory<ScheduledTransactionBean, String>("scheduleName"));
 		accountCol.setCellValueFactory(new PropertyValueFactory<ScheduledTransactionBean, String>("accountName"));
 		typeCol.setCellValueFactory(new PropertyValueFactory<ScheduledTransactionBean, String>("transactionType"));
@@ -48,6 +58,40 @@ public class ScheduledTransactionTableController implements Initializable {
 		dateCol.setCellValueFactory(new PropertyValueFactory<ScheduledTransactionBean, Integer>("dueDate"));
 		payCol.setCellValueFactory(new PropertyValueFactory<ScheduledTransactionBean, Double>("paymentAmount"));
 
+		FilteredList<ScheduledTransactionBean> filteredData = new FilteredList<>(list, b -> true);
+
+		scheduledSearchTextBox.textProperty().addListener((observable, oldValue, newValue) -> {
+			filteredData.setPredicate(ScheduledTransactionBean -> {
+				
+				if (newValue.isEmpty() || newValue.isBlank() || newValue == null) {
+					return true;
+				}
+				
+				String searchKeyword = newValue.toLowerCase();
+				
+				if (ScheduledTransactionBean.getAccountName().toLowerCase().indexOf(searchKeyword) > -1) {
+					return true;
+					
+				} else if (ScheduledTransactionBean.getTransactionFreq().toLowerCase().indexOf(searchKeyword) > -1) {
+					return true;
+					
+				} else if (ScheduledTransactionBean.getTransactionType().toLowerCase().indexOf(searchKeyword) > -1) {
+					return true;
+					
+				} else if (ScheduledTransactionBean.getScheduleName().toLowerCase().indexOf(searchKeyword) > -1) {
+					return true;
+					
+				} else 
+					return false;
+			});
+			
+		});
+		SortedList<ScheduledTransactionBean> sortedData = new SortedList<>(filteredData);
+		
+		sortedData.comparatorProperty().bind(schedTransTableView.comparatorProperty());
+		
+		schedTransTableView.setItems(sortedData);
+		
 		// sets how the balance column formats the cells
 		payCol.setCellFactory(tc -> new TableCell<ScheduledTransactionBean, Double>() {
 			@Override
@@ -63,8 +107,6 @@ public class ScheduledTransactionTableController implements Initializable {
 				}
 			}
 		});
-
-		list = ScheduledTransactionDAO.getScheduledTransactions();
-		schedTransTableView.setItems(list);
 	}
 }
+

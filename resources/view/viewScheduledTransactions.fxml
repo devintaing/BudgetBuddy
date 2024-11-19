@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.ScheduledTransactionTableController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.ScheduledTransactionTableController">
    <children>
       <Text layoutX="54.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scheduled Transactions" textAlignment="CENTER" wrappingWidth="578.0">
          <font>
             <Font name="Lato Bold" size="50.0" />
          </font>
       </Text>
-      <TableView fx:id="schedTransTableView" layoutX="12.0" layoutY="176.0" prefHeight="447.0" prefWidth="663.0">
+      <TableView fx:id="schedTransTableView" layoutX="12.0" layoutY="200.0" prefHeight="447.0" prefWidth="663.0">
          <columns>
             <TableColumn fx:id="nameCol" prefWidth="138.0" text="Transaction Name" />
             <TableColumn fx:id="accountCol" prefWidth="128.0" resizable="false" text="Account" />
@@ -23,5 +25,7 @@
             <TableColumn fx:id="payCol" minWidth="0.0" prefWidth="83.0" resizable="false" text="Amount" />
          </columns>
       </TableView>
+      <TextField fx:id="scheduledSearchTextBox" layoutX="64.0" layoutY="168.0" prefHeight="26.0" prefWidth="608.0" promptText="Keyword..." />
+      <Label layoutX="17.0" layoutY="173.0" text="Search" />
    </children>
 </AnchorPane>
