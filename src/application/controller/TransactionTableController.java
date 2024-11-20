@@ -1,10 +1,12 @@
 package application.controller;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.CommonObjs;
 import application.DAOs.AccountDAO;
 import application.DAOs.ScheduledTransactionDAO;
 import application.DAOs.TransactionDAO;
@@ -13,12 +15,16 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 
 public class TransactionTableController implements Initializable {
 	@FXML
@@ -45,6 +51,38 @@ public class TransactionTableController implements Initializable {
 	@FXML
 	private TextField transactionSearchTextBox;
 	
+	private CommonObjs commonObjs = CommonObjs.getInstance();
+    private HBox mainBox = commonObjs.getMainBox();
+    
+  	private void loadScene(String fxmlFile){
+      	URL url = getClass().getResource(fxmlFile);
+      	
+      	try {
+  			AnchorPane paneHome = (AnchorPane)FXMLLoader.load(url);
+  			
+  			if (mainBox.getChildren().size() >1)
+  				mainBox.getChildren().remove(1);
+  			
+  			mainBox.getChildren().add(paneHome);
+  			
+  		} catch (IOException e) {
+  			System.out.println("error loading scene from " + fxmlFile);
+  			e.printStackTrace();
+  		}
+      }
+  	
+  	
+    public void switchToEditTransaction() {
+        // Get the selected transaction
+        TransactionBean selectedTransaction = transactionTableView.getSelectionModel().getSelectedItem();
+
+        if (selectedTransaction == null) {
+            showAlert("No transaction selected.");
+            return;
+        }
+        loadScene("/view/editTransaction.fxml"); // Use the loadScene method
+    }
+    
 	ObservableList<TransactionBean> list;
 			
 	
@@ -125,4 +163,11 @@ public class TransactionTableController implements Initializable {
 		    }
 		});
 	}
+    private void showAlert(String message) {
+    	Alert alert = new Alert(Alert.AlertType.ERROR);
+    	alert.setTitle("Error");
+    	alert.setHeaderText(null);
+    	alert.setContentText(message);
+    	alert.showAndWait();
+    }
 }

@@ -1,10 +1,12 @@
 package application.controller;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.CommonObjs;
 import application.DAOs.ScheduledTransactionDAO;
 import application.beans.ScheduledTransactionBean;
 import application.beans.TransactionBean;
@@ -12,12 +14,16 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 
 public class ScheduledTransactionTableController implements Initializable {
 	@FXML
@@ -46,6 +52,38 @@ public class ScheduledTransactionTableController implements Initializable {
 	
 	ObservableList<ScheduledTransactionBean> list;
 
+	private CommonObjs commonObjs = CommonObjs.getInstance();
+    private HBox mainBox = commonObjs.getMainBox();
+    
+  	private void loadScene(String fxmlFile){
+      	URL url = getClass().getResource(fxmlFile);
+      	
+      	try {
+  			AnchorPane paneHome = (AnchorPane)FXMLLoader.load(url);
+  			
+  			if (mainBox.getChildren().size() >1)
+  				mainBox.getChildren().remove(1);
+  			
+  			mainBox.getChildren().add(paneHome);
+  			
+  		} catch (IOException e) {
+  			System.out.println("error loading scene from " + fxmlFile);
+  			e.printStackTrace();
+  		}
+      }
+  	
+  	
+    public void switchToEditScheduledTransaction() {
+        // Get the selected transaction
+    	ScheduledTransactionBean selectedTransaction = schedTransTableView.getSelectionModel().getSelectedItem();
+
+        if (selectedTransaction == null) {
+        	showAlert("No transaction selected.");
+            return;
+        }
+        loadScene("/view/editScheduledTransaction.fxml"); // Use the loadScene method
+    }
+    
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		
@@ -108,5 +146,12 @@ public class ScheduledTransactionTableController implements Initializable {
 			}
 		});
 	}
+    private void showAlert(String message) {
+    	Alert alert = new Alert(Alert.AlertType.ERROR);
+    	alert.setTitle("Error");
+    	alert.setHeaderText(null);
+    	alert.setContentText(message);
+    	alert.showAndWait();
+    }
 }
 

@@ -25,16 +25,22 @@ public class MainController {
     private VBox newSection; // The VBox containing the "New Account", "New Transaction", etc.
 
     @FXML
+    private VBox editSection;
+    
+    @FXML
     private Button toggleViewButton; // Button that toggles "Views" section
 
     @FXML
     private Button toggleNewButton; // Button that toggles "New" section
+    
+    @FXML
+    private Button toggleEditButton;
 
     @FXML
     public void initialize() {
         new CollapsibleSectionController(viewSection, toggleViewButton);
         new CollapsibleSectionController(newSection, toggleNewButton);
-
+        new CollapsibleSectionController(editSection, toggleEditButton);
         // Show the homepage on startup
         switchToHome();
     }
@@ -107,10 +113,24 @@ public class MainController {
 	}
 	
 	// Switches to the "View Scheduled Transactions" screen
-		@FXML
-		public void switchToViewScheduledTransactions() {
-            sidebar.getStyleClass().setAll("green-sidebar");
-			loadScene("/view/viewScheduledTransactions.fxml");
-		}
+	@FXML
+	public void switchToViewScheduledTransactions() {
+        sidebar.getStyleClass().setAll("green-sidebar");
+		loadScene("/view/viewScheduledTransactions.fxml");
+	}
+	
+	// Switches to the "Edit Transactions" screen
+	@FXML
+	public void switchToEditTransaction() {
+        sidebar.getStyleClass().setAll("red-sidebar");
+		loadScene("/view/editTransaction.fxml");
+	}
+	
+	// Switches to the "Edit Scheduled Transactions" screen
+	@FXML
+	public void switchToEditScheduledTransaction() {
+        sidebar.getStyleClass().setAll("red-sidebar");
+		loadScene("/view/editScheduledTransaction.fxml");
+	}
 }
 
