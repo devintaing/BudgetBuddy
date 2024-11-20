@@ -73,16 +73,38 @@ public class ScheduledTransactionTableController implements Initializable {
       }
   	
   	
-    public void switchToEditScheduledTransaction() {
-        // Get the selected transaction
-    	ScheduledTransactionBean selectedTransaction = schedTransTableView.getSelectionModel().getSelectedItem();
+  	public void switchToEditScheduledTransaction() {
+  	    // Get the selected transaction
+  	    ScheduledTransactionBean selectedTransaction = schedTransTableView.getSelectionModel().getSelectedItem();
 
-        if (selectedTransaction == null) {
-        	showAlert("No transaction selected.");
-            return;
-        }
-        loadScene("/view/editScheduledTransaction.fxml"); // Use the loadScene method
-    }
+  	    if (selectedTransaction == null) {
+  	        showAlert("No transaction selected.");
+  	        return;
+  	    }
+
+  	    try {
+  	        // Load the edit page
+  	        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/editScheduledTransaction.fxml"));
+  	        AnchorPane pane = loader.load();
+
+  	        // Get the controller for the edit page
+  	        editScheduledTransactionController controller = loader.getController();
+
+  	        // Pass the selected transaction to the controller
+  	        controller.setTransaction(selectedTransaction);
+
+  	        // Replace the current view
+  	        if (mainBox.getChildren().size() > 1)
+  	            mainBox.getChildren().remove(1);
+
+  	        mainBox.getChildren().add(pane);
+
+  	    } catch (IOException e) {
+  	        System.err.println("Error loading editScheduledTransaction.fxml");
+  	        e.printStackTrace();
+  	    }
+  	}
+
     
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {

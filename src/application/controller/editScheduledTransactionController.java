@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 
 import application.CommonObjs;
+import application.beans.ScheduledTransactionBean;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ChoiceBox;
@@ -16,13 +17,13 @@ public class editScheduledTransactionController {
 	TextField scheduleName;
 	
 	@FXML
-	ChoiceBox<String> accountName;
+	TextField accountName;
 
 	@FXML
-	ChoiceBox<String> transactionType;
+	TextField transactionType;
 	
 	@FXML
-	ChoiceBox<String> frequency;
+	TextField frequency;
 
 	@FXML
 	TextField dueDate;
@@ -30,7 +31,21 @@ public class editScheduledTransactionController {
 	@FXML
 	TextField paymentAmount;
 	
-	
+    private ScheduledTransactionBean currentTransaction;
+
+    // Set the transaction details and populate the fields
+    public void setTransaction(ScheduledTransactionBean transaction) {
+        this.currentTransaction = transaction;
+
+        // Populate the fields with the transaction details
+        scheduleName.setText(transaction.getScheduleName());
+        accountName.setText(transaction.getAccountName());
+        transactionType.setText(transaction.getTransactionType());
+        frequency.setText(transaction.getTransactionFreq());
+        dueDate.setText(String.valueOf(transaction.getDueDate()));
+        paymentAmount.setText(String.valueOf(transaction.getPaymentAmount()));
+    }
+    
 	private CommonObjs commonObjs = CommonObjs.getInstance();
     private HBox mainBox = commonObjs.getMainBox();
     

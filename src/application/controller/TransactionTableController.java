@@ -72,16 +72,38 @@ public class TransactionTableController implements Initializable {
       }
   	
   	
-    public void switchToEditTransaction() {
-        // Get the selected transaction
-        TransactionBean selectedTransaction = transactionTableView.getSelectionModel().getSelectedItem();
+  	public void switchToEditTransaction() {
+  	    // Get the selected transaction
+  	    TransactionBean selectedTransaction = transactionTableView.getSelectionModel().getSelectedItem();
 
-        if (selectedTransaction == null) {
-            showAlert("No transaction selected.");
-            return;
-        }
-        loadScene("/view/editTransaction.fxml"); // Use the loadScene method
-    }
+  	    if (selectedTransaction == null) {
+  	        showAlert("No transaction selected.");
+  	        return;
+  	    }
+
+  	    try {
+  	        // Load the FXML for the edit transaction view
+  	        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/editTransaction.fxml"));
+  	        AnchorPane pane = loader.load();
+
+  	        // Get the controller for the edit view
+  	        editTransactionController controller = loader.getController();
+
+  	        // Pass the selected transaction to the controller
+  	        controller.setTransaction(selectedTransaction);
+
+  	        // Replace the current view with the edit view
+  	        if (mainBox.getChildren().size() > 1) {
+  	            mainBox.getChildren().remove(1);
+  	        }
+  	        mainBox.getChildren().add(pane);
+
+  	    } catch (IOException e) {
+  	        System.out.println("Error loading edit transaction view.");
+  	        e.printStackTrace();
+  	    }
+  	}
+
     
 	ObservableList<TransactionBean> list;
 			
