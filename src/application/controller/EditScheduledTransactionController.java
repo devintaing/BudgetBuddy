@@ -95,8 +95,9 @@ public class EditScheduledTransactionController {
 		}
 
 		if (paymentAmount.getText().isEmpty()){
-			return new Pair<>(false, "You left the price empty so there will be no changes to this scheduled transaction.");
+			return new Pair<>(false, "You left the payment amount empty so there will be no changes to this scheduled transaction.");
 		}
+
 		// Now attempt to do entry
 		try {
 			ArrayList<String> newData = new ArrayList<>();

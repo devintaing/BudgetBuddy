@@ -110,7 +110,7 @@ public class TransactionDAO {
 
 			PreparedStatement pstmt = connection.prepareStatement(updateRecordSQL);
 
-			// Map new data to the query, using currentTransaction for missing values
+			// Set attribute clause parameters
 			pstmt.setString(1, newData.get(0)); // AccountName
 			pstmt.setString(2, newData.get(1)); // TransactionType
 			pstmt.setString(3, newData.get(2)); // Date
