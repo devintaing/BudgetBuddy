@@ -3,16 +3,14 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
 
-<HBox fx:id="mainBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
+<HBox fx:id="mainBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
    <children>
       <ScrollPane fitToWidth="true" minViewportWidth="380.0" prefHeight="720.0" prefWidth="420.0" HBox.hgrow="NEVER">
          <content>
@@ -26,49 +24,29 @@
                   </ImageView>
                   <VBox layoutX="20.0" layoutY="270.0" prefHeight="236.0" prefWidth="378.0" spacing="30.0" styleClass="buttonPanel" stylesheets="@../css/application.css" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#switchToHome" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-button" stylesheets="@../css/application.css" text="Homepage">
-                           <effect>
-                              <DropShadow radius="15.895" width="44.58">
-                                 <color>
-                                    <Color red="0.019999999552965164" green="1.0" blue="0.9858219623565674" />
-                                 </color>
-                              </DropShadow>
-                           </effect></Button>
+                        <Button mnemonicParsing="false" onAction="#switchToHome" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-button" stylesheets="@../css/application.css" text="Homepage" />
                        <VBox spacing="13.0">
 						    <children>
 						        <!-- Header button for Views that will control collapse/expand -->
-						        <Button fx:id="toggleViewButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-button" stylesheets="@../css/application.css" text="Show Views">
-                                 <effect>
-                                    <DropShadow radius="15.895" width="44.58">
-                                       <color>
-                                          <Color red="0.019999999552965164" green="1.0" blue="0.9858219623565674" />
-                                       </color>
-                                    </DropShadow>
-                                 </effect></Button>
+						        <Button fx:id="toggleViewButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-button" stylesheets="@../css/application.css" text="Show Saved Information" />
 						        <!-- VBox for the sub-buttons of the View section -->
 						        <VBox fx:id="viewSection" managed="false" spacing="10.0" visible="false">
-						            <Button mnemonicParsing="false" onAction="#switchToViewAccounts" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-button" stylesheets="@../css/application.css" text="View Accounts" />
-						            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-button" stylesheets="@../css/application.css" text="View Transactions (WIP)" />
+						            <Button mnemonicParsing="false" onAction="#switchToViewAccounts" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-child-button" stylesheets="@../css/application.css" text="View Accounts" />
+						            <Button mnemonicParsing="false" onAction="#switchToViewTransactions" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-child-button" stylesheets="@../css/application.css" text="View Transactions " />
+                                 <Button mnemonicParsing="false" onAction="#switchToViewScheduledTransactions" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-child-button" stylesheets="@../css/application.css" text="View Scheduled Transactions" />
 						        </VBox>
 						    </children>
 						</VBox>
 						<VBox spacing="13.0">
 						    <children>
 						        <!-- Header button for New that will control collapse/expand -->
-						        <Button fx:id="toggleNewButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-button" stylesheets="@../css/application.css" text="Show New">
-                                 <effect>
-                                    <DropShadow radius="15.895" width="44.58">
-                                       <color>
-                                          <Color red="0.019999999552965164" green="1.0" blue="0.9858219623565674" />
-                                       </color>
-                                    </DropShadow>
-                                 </effect></Button>
+						        <Button fx:id="toggleNewButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-button" stylesheets="@../css/application.css" text="Show New (account, transaction, etc.)" />
 						        <!-- VBox for the sub-buttons of the New section -->
 						        <VBox fx:id="newSection" managed="false" spacing="10.0" visible="false">
-						            <Button mnemonicParsing="false" onAction="#switchToNewAccount" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-button" stylesheets="@../css/application.css" text="New Account" />
-						            <Button mnemonicParsing="false" onAction="#switchToNewTransaction" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-button" stylesheets="@../css/application.css" text="New Transaction" />
-						            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-button" stylesheets="@../css/application.css" text="New Scheduled Transaction (WIP)" />
-						            <Button mnemonicParsing="false" onAction="#switchToNewTransactionType" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-button" stylesheets="@../css/application.css" text="New Transaction Type" />
+						            <Button mnemonicParsing="false" onAction="#switchToNewAccount" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-child-button" stylesheets="@../css/application.css" text="New Account" />
+						            <Button mnemonicParsing="false" onAction="#switchToNewTransaction" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-child-button" stylesheets="@../css/application.css" text="New Transaction" />
+						            <Button mnemonicParsing="false" onAction="#switchToNewScheduledTransaction" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-child-button" stylesheets="@../css/application.css" text="New Scheduled Transaction" />
+						            <Button mnemonicParsing="false" onAction="#switchToNewTransactionType" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-child-button" stylesheets="@../css/application.css" text="New Transaction Type" />
 						        </VBox>
 						    </children>
 						</VBox>

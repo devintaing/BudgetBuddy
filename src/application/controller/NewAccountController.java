@@ -27,8 +27,6 @@ public class NewAccountController {
 	
 	double balance;
 	String name;
-	
-    private static HashSet<String> accountNames;
     
     private CommonObjs commonObjs = CommonObjs.getInstance();
     private HBox mainBox = commonObjs.getMainBox();
@@ -62,24 +60,25 @@ public class NewAccountController {
 	
     //handler for user submitting the form
 	public void submitButton(ActionEvent event) {
-		accountNames = AccountDAO.getAccountNamesSet();
-		
-        String name = accountName.getText().trim();
-        String balanceStr = openingBalance.getText().trim();
-        LocalDate date = openingDate.getValue();
-        
-        
-        // Prevents user from leaving the required fields empty
-        if (name.isEmpty() || balanceStr.isEmpty() || date == null) {
+		// Prevents user from leaving the required fields empty
+        if (accountName.getText().isEmpty() || openingBalance.getText().isEmpty() || openingDate.getValue() == null) {
             showAlert("All fields are required!");
             return;
         }
+		
+        // Collect form information
+        String name = accountName.getText().trim();
+        String balanceStr = openingBalance.getText().trim();
+        String dateStr = openingDate.getValue().toString();
         
-        // Check for duplicate account names
-        if (accountNames.contains(name)) {
+        // Duplicate name handling
+        HashSet<String> accountNames = AccountDAO.getAccountNamesSet();
+        if (accountNames.contains(name.toLowerCase())) {
             showAlert("Account name already exists!");
             return;
         }
+        
+        // Opening balance validation
         try {
             balance = Double.parseDouble(balanceStr);
         } catch (NumberFormatException e) {
@@ -87,8 +86,9 @@ public class NewAccountController {
             return;
         }
 
-        // Save information to be used on other pages or application.database
-        saveAccount(name, date, balance);
+        // Add account to DB
+        AccountDAO.addAccount(name, dateStr, balance);
+        System.out.printf("Successfully saved an account!%n - Name: %s%n - Opening Balance: %.2f%n - Opening Date: %s%n", name, balance, dateStr);
 
         // Show success message
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -96,13 +96,6 @@ public class NewAccountController {
         alert.setHeaderText("Account successfully added!");
         alert.showAndWait();
 	}
-	
-    private void saveAccount(String name, LocalDate date, double balance) {
-        // Save account information
-        System.out.printf("Saved %s with balance %.2f on %s%n", name, balance, date.toString());
-        AccountDAO.addAccount(name, date.toString(), balance);
-        
-    }
     
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);

@@ -2,44 +2,43 @@ package application.controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import application.CommonObjs;
 import application.DAOs.AccountDAO;
-import application.DAOs.TransactionDAO;
+import application.DAOs.ScheduledTransactionDAO;
 import application.DAOs.TransactionTypeDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
-public class NewTransactionController {
+public class NewScheduledTransactionController {
+	@FXML
+	TextField scheduleName;
+	
 	@FXML
 	ChoiceBox<String> accountName;
 
 	@FXML
 	ChoiceBox<String> transactionType;
+	
+	@FXML
+	ChoiceBox<String> frequency;
 
 	@FXML
-	DatePicker transactionDate;
-
-	@FXML
-	TextField transactionDescription;
+	TextField dueDate;
 
 	@FXML
 	TextField paymentAmount;
-
-	@FXML
-	TextField depositAmount;
 	
 	double payment = 0;
-	double deposit = 0;
+	int date = 0;
 	
 	private CommonObjs commonObjs = CommonObjs.getInstance();
     private HBox mainBox = commonObjs.getMainBox();
@@ -60,8 +59,10 @@ public class NewTransactionController {
     	if (transactionTypes.size()>0)
     		transactionType.setValue(transactionTypes.get(0));
     	
-    	//set default value of date picker to current date
-		transactionDate.setValue(LocalDate.now());
+    	//add a monthly frequency 
+    	frequency.getItems().add("Monthly");
+    	frequency.setValue("Monthly");
+    	
 	}
     
     //same loadScene as mainController, replaces 2nd child of mainBox
@@ -89,57 +90,55 @@ public class NewTransactionController {
     
     public void submitButton(ActionEvent event) {
         // Prevents user from leaving the required fields empty
-        if(accountName.getValue()==null || transactionType.getValue()==null|| transactionDate.getValue()==null || 
-        		transactionDescription.getText().isEmpty() || (paymentAmount.getText().isEmpty() && depositAmount.getText().isEmpty())) {
+        if(scheduleName.getText().isEmpty() || accountName.getValue()==null || transactionType.getValue()==null || 
+        	frequency.getValue()==null || dueDate.getText().isEmpty() || paymentAmount.getText().isEmpty()) {
         	
         	showAlert("Please fill in the required fields.");
         	return;
         }
         
-        //get all information from the form
+        // Collect form information
+        String scheduleNameStr = scheduleName.getText();
         String account = accountName.getValue().toString();
         String type = transactionType.getValue().toString();
-        String date = transactionDate.getValue().toString();
-        String description = transactionDescription.getText();
+        String frequencyStr = frequency.getValue().toString();
+        String dateStr = dueDate.getText();
         String paymentStr = paymentAmount.getText();
-        String depositStr = depositAmount.getText();
         
-        // Validate payment amount
-        if(!paymentStr.isEmpty()) {
-        	try {
-        		payment = Double.parseDouble(paymentStr);
-        	} catch(NumberFormatException e) {
-        		showAlert("Payment amount must be a number!");
-        		return;
-        	}
-        }
-        // previous bug: if paymentStr is empty, previous value of field is returned
-        // overwrites previous value with 0 to fix
-        else {
-        	payment = 0;
+        // Duplicate name handling
+        HashSet<String> scheduledTransactionNames = ScheduledTransactionDAO.getScheduledTransactionsSet();
+        if(scheduledTransactionNames.contains(scheduleNameStr.toLowerCase())) {
+        	showAlert("Transaction name already exists!");
+        	return;
         }
         
-        // Validate deposit amount
-        if(!depositStr.isEmpty()) {
-        	try {
-        		deposit = Double.parseDouble(depositStr);
-        	} catch(NumberFormatException e) {
-        		showAlert("Deposit amount must be a number!");
-        		return;
-        	}
-        }
-        else {
-        	deposit = 0;
-        }
+        // Payment amount validation
+    	try {
+    		payment = Double.parseDouble(paymentStr);
+    	} catch(NumberFormatException e) {
+    		showAlert("Payment amount must be a number!");
+    		return;
+    	}
         
-        // Add transaction to DB
-        TransactionDAO.addTransaction(account, type, date, description, payment, deposit);
-        System.out.printf("Sucessfully saved a transaction!%n - Account: %s%n - Type: %s%n - Date: %s%n - Descriptiion: %s%n - Payment Amount: $%.2f%n - Deposit Amount: $%.2f%n", account, type, date, description, payment, deposit);
+        // Date validation
+    	try {
+    		date = Integer.parseInt(dateStr);
+    	} catch(NumberFormatException e) {
+    		showAlert("Due date must be an Integer!");
+    		return;
+    	}
+    	if (date < 1 || date > 31) {
+    		showAlert("Due date must be a valid day of the month! (between 1-31)");
+    	}
+        
+        // Add scheduled transaction to DB
+        ScheduledTransactionDAO.addScheduledTransaction(scheduleNameStr, account, type, frequencyStr, date, payment);
+        System.out.printf("Successfully saved a scheduled transaction!%n - Name: %s%n - Account: %s%n - Type: %s%n - Frequency: %s%n - Due Date: %s%n - Payment: %s%n", scheduleNameStr, account, type, frequencyStr, dateStr, paymentStr);
         
         // Success pop-up
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Success!");
-        alert.setHeaderText("Transaction successfully added");
+        alert.setHeaderText("Scheduled Transaction successfully added");
         alert.showAndWait();
     }
     
