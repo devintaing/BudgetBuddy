@@ -2,14 +2,18 @@ package application.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 
 import application.CommonObjs;
+import application.DAOs.ScheduledTransactionDAO;
 import application.beans.ScheduledTransactionBean;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.util.Pair;
 
 public class EditScheduledTransactionController {
 	@FXML
@@ -69,4 +73,53 @@ public class EditScheduledTransactionController {
     public void switchToViewScheduledTransactions() {
         loadScene("/view/viewScheduledTransactions.fxml"); // Use the loadScene method
     }
+
+	@FXML
+	public void saveScheduledTransactionHandler() {
+		Pair<Boolean, String> saveResult = saveScheduledTransaction();
+
+		boolean success = saveResult.getKey();
+		String message = saveResult.getValue();
+
+		Alert alert = new Alert(success ? Alert.AlertType.INFORMATION : Alert.AlertType.ERROR);
+		alert.setTitle(success ? "Scheduled Transaction Saved" : "Save Failed");
+		alert.setHeaderText(success ? "Scheduled Transaction was successfully saved." : "Failed to save the transaction.");
+		alert.setContentText(message);
+		alert.showAndWait();
+	}
+
+	private Pair<Boolean, String> saveScheduledTransaction() {
+		// Check if text entries required are present, if not alert user to fill them again and resubmit
+		if (scheduleName.getText().isEmpty() || accountName.getText().isEmpty() || transactionType.getText().isEmpty() || frequency.getText().isEmpty() || dueDate.getText().isEmpty()) {
+			return new Pair<>(false, "All required fields were not filled in!");
+		}
+
+		if (paymentAmount.getText().isEmpty()){
+			return new Pair<>(false, "You left the price empty so there will be no changes to this scheduled transaction.");
+		}
+		// Now attempt to do entry
+		try {
+			ArrayList<String> newData = new ArrayList<>();
+			newData.add(scheduleName.getText()); // ScheduleName
+			newData.add(accountName.getText()); // AccountName
+			newData.add(transactionType.getText()); // TransactionType
+			newData.add(frequency.getText()); // Frequency
+			newData.add(dueDate.getText()); // Date
+			newData.add(paymentAmount.getText().isEmpty() ? null : paymentAmount.getText()); // PaymentAmount
+
+
+			// Attempt the edit on data record entry
+			boolean success = ScheduledTransactionDAO.editScheduledTransaction(this.currentTransaction, newData);
+
+			if (success) {
+				return new Pair<>(true, "Scheduled Transaction successfully updated.");
+			} else {
+				return new Pair<>(false, "Failed to update the transaction. No changes were made.");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new Pair<>(false, "Error occurred when attempting to write data.");
+		}
+	}
 }

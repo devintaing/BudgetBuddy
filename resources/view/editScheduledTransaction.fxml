@@ -14,7 +14,7 @@
             <Font name="Lato Bold" size="50.0" />
          </font>
       </Text>
-      <Button fx:id="save" layoutX="181.0" layoutY="607.0" prefHeight="40.0" prefWidth="110.0" stylesheets="@../css/application.css" text="save" textFill="WHITE">
+      <Button fx:id="save" layoutX="211.0" layoutY="607.0" prefHeight="40.0" prefWidth="110.0" stylesheets="@../css/application.css" text="save" textFill="WHITE" onAction="#saveScheduledTransactionHandler">
          <font>
             <Font size="25.0" />
          </font>
@@ -23,7 +23,7 @@
             <String fx:value="rounded-button" />
          </styleClass>
       </Button>
-      <Button layoutX="62.0" layoutY="607.0" onAction="#switchToViewScheduledTransactions" prefHeight="29.0" prefWidth="110.0" stylesheets="@../css/application.css" text="Cancel">
+      <Button layoutX="62.0" layoutY="607.0" onAction="#switchToViewScheduledTransactions" prefHeight="29.0" prefWidth="140.0" stylesheets="@../css/application.css" text="Back to View">
          <font>
             <Font size="50.0" />
          </font>
