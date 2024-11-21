@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox fx:id="mainBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
+<HBox fx:id="mainBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1180.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
    <children>
       <ScrollPane fitToWidth="true" minViewportWidth="380.0" prefHeight="720.0" prefWidth="420.0" HBox.hgrow="NEVER">
          <content>
-            <AnchorPane fx:id="sidebar" maxHeight="1.7976931348623157E308" prefHeight="735.0" prefWidth="404.0" styleClass="default-sidebar" stylesheets="@../css/application.css">
+            <AnchorPane fx:id="sidebar" maxHeight="1.7976931348623157E308" prefHeight="730.0" prefWidth="404.0" styleClass="default-sidebar" stylesheets="@../css/application.css">
                <children>
                   <Pane layoutX="13.0" layoutY="11.0" prefHeight="222.0" prefWidth="340.0" styleClass="imgPanel" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="15.0" />
                   <ImageView fitHeight="270.0" fitWidth="380.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0">
