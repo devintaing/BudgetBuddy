@@ -7,8 +7,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import application.CommonObjs;
-import application.DAOs.AccountDAO;
-import application.DAOs.ScheduledTransactionDAO;
 import application.DAOs.TransactionDAO;
 import application.beans.TransactionBean;
 import javafx.collections.ObservableList;
@@ -87,7 +85,7 @@ public class TransactionTableController implements Initializable {
   	        AnchorPane pane = loader.load();
 
   	        // Get the controller for the edit view
-  	        editTransactionController controller = loader.getController();
+  	        EditTransactionController controller = loader.getController();
 
   	        // Pass the selected transaction to the controller
   	        controller.setTransaction(selectedTransaction);

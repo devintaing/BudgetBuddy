@@ -9,7 +9,6 @@ import java.util.ResourceBundle;
 import application.CommonObjs;
 import application.DAOs.ScheduledTransactionDAO;
 import application.beans.ScheduledTransactionBean;
-import application.beans.TransactionBean;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -88,7 +87,7 @@ public class ScheduledTransactionTableController implements Initializable {
   	        AnchorPane pane = loader.load();
 
   	        // Get the controller for the edit page
-  	        editScheduledTransactionController controller = loader.getController();
+  	        EditScheduledTransactionController controller = loader.getController();
 
   	        // Pass the selected transaction to the controller
   	        controller.setTransaction(selectedTransaction);

@@ -91,6 +91,57 @@ public class TransactionDAO {
 		
 		return list; // Returns the list of transactions
 	}
-	
-	
+
+	public static boolean editTransaction(TransactionBean currentTransaction, ArrayList<String> newData) {
+		try {
+			// Ensure newData has exactly 6 elements: AccountName, TransactionType, Date, Description, PaymentAmount, DepositAmount
+			if (newData.size() != 6) {
+				throw new IllegalArgumentException("newData must contain exactly 6 elements.");
+			}
+
+			String updateRecordSQL = "UPDATE Transactions SET " +
+					"AccountName = COALESCE(?, AccountName), " +
+					"TransactionType = COALESCE(?, TransactionType), " +
+					"Date = COALESCE(?, Date), " +
+					"Description = COALESCE(?, Description), " +
+					"PaymentAmount = COALESCE(?, PaymentAmount), " +
+					"DepositAmount = COALESCE(?, DepositAmount) " +
+					"WHERE AccountName = ? AND Date = ? AND TransactionType = ?";
+
+			PreparedStatement pstmt = connection.prepareStatement(updateRecordSQL);
+
+			// Map new data to the query, using currentTransaction for missing values
+			pstmt.setString(1, newData.get(0)); // AccountName
+			pstmt.setString(2, newData.get(1)); // TransactionType
+			pstmt.setString(3, newData.get(2)); // Date
+			pstmt.setString(4, newData.get(3)); // Description
+
+			// Handle nullable Double values
+			pstmt.setObject(5, newData.get(4) != null ? Double.parseDouble(newData.get(4)) : null); // PaymentAmount
+			pstmt.setObject(6, newData.get(5) != null ? Double.parseDouble(newData.get(5)) : null); // DepositAmount
+
+			// Set WHERE clause parameters
+			pstmt.setString(7, currentTransaction.getAccountName());
+			pstmt.setString(8, currentTransaction.getTransactionDate());
+			pstmt.setString(9, currentTransaction.getTransactionType());
+
+			// Execute the update
+			int rowsAffected = pstmt.executeUpdate();
+
+			// Return true if the update was successful
+			return rowsAffected > 0;
+
+		} catch (SQLException e) {
+			System.out.println("Error updating transaction for account: " + currentTransaction.getAccountName());
+			e.printStackTrace();
+			return false;
+		} catch (NumberFormatException e) {
+			System.out.println("Error parsing numeric values for PaymentAmount or DepositAmount.");
+			e.printStackTrace();
+			return false;
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+	}
 }
