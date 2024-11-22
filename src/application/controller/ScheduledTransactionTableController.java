@@ -128,16 +128,7 @@ public class ScheduledTransactionTableController implements Initializable {
 				
 				String searchKeyword = newValue.toLowerCase();
 				
-				if (ScheduledTransactionBean.getAccountName().toLowerCase().indexOf(searchKeyword) > -1) {
-					return true;
-					
-				} else if (ScheduledTransactionBean.getTransactionFreq().toLowerCase().indexOf(searchKeyword) > -1) {
-					return true;
-					
-				} else if (ScheduledTransactionBean.getTransactionType().toLowerCase().indexOf(searchKeyword) > -1) {
-					return true;
-					
-				} else if (ScheduledTransactionBean.getScheduleName().toLowerCase().indexOf(searchKeyword) > -1) {
+				if (ScheduledTransactionBean.getScheduleName().toLowerCase().indexOf(searchKeyword) > -1) {
 					return true;
 					
 				} else 

@@ -130,16 +130,7 @@ public class TransactionTableController implements Initializable {
 					
 					String searchKeyword = newValue.toLowerCase();
 					
-					if (TransactionBean.getAccountName().toLowerCase().indexOf(searchKeyword) > -1) {
-						return true;
-						
-					} else if (TransactionBean.getTransactionDate().toLowerCase().indexOf(searchKeyword) > -1) {
-						return true;
-						
-					} else if (TransactionBean.getTransactionDescription().toLowerCase().indexOf(searchKeyword) > -1) {
-						return true;
-						
-					} else if (TransactionBean.getTransactionType().toLowerCase().indexOf(searchKeyword) > -1) {
+					if (TransactionBean.getTransactionDescription().toLowerCase().indexOf(searchKeyword) > -1) {
 						return true;
 						
 					} else 
