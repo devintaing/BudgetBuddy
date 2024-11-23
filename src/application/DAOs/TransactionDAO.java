@@ -63,7 +63,7 @@ public class TransactionDAO {
 	public static ObservableList<TransactionBean> getTransactions(){
 		ObservableList<TransactionBean> list = FXCollections.observableArrayList();
 		try {
-			String sql = "SELECT * "+ 
+			String sql = "SELECT rowid, * "+ 
 						"FROM Transactions " +
 						"ORDER BY Date DESC";
 			Statement statement = connection.createStatement();
@@ -72,6 +72,7 @@ public class TransactionDAO {
 			
 			// Loops through the result set and add each account to the ObservableList
 			while (result.next()) {
+				int id = result.getInt("rowid");
 				String accountName = result.getString("AccountName");
 				String transType = result.getString("TransactionType");
 				String transDate = result.getString("Date");
@@ -79,7 +80,7 @@ public class TransactionDAO {
 				double payAmt = result.getDouble("PaymentAmount");
 				double depAmt = result.getDouble("DepositAmount");
 				
-				TransactionBean bean = new TransactionBean(accountName, transType, transDate, transDesc, payAmt, depAmt);
+				TransactionBean bean = new TransactionBean(id, accountName, transType, transDate, transDesc, payAmt, depAmt);
 				list.add(bean);
 			}
 			
@@ -106,7 +107,7 @@ public class TransactionDAO {
 					"Description = COALESCE(?, Description), " +
 					"PaymentAmount = COALESCE(?, PaymentAmount), " +
 					"DepositAmount = COALESCE(?, DepositAmount) " +
-					"WHERE AccountName = ? AND Date = ? AND TransactionType = ?";
+					"WHERE rowid = ?";
 
 			PreparedStatement pstmt = connection.prepareStatement(updateRecordSQL);
 
@@ -121,9 +122,10 @@ public class TransactionDAO {
 			pstmt.setObject(6, newData.get(5) != null ? Double.parseDouble(newData.get(5)) : null); // DepositAmount
 
 			// Set WHERE clause parameters
-			pstmt.setString(7, currentTransaction.getAccountName());
-			pstmt.setString(8, currentTransaction.getTransactionDate());
-			pstmt.setString(9, currentTransaction.getTransactionType());
+//			pstmt.setString(7, currentTransaction.getAccountName());
+//			pstmt.setString(8, currentTransaction.getTransactionDate());
+//			pstmt.setString(9, currentTransaction.getTransactionType());
+			pstmt.setInt(7, currentTransaction.getId());
 
 			// Execute the update
 			int rowsAffected = pstmt.executeUpdate();
