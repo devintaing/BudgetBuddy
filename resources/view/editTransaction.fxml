@@ -69,7 +69,7 @@
          </font>
       </Text>
       <TextField fx:id="depositAmount" layoutX="62.0" layoutY="563.0" prefHeight="26.0" prefWidth="179.0" promptText="\$0.00" />
-      <Text layoutX="62.0" layoutY="452.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter Payment Amount, Deposit Amount, or both" wrappingWidth="391.0">
+      <Text layoutX="62.0" layoutY="452.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter at least one of the following:" wrappingWidth="391.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>

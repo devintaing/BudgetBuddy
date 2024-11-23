@@ -51,13 +51,13 @@ public class EditTransactionController {
     public void setTransaction(TransactionBean transaction) {
         this.currentTransaction = transaction;
         
-        //get all account names, set default value of dropdown to first value in list
+        //get all account names, set default value of dropdown to to current value
     	accountNames = AccountDAO.getAccountNamesList();
     	accountName.getItems().addAll(accountNames);
     	if (accountNames.size()>0)
     		accountName.setValue(transaction.getAccountName());
     	
-    	//get all transaction types, set default value of dropdown to first value in list
+    	//get all transaction types, set default value of dropdown to to current value
     	transactionTypes = TransactionTypeDAO.getTransactionTypesList();
     	transactionType.getItems().addAll(transactionTypes);
     	if (transactionTypes.size()>0)
