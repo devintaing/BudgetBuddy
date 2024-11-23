@@ -8,14 +8,14 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.AccountTableController">
    <children>
-      <TableView fx:id="accountTableView" layoutX="68.0" layoutY="171.0" prefHeight="447.0" prefWidth="660.0">
+      <TableView fx:id="accountTableView" layoutX="60.0" layoutY="200.0" prefHeight="400.0" prefWidth="660.0">
          <columns>
             <TableColumn fx:id="accountCol" prefWidth="233.0" resizable="false" text="Account Name" />
             <TableColumn fx:id="dateCol" minWidth="0.0" prefWidth="143.0" resizable="false" text="Opening Date" />
-            <TableColumn fx:id="balCol" minWidth="0.0" prefWidth="179.0" resizable="false" text="Balance" />
+            <TableColumn fx:id="balCol" minWidth="0.0" prefWidth="283.0" resizable="false" text="Balance" />
          </columns>
       </TableView>
-      <Text layoutX="117.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Accounts" textAlignment="CENTER" wrappingWidth="578.0">
+      <Text layoutX="100.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Accounts" textAlignment="CENTER" wrappingWidth="578.0">
          <font>
             <Font name="Lato Bold" size="50.0" />
          </font>
