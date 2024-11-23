@@ -51,7 +51,7 @@
             <Font name="Lato Regular" size="16.0" />
          </font>
       </Text>
-      <Text layoutX="62.0" layoutY="527.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Amount" wrappingWidth="261.0001220703125">
+      <Text layoutX="62.0" layoutY="527.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Amount (required)" wrappingWidth="261.0001220703125">
          <font>
             <Font name="Lato Regular" size="16.0" />
          </font>
@@ -63,7 +63,7 @@
          </font>
       </Text>
       <TextField fx:id="scheduleName" layoutX="62.0" layoutY="186.0" prefHeight="26.0" prefWidth="179.0" />
-      <Text layoutX="62.0" layoutY="377.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Frequency" wrappingWidth="261.0001220703125">
+      <Text layoutX="62.0" layoutY="377.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Frequency (required)" wrappingWidth="261.0001220703125">
          <font>
             <Font name="Lato Regular" size="16.0" />
          </font>

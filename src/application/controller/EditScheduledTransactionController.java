@@ -3,6 +3,7 @@ package application.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import application.CommonObjs;
 import application.DAOs.ScheduledTransactionDAO;
@@ -89,14 +90,16 @@ public class EditScheduledTransactionController {
 	}
 
 	private Pair<Boolean, String> saveScheduledTransaction() {
-		// Check if text entries required are present, if not alert user to fill them again and resubmit
-		if (scheduleName.getText().isEmpty() || accountName.getText().isEmpty() || transactionType.getText().isEmpty() || frequency.getText().isEmpty() || dueDate.getText().isEmpty()) {
-			return new Pair<>(false, "All required fields were not filled in!");
+		// Prevents user from leaving the required fields empty
+		if (scheduleName.getText().isEmpty() || accountName.getText().isEmpty() || transactionType.getText().isEmpty() || frequency.getText().isEmpty() || dueDate.getText().isEmpty() || paymentAmount.getText().isEmpty()) {
+			return new Pair<>(false, "Please fill in the required fields.");
 		}
-
-		if (paymentAmount.getText().isEmpty()){
-			return new Pair<>(false, "You left the payment amount empty so there will be no changes to this scheduled transaction.");
-		}
+		
+		// Duplicate name handling
+		HashSet<String> scheduledTransactionNames = ScheduledTransactionDAO.getScheduledTransactionsSet();
+        if(scheduledTransactionNames.contains(scheduleName.getText().toLowerCase())) {
+        	return new Pair<>(false, "Transaction name already exists!");
+        }
 
 		// Now attempt to do entry
 		try {
