@@ -115,6 +115,28 @@ public class EditScheduledTransactionController {
 			return new Pair<>(false, "Please fill in the required fields.");
 		}
 		
+		// Collect form information
+        String dateStr = dueDate.getText();
+        String paymentStr = paymentAmount.getText();
+		
+        // Payment amount validation
+    	try {
+    		Double.parseDouble(paymentStr);
+    	} catch(NumberFormatException e) {
+    		return new Pair<>(false, "Payment amount must be a number!");
+    	}
+        
+        // Date validation
+    	int date;
+    	try {
+    		date = Integer.parseInt(dateStr);
+    	} catch(NumberFormatException e) {
+    		return new Pair<>(false, "Due date must be an Integer!");
+    	}
+    	if (date < 1 || date > 31) {
+    		return new Pair<>(false,"Due date must be a valid day of the month! (between 1-31)");
+    	}
+        
 		// Duplicate name handling
 		ObservableList<ScheduledTransactionBean> list = ScheduledTransactionDAO.getScheduledTransactions();
         for (ScheduledTransactionBean bean:list) {
@@ -148,4 +170,5 @@ public class EditScheduledTransactionController {
 			return new Pair<>(false, "Error occurred when attempting to write data.");
 		}
 	}
+	
 }
