@@ -100,6 +100,8 @@ public class TransactionDAO {
 				throw new IllegalArgumentException("newData must contain exactly 6 elements.");
 			}
 
+			//Coalesce returns the first Non-Null Value in the input list
+			//The currentTransaction's corresponding table entry based on rowid is updated
 			String updateRecordSQL = "UPDATE Transactions SET " +
 					"AccountName = COALESCE(?, AccountName), " +
 					"TransactionType = COALESCE(?, TransactionType), " +
@@ -122,9 +124,6 @@ public class TransactionDAO {
 			pstmt.setObject(6, newData.get(5) != null ? Double.parseDouble(newData.get(5)) : null); // DepositAmount
 
 			// Set WHERE clause parameters
-//			pstmt.setString(7, currentTransaction.getAccountName());
-//			pstmt.setString(8, currentTransaction.getTransactionDate());
-//			pstmt.setString(9, currentTransaction.getTransactionType());
 			pstmt.setInt(7, currentTransaction.getId());
 
 			// Execute the update

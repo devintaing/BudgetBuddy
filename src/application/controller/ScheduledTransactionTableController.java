@@ -119,6 +119,8 @@ public class ScheduledTransactionTableController implements Initializable {
 
 		FilteredList<ScheduledTransactionBean> filteredData = new FilteredList<>(list, b -> true);
 
+		//the filtered list filters out Scheduled Transactions that don't meet the predicate
+		//Every time the search box is updated the predicate is too
 		scheduledSearchTextBox.textProperty().addListener((observable, oldValue, newValue) -> {
 			filteredData.setPredicate(ScheduledTransactionBean -> {
 				
@@ -136,6 +138,8 @@ public class ScheduledTransactionTableController implements Initializable {
 			});
 			
 		});
+		//the filteredData is sorted and the sortedlist is binded to the table view.
+		//(if the list changes the table updates as well)
 		SortedList<ScheduledTransactionBean> sortedData = new SortedList<>(filteredData);
 		
 		sortedData.comparatorProperty().bind(schedTransTableView.comparatorProperty());
