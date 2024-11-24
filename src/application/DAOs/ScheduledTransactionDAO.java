@@ -127,7 +127,7 @@ public class ScheduledTransactionDAO {
 					"Frequency = COALESCE(?, Frequency), " +
 					"Date = COALESCE(?, Date), " +
 					"PaymentAmount = COALESCE(?, PaymentAmount) " +
-					"WHERE ScheduleName = ? AND AccountName = ? AND Date = ? AND TransactionType = ?";
+					"WHERE rowid=?";
 
 			PreparedStatement pstmt = connection.prepareStatement(updateRecordSQL);
 
@@ -142,10 +142,7 @@ public class ScheduledTransactionDAO {
 			pstmt.setObject(6, newData.get(5) != null ? Double.parseDouble(newData.get(5)) : null); // PaymentAmount
 
 			// Set WHERE clause parameters
-			pstmt.setString(7, currentTransaction.getScheduleName()); // WHERE ScheduleName
-			pstmt.setString(8, currentTransaction.getAccountName()); // WHERE AccountName
-			pstmt.setInt(9, currentTransaction.getDueDate()); // WHERE Date
-			pstmt.setString(10, currentTransaction.getTransactionType()); // WHERE TransactionType
+			pstmt.setInt(7, currentTransaction.getId());
 
 			// Execute the update
 			int rowsAffected = pstmt.executeUpdate();
