@@ -10,6 +10,7 @@ import application.DAOs.AccountDAO;
 import application.DAOs.ScheduledTransactionDAO;
 import application.DAOs.TransactionTypeDAO;
 import application.beans.ScheduledTransactionBean;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
@@ -42,10 +43,12 @@ public class EditScheduledTransactionController {
     private ArrayList<String> transactionTypes = new ArrayList<>();
 	
     private ScheduledTransactionBean currentTransaction;
+    private int id;
 
     // Set the transaction details and populate the fields
     public void setTransaction(ScheduledTransactionBean transaction) {
         this.currentTransaction = transaction;
+        id = currentTransaction.getId();
 
         // Populate the fields with the transaction details
         scheduleName.setText(transaction.getScheduleName());
@@ -113,9 +116,11 @@ public class EditScheduledTransactionController {
 		}
 		
 		// Duplicate name handling
-		HashSet<String> scheduledTransactionNames = ScheduledTransactionDAO.getScheduledTransactionsSet();
-        if(scheduledTransactionNames.contains(scheduleName.getText().toLowerCase())) {
-        	return new Pair<>(false, "Transaction name already exists!");
+		ObservableList<ScheduledTransactionBean> list = ScheduledTransactionDAO.getScheduledTransactions();
+        for (ScheduledTransactionBean bean:list) {
+        	if(bean.getScheduleName().toLowerCase().equals(scheduleName.getText().toLowerCase()) && bean.getId()!=id) {
+            	return new Pair<>(false, "Transaction name already exists!");
+            }
         }
 
 		// Now attempt to do entry
