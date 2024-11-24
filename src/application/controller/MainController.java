@@ -40,7 +40,6 @@ public class MainController {
     public void initialize() {
         new CollapsibleSectionController(viewSection, toggleViewButton);
         new CollapsibleSectionController(newSection, toggleNewButton);
-        new CollapsibleSectionController(editSection, toggleEditButton);
         // Show the homepage on startup
         switchToHome();
     }

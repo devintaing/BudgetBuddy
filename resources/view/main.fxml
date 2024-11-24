@@ -22,7 +22,7 @@
                         <Image url="@../images/BudgetBuddyLogo.png" />
                      </image>
                   </ImageView>
-                  <VBox layoutX="20.0" layoutY="270.0" prefHeight="271.0" prefWidth="364.0" spacing="30.0" styleClass="buttonPanel" stylesheets="@../css/application.css" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+                  <VBox layoutX="20.0" layoutY="270.0" prefHeight="230.0" prefWidth="364.0" spacing="30.0" styleClass="buttonPanel" stylesheets="@../css/application.css" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
                      <children>
                         <Button mnemonicParsing="false" onAction="#switchToHome" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-button" stylesheets="@../css/application.css" text="Homepage" />
                        <VBox spacing="13.0">
@@ -39,8 +39,8 @@
 						</VBox>
 						<VBox spacing="13.0">
 						    <children>
-						        <!-- Header button for New that will control collapse/expand -->
-						        <Button fx:id="toggleNewButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-button" stylesheets="@../css/application.css" text="Show New (account, transaction, etc.)" />
+      						        <!-- Header button for New that will control collapse/expand -->
+      						        <Button fx:id="toggleNewButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-button" stylesheets="@../css/application.css" text="Show New (account, transaction, etc.)" />
 						        <!-- VBox for the sub-buttons of the New section -->
 						        <VBox fx:id="newSection" managed="false" spacing="10.0" visible="false">
 						            <Button mnemonicParsing="false" onAction="#switchToNewAccount" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-child-button" stylesheets="@../css/application.css" text="New Account" />
@@ -50,17 +50,6 @@
 						        </VBox>
 						    </children>
 						</VBox>
-                        <VBox spacing="13.0">
-                           <children>
-                              <Button fx:id="toggleEditButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-button" stylesheets="@../css/application.css" text="Edit Information" />
-                              <VBox fx:id="editSection" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
-                                 <children>
-                                    <Button mnemonicParsing="false" onAction="#switchToEditTransaction" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-child-button" stylesheets="@../css/application.css" text="Edit Transaction" />
-                                    <Button mnemonicParsing="false" onAction="#switchToEditScheduledTransaction" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-child-button" stylesheets="@../css/application.css" text="Edit Scheduled Transaction" />
-                                 </children>
-                              </VBox>
-                           </children>
-                        </VBox>
                      </children>
                      <padding>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
