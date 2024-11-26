@@ -121,6 +121,9 @@ public class TransactionTableController implements Initializable {
 
 		FilteredList<TransactionBean> filteredData = new FilteredList<>(list, b -> true);
 		
+		
+		//the filtered list filters out Transactions that don't meet the predicate
+		//Every time the search box is updated the predicate is too
 		transactionSearchTextBox.textProperty().addListener((observable, oldValue, newValue) -> {
 				filteredData.setPredicate(TransactionBean -> {
 					
@@ -138,7 +141,8 @@ public class TransactionTableController implements Initializable {
 				});
 				
 			});
-		
+		//the filteredData is sorted and the sortedlist is binded to the table view.
+		//(if the list changes the table updates as well)
 		SortedList<TransactionBean> sortedData = new SortedList<>(filteredData);
 		
 		sortedData.comparatorProperty().bind(transactionTableView.comparatorProperty());

@@ -57,7 +57,7 @@ public class ScheduledTransactionDAO {
 	public static ObservableList<ScheduledTransactionBean> getScheduledTransactions() {
 		ObservableList<ScheduledTransactionBean> list = FXCollections.observableArrayList();
 		try {
-			String sql = "SELECT * " +
+			String sql = "SELECT rowid, * " +
 					"FROM ScheduledTransactions " +
 					"ORDER BY Date ASC";
 			Statement statement = connection.createStatement();
@@ -66,6 +66,7 @@ public class ScheduledTransactionDAO {
 
 			// Loops through the result set and add each account to the ObservableList
 			while (result.next()) {
+				int id = result.getInt("rowid");
 				String scheduleName = result.getString("ScheduleName");
 				String accountName = result.getString("AccountName");
 				String transType = result.getString("TransactionType");
@@ -73,7 +74,7 @@ public class ScheduledTransactionDAO {
 				int dueDate = result.getInt("Date");
 				double payAmt = result.getDouble("PaymentAmount");
 
-				ScheduledTransactionBean bean = new ScheduledTransactionBean(scheduleName, accountName, transType, transFreq, dueDate, payAmt);
+				ScheduledTransactionBean bean = new ScheduledTransactionBean(id, scheduleName, accountName, transType, transFreq, dueDate, payAmt);
 				list.add(bean);
 			}
 
@@ -126,7 +127,7 @@ public class ScheduledTransactionDAO {
 					"Frequency = COALESCE(?, Frequency), " +
 					"Date = COALESCE(?, Date), " +
 					"PaymentAmount = COALESCE(?, PaymentAmount) " +
-					"WHERE ScheduleName = ? AND AccountName = ? AND Date = ? AND TransactionType = ?";
+					"WHERE rowid=?";
 
 			PreparedStatement pstmt = connection.prepareStatement(updateRecordSQL);
 
@@ -141,10 +142,7 @@ public class ScheduledTransactionDAO {
 			pstmt.setObject(6, newData.get(5) != null ? Double.parseDouble(newData.get(5)) : null); // PaymentAmount
 
 			// Set WHERE clause parameters
-			pstmt.setString(7, currentTransaction.getScheduleName()); // WHERE ScheduleName
-			pstmt.setString(8, currentTransaction.getAccountName()); // WHERE AccountName
-			pstmt.setInt(9, currentTransaction.getDueDate()); // WHERE Date
-			pstmt.setString(10, currentTransaction.getTransactionType()); // WHERE TransactionType
+			pstmt.setInt(7, currentTransaction.getId());
 
 			// Execute the update
 			int rowsAffected = pstmt.executeUpdate();
