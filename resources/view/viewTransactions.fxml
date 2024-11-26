@@ -12,13 +12,12 @@
    <children>
       <TableView fx:id="transactionTableView" layoutX="60.0" layoutY="200.0" prefHeight="400.0" prefWidth="660.0">
          <columns>
-            <TableColumn fx:id="idCol" prefWidth="31.0" resizable="false" text="ID" />
             <TableColumn fx:id="accountCol" prefWidth="105.0" resizable="false" text="Account Name" />
             <TableColumn fx:id="typeCol" minWidth="0.0" prefWidth="108.0" resizable="false" text="Transaction Type" />
             <TableColumn fx:id="dateCol" minWidth="0.0" prefWidth="108.0" resizable="false" text="Transaction Date" />
-            <TableColumn fx:id="descCol" prefWidth="160.0" resizable="false" text="Transaction Description" />
-            <TableColumn fx:id="payCol" prefWidth="78.0" resizable="false" text="Payment" />
-            <TableColumn fx:id="depositCol" prefWidth="69.0" resizable="false" text="Deposit" />
+            <TableColumn fx:id="descCol" prefWidth="201.14288330078125" resizable="false" text="Transaction Description" />
+            <TableColumn fx:id="payCol" prefWidth="69.71429443359375" resizable="false" text="Payment" />
+            <TableColumn fx:id="depositCol" prefWidth="67.4285888671875" resizable="false" text="Deposit" />
          </columns>
       </TableView>
       <Button fx:id="editButton" layoutX="60.0" layoutY="610.0" mnemonicParsing="false" onAction="#switchToEditTransaction" text="Edit" />

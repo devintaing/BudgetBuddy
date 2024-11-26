@@ -29,9 +29,6 @@ public class TransactionTableController implements Initializable {
 	private TableView<TransactionBean> transactionTableView;
 	
 	@FXML
-	private TableColumn<TransactionBean, Integer> idCol;
-	
-	@FXML
 	private TableColumn<TransactionBean, String> accountCol;
 	
 	@FXML
@@ -114,7 +111,6 @@ public class TransactionTableController implements Initializable {
 		
 		list = TransactionDAO.getTransactions();
 		
-		idCol.setCellValueFactory(new PropertyValueFactory<TransactionBean, Integer>("id"));
 		accountCol.setCellValueFactory(new PropertyValueFactory<TransactionBean, String>("accountName"));
 		typeCol.setCellValueFactory(new PropertyValueFactory<TransactionBean, String>("transactionType"));
 		dateCol.setCellValueFactory(new PropertyValueFactory<TransactionBean, String>("transactionDate"));
