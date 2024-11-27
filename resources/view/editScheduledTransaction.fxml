@@ -24,25 +24,25 @@
                   <Font name="Lato Regular" size="16.0" />
                </font>
             </Text>
-            <TextField fx:id="scheduleName" layoutY="107.0" prefHeight="26.0" prefWidth="179.0" />
+            <TextField fx:id="scheduleName" layoutY="101.0" prefHeight="26.0" prefWidth="179.0" />
             <Text layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account (required)" wrappingWidth="261.0001220703125">
                <font>
                   <Font name="Lato Regular" size="16.0" />
                </font>
             </Text>
-            <TextField fx:id="accountName" layoutY="171.0" prefHeight="26.0" prefWidth="179.0" />
+            <ChoiceBox fx:id="accountName" layoutY="169.0" prefHeight="26.0" prefWidth="179.0" />
             <Text layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Type (required)" wrappingWidth="261.0001220703125">
                <font>
                   <Font name="Lato Regular" size="16.0" />
                </font>
             </Text>
-            <TextField fx:id="transactionType" layoutY="236.0" prefHeight="26.0" prefWidth="179.0" />
+            <ChoiceBox fx:id="transactionType" layoutY="234.0" prefHeight="26.0" prefWidth="179.0" />
             <Text layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Frequency" wrappingWidth="261.0001220703125">
                <font>
                   <Font name="Lato Regular" size="16.0" />
                </font>
             </Text>
-            <TextField fx:id="frequency" layoutY="301.0" prefHeight="26.0" prefWidth="179.0" />
+            <ChoiceBox fx:id="frequency" layoutY="297.0" prefHeight="26.0" prefWidth="179.0" />
             <Text layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Due Date (in days, required)" wrappingWidth="261.0001220703125">
                <font>
                   <Font name="Lato Regular" size="16.0" />

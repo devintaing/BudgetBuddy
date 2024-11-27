@@ -23,12 +23,12 @@
                   <TextField fx:id="scheduledSearchTextBox" prefHeight="26.0" prefWidth="700.0" promptText="Search by transaction name..." />
                   <TableView fx:id="schedTransTableView" layoutY="30.0" prefHeight="400.0" prefWidth="700.0">
                      <columns>
-                        <TableColumn fx:id="nameCol" prefWidth="137.0" text="Transaction Name" />
-                        <TableColumn fx:id="accountCol" prefWidth="128.0" resizable="false" text="Account" />
-                        <TableColumn fx:id="typeCol" minWidth="0.0" prefWidth="88.0" resizable="false" text="Type" />
-                        <TableColumn fx:id="freqCol" minWidth="0.0" prefWidth="83.0" resizable="false" text="Frequency" />
-                        <TableColumn fx:id="dateCol" minWidth="0.0" prefWidth="136.0" resizable="false" text="Due Date (Day)" />
-                        <TableColumn fx:id="payCol" minWidth="0.0" prefWidth="126.0" resizable="false" text="Amount" />
+                        <TableColumn fx:id="nameCol" prefWidth="150.0" text="Transaction Name" />
+                        <TableColumn fx:id="accountCol" prefWidth="130.0" resizable="false" text="Account" />
+                        <TableColumn fx:id="typeCol" minWidth="0.0" prefWidth="120.0" resizable="false" text="Type" />
+                        <TableColumn fx:id="freqCol" minWidth="0.0" prefWidth="90.0" resizable="false" text="Frequency" />
+                        <TableColumn fx:id="dateCol" minWidth="0.0" prefWidth="110.0" resizable="false" text="Due Date (Day)" />
+                        <TableColumn fx:id="payCol" minWidth="0.0" prefWidth="100.0" resizable="false" text="Amount" />
                      </columns>
                   </TableView>
                   <Button fx:id="editButton" layoutY="440.33984375" mnemonicParsing="false" onAction="#switchToEditScheduledTransaction" text="Edit" />
