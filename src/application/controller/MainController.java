@@ -3,6 +3,7 @@ package application.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -16,7 +17,7 @@ public class MainController {
     private HBox mainBox;
 
     @FXML
-    private AnchorPane sidebar;
+    private SplitPane sidebar;
 
     @FXML
     private VBox viewSection; // The VBox containing the "View Accounts" buttons
@@ -121,14 +122,14 @@ public class MainController {
 	// Switches to the "Edit Transactions" screen
 	@FXML
 	public void switchToEditTransaction() {
-        sidebar.getStyleClass().setAll("red-sidebar");
+        sidebar.getStyleClass().setAll("orange-sidebar");
 		loadScene("/view/editTransaction.fxml");
 	}
 	
 	// Switches to the "Edit Scheduled Transactions" screen
 	@FXML
 	public void switchToEditScheduledTransaction() {
-        sidebar.getStyleClass().setAll("red-sidebar");
+        sidebar.getStyleClass().setAll("orange-sidebar");
 		loadScene("/view/editScheduledTransaction.fxml");
 	}
 }
