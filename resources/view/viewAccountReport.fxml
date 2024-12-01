@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -32,6 +33,11 @@
                </font>
             </Text>
             <ChoiceBox fx:id="accountName" layoutX="500.0" layoutY="540.0" prefHeight="25.0" prefWidth="200.0" />
+            <Label layoutY="535.0" prefHeight="17.0" prefWidth="188.0" text="* Double click a transaction to view it">
+               <font>
+                  <Font name="System Italic" size="10.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>
