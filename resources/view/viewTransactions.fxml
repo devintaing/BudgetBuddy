@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.TransactionTableController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.TransactionTableController">
    <children>
       <Pane prefHeight="720.0" prefWidth="800.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
          <children>
@@ -26,8 +26,7 @@
                         <TableColumn fx:id="depositCol" resizable="false" text="Deposit" />
                      </columns>
                   </TableView>
-                  <Button fx:id="editButton" layoutY="440.33984375" mnemonicParsing="false" onAction="#switchToEditTransaction" text="Edit" />
-                  <Button layoutX="40.0" layoutY="440.33984375" mnemonicParsing="false" text="Delete" />
+                  <Button layoutY="439.0" mnemonicParsing="false" text="Delete" />
                </children>
             </Pane>
          </children>
