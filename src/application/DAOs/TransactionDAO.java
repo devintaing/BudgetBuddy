@@ -63,7 +63,7 @@ public class TransactionDAO {
 	public static ObservableList<TransactionBean> getTransactions(){
 		ObservableList<TransactionBean> list = FXCollections.observableArrayList();
 		try {
-			String sql = "SELECT * "+ 
+			String sql = "SELECT rowid, * "+ 
 						"FROM Transactions " +
 						"ORDER BY Date DESC";
 			Statement statement = connection.createStatement();
@@ -72,6 +72,7 @@ public class TransactionDAO {
 			
 			// Loops through the result set and add each account to the ObservableList
 			while (result.next()) {
+				int id = result.getInt("rowid");
 				String accountName = result.getString("AccountName");
 				String transType = result.getString("TransactionType");
 				String transDate = result.getString("Date");
@@ -79,7 +80,7 @@ public class TransactionDAO {
 				double payAmt = result.getDouble("PaymentAmount");
 				double depAmt = result.getDouble("DepositAmount");
 				
-				TransactionBean bean = new TransactionBean(accountName, transType, transDate, transDesc, payAmt, depAmt);
+				TransactionBean bean = new TransactionBean(id, accountName, transType, transDate, transDesc, payAmt, depAmt);
 				list.add(bean);
 			}
 			
@@ -91,6 +92,57 @@ public class TransactionDAO {
 		
 		return list; // Returns the list of transactions
 	}
-	
-	
+
+	public static boolean editTransaction(TransactionBean currentTransaction, ArrayList<String> newData) {
+		try {
+			// Ensure newData has exactly 6 elements: AccountName, TransactionType, Date, Description, PaymentAmount, DepositAmount
+			if (newData.size() != 6) {
+				throw new IllegalArgumentException("newData must contain exactly 6 elements.");
+			}
+
+			//Coalesce returns the first Non-Null Value in the input list
+			//The currentTransaction's corresponding table entry based on rowid is updated
+			String updateRecordSQL = "UPDATE Transactions SET " +
+					"AccountName = COALESCE(?, AccountName), " +
+					"TransactionType = COALESCE(?, TransactionType), " +
+					"Date = COALESCE(?, Date), " +
+					"Description = COALESCE(?, Description), " +
+					"PaymentAmount = COALESCE(?, PaymentAmount), " +
+					"DepositAmount = COALESCE(?, DepositAmount) " +
+					"WHERE rowid = ?";
+
+			PreparedStatement pstmt = connection.prepareStatement(updateRecordSQL);
+
+			// Set attribute clause parameters
+			pstmt.setString(1, newData.get(0)); // AccountName
+			pstmt.setString(2, newData.get(1)); // TransactionType
+			pstmt.setString(3, newData.get(2)); // Date
+			pstmt.setString(4, newData.get(3)); // Description
+
+			// Handle nullable Double values
+			pstmt.setObject(5, newData.get(4) != null ? Double.parseDouble(newData.get(4)) : null); // PaymentAmount
+			pstmt.setObject(6, newData.get(5) != null ? Double.parseDouble(newData.get(5)) : null); // DepositAmount
+
+			// Set WHERE clause parameters
+			pstmt.setInt(7, currentTransaction.getId());
+
+			// Execute the update
+			int rowsAffected = pstmt.executeUpdate();
+
+			// Return true if the update was successful
+			return rowsAffected > 0;
+
+		} catch (SQLException e) {
+			System.out.println("Error updating transaction for account: " + currentTransaction.getAccountName());
+			e.printStackTrace();
+			return false;
+		} catch (NumberFormatException e) {
+			System.out.println("Error parsing numeric values for PaymentAmount or DepositAmount.");
+			e.printStackTrace();
+			return false;
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+	}
 }

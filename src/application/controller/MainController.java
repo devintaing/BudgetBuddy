@@ -3,6 +3,7 @@ package application.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -16,7 +17,7 @@ public class MainController {
     private HBox mainBox;
 
     @FXML
-    private AnchorPane sidebar;
+    private SplitPane sidebar;
 
     @FXML
     private VBox viewSection; // The VBox containing the "View Accounts" buttons
@@ -25,16 +26,21 @@ public class MainController {
     private VBox newSection; // The VBox containing the "New Account", "New Transaction", etc.
 
     @FXML
+    private VBox editSection;
+    
+    @FXML
     private Button toggleViewButton; // Button that toggles "Views" section
 
     @FXML
     private Button toggleNewButton; // Button that toggles "New" section
+    
+    @FXML
+    private Button toggleEditButton;
 
     @FXML
     public void initialize() {
         new CollapsibleSectionController(viewSection, toggleViewButton);
         new CollapsibleSectionController(newSection, toggleNewButton);
-
         // Show the homepage on startup
         switchToHome();
     }
@@ -107,10 +113,24 @@ public class MainController {
 	}
 	
 	// Switches to the "View Scheduled Transactions" screen
-		@FXML
-		public void switchToViewScheduledTransactions() {
-            sidebar.getStyleClass().setAll("green-sidebar");
-			loadScene("/view/viewScheduledTransactions.fxml");
-		}
+	@FXML
+	public void switchToViewScheduledTransactions() {
+        sidebar.getStyleClass().setAll("green-sidebar");
+		loadScene("/view/viewScheduledTransactions.fxml");
+	}
+	
+	// Switches to the "Edit Transactions" screen
+	@FXML
+	public void switchToEditTransaction() {
+        sidebar.getStyleClass().setAll("orange-sidebar");
+		loadScene("/view/editTransaction.fxml");
+	}
+	
+	// Switches to the "Edit Scheduled Transactions" screen
+	@FXML
+	public void switchToEditScheduledTransaction() {
+        sidebar.getStyleClass().setAll("orange-sidebar");
+		loadScene("/view/editScheduledTransaction.fxml");
+	}
 }
 

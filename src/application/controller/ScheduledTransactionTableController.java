@@ -1,19 +1,29 @@
 package application.controller;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.CommonObjs;
 import application.DAOs.ScheduledTransactionDAO;
 import application.beans.ScheduledTransactionBean;
+import application.beans.TransactionBean;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 
 public class ScheduledTransactionTableController implements Initializable {
 	@FXML
@@ -37,10 +47,70 @@ public class ScheduledTransactionTableController implements Initializable {
 	@FXML
 	private TableColumn<ScheduledTransactionBean, Double> payCol;
 
+	@FXML
+	private TextField scheduledSearchTextBox;
+	
 	ObservableList<ScheduledTransactionBean> list;
 
+	private CommonObjs commonObjs = CommonObjs.getInstance();
+    private HBox mainBox = commonObjs.getMainBox();
+    
+  	private void loadScene(String fxmlFile){
+      	URL url = getClass().getResource(fxmlFile);
+      	
+      	try {
+  			AnchorPane paneHome = (AnchorPane)FXMLLoader.load(url);
+  			
+  			if (mainBox.getChildren().size() >1)
+  				mainBox.getChildren().remove(1);
+  			
+  			mainBox.getChildren().add(paneHome);
+  			
+  		} catch (IOException e) {
+  			System.out.println("error loading scene from " + fxmlFile);
+  			e.printStackTrace();
+  		}
+      }
+  	
+  	
+  	public void switchToEditScheduledTransaction() {
+  	    // Get the selected transaction
+  	    ScheduledTransactionBean selectedTransaction = schedTransTableView.getSelectionModel().getSelectedItem();
+
+  	    if (selectedTransaction == null) {
+  	        showAlert("No transaction selected.");
+  	        return;
+  	    }
+
+  	    try {
+  	        // Load the edit page
+  	        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/editScheduledTransaction.fxml"));
+  	        AnchorPane pane = loader.load();
+
+  	        // Get the controller for the edit page
+  	        EditScheduledTransactionController controller = loader.getController();
+
+  	        // Pass the selected transaction to the controller
+  	        controller.setTransaction(selectedTransaction);
+
+  	        // Replace the current view
+  	        if (mainBox.getChildren().size() > 1)
+  	            mainBox.getChildren().remove(1);
+
+  	        mainBox.getChildren().add(pane);
+
+  	    } catch (IOException e) {
+  	        System.err.println("Error loading editScheduledTransaction.fxml");
+  	        e.printStackTrace();
+  	    }
+  	}
+
+    
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
+		
+		list = ScheduledTransactionDAO.getScheduledTransactions();
+
 		nameCol.setCellValueFactory(new PropertyValueFactory<ScheduledTransactionBean, String>("scheduleName"));
 		accountCol.setCellValueFactory(new PropertyValueFactory<ScheduledTransactionBean, String>("accountName"));
 		typeCol.setCellValueFactory(new PropertyValueFactory<ScheduledTransactionBean, String>("transactionType"));
@@ -48,6 +118,35 @@ public class ScheduledTransactionTableController implements Initializable {
 		dateCol.setCellValueFactory(new PropertyValueFactory<ScheduledTransactionBean, Integer>("dueDate"));
 		payCol.setCellValueFactory(new PropertyValueFactory<ScheduledTransactionBean, Double>("paymentAmount"));
 
+		FilteredList<ScheduledTransactionBean> filteredData = new FilteredList<>(list, b -> true);
+
+		//the filtered list filters out Scheduled Transactions that don't meet the predicate
+		//Every time the search box is updated the predicate is too
+		scheduledSearchTextBox.textProperty().addListener((observable, oldValue, newValue) -> {
+			filteredData.setPredicate(ScheduledTransactionBean -> {
+				
+				if (newValue.isEmpty() || newValue.isBlank() || newValue == null) {
+					return true;
+				}
+				
+				String searchKeyword = newValue.toLowerCase();
+				
+				if (ScheduledTransactionBean.getScheduleName().toLowerCase().indexOf(searchKeyword) > -1) {
+					return true;
+					
+				} else 
+					return false;
+			});
+			
+		});
+		//the filteredData is sorted and the sortedlist is binded to the table view.
+		//(if the list changes the table updates as well)
+		SortedList<ScheduledTransactionBean> sortedData = new SortedList<>(filteredData);
+		
+		sortedData.comparatorProperty().bind(schedTransTableView.comparatorProperty());
+		
+		schedTransTableView.setItems(sortedData);
+		
 		// sets how the balance column formats the cells
 		payCol.setCellFactory(tc -> new TableCell<ScheduledTransactionBean, Double>() {
 			@Override
@@ -63,8 +162,28 @@ public class ScheduledTransactionTableController implements Initializable {
 				}
 			}
 		});
-
-		list = ScheduledTransactionDAO.getScheduledTransactions();
-		schedTransTableView.setItems(list);
+			handleRowDoubleClick();
 	}
+	@FXML
+	private void handleRowDoubleClick() {
+		schedTransTableView.setOnMouseClicked(event -> {
+	        if (event.getClickCount() == 2) { // Check for double click
+	            ScheduledTransactionBean selectedTransaction = schedTransTableView.getSelectionModel().getSelectedItem();
+	            if (selectedTransaction != null) {
+	            	switchToEditScheduledTransaction();
+	            } else {
+	                showAlert("No transaction selected.");
+	            }
+	        }
+	    });
+	}
+	
+    private void showAlert(String message) {
+    	Alert alert = new Alert(Alert.AlertType.ERROR);
+    	alert.setTitle("Error");
+    	alert.setHeaderText(null);
+    	alert.setContentText(message);
+    	alert.showAndWait();
+    }
 }
+

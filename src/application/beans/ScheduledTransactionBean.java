@@ -1,6 +1,7 @@
 package application.beans;
 
 public class ScheduledTransactionBean {
+	private int id;
 	private String scheduleName;
 	private String accountName;
 	private String transactionType;
@@ -8,14 +9,23 @@ public class ScheduledTransactionBean {
 	private int dueDate;
 	private double paymentAmount;
 
-	public ScheduledTransactionBean(String schedName, String accName, String transType, String transFreq,
+	public ScheduledTransactionBean(int idNum, String schedName, String accName, String transType, String transFreq,
 			int transDate, double payAmt) {
+		id = idNum;
 		scheduleName = schedName;
 		accountName = accName;
 		transactionType = transType;
 		transactionFreq = transFreq;
 		dueDate = transDate;
 		paymentAmount = payAmt;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getScheduleName() {
