@@ -177,7 +177,23 @@ public class TransactionTableController implements Initializable {
 		        }
 		    }
 		});
+			handleRowDoubleClick(); // Attach the double-click event handler
 	}
+	
+	@FXML
+	private void handleRowDoubleClick() {
+	    transactionTableView.setOnMouseClicked(event -> {
+	        if (event.getClickCount() == 2) { // Check for double click
+	            TransactionBean selectedTransaction = transactionTableView.getSelectionModel().getSelectedItem();
+	            if (selectedTransaction != null) {
+	                switchToEditTransaction();
+	            } else {
+	                showAlert("No transaction selected.");
+	            }
+	        }
+	    });
+	}
+	
     private void showAlert(String message) {
     	Alert alert = new Alert(Alert.AlertType.ERROR);
     	alert.setTitle("Error");

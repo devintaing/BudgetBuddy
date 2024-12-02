@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import application.CommonObjs;
 import application.DAOs.ScheduledTransactionDAO;
 import application.beans.ScheduledTransactionBean;
+import application.beans.TransactionBean;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -161,7 +162,22 @@ public class ScheduledTransactionTableController implements Initializable {
 				}
 			}
 		});
+			handleRowDoubleClick();
 	}
+	@FXML
+	private void handleRowDoubleClick() {
+		schedTransTableView.setOnMouseClicked(event -> {
+	        if (event.getClickCount() == 2) { // Check for double click
+	            ScheduledTransactionBean selectedTransaction = schedTransTableView.getSelectionModel().getSelectedItem();
+	            if (selectedTransaction != null) {
+	            	switchToEditScheduledTransaction();
+	            } else {
+	                showAlert("No transaction selected.");
+	            }
+	        }
+	    });
+	}
+	
     private void showAlert(String message) {
     	Alert alert = new Alert(Alert.AlertType.ERROR);
     	alert.setTitle("Error");
