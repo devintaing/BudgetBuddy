@@ -1,19 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.HomepageController">
    <children>
-      <Text layoutX="222.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Buddy's got it all covered." textAlignment="CENTER" wrappingWidth="359.84442138671875">
+      <Text layoutX="250.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Today is:" textAlignment="CENTER" wrappingWidth="300.0">
          <font>
-            <Font name="Lato Bold" size="53.0" />
+            <Font name="Lato Regular" size="40.0" />
          </font>
       </Text>
-      <Text layoutX="270.0" layoutY="351.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Budget Buddy will help you keep track of transactions, bank accounts, and any upcoming charges you need to be aware of." textAlignment="CENTER" wrappingWidth="261.0001220703125">
+      <Text fx:id="dateText" layoutX="40.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TODAY'S DATE HERE" textAlignment="CENTER" wrappingWidth="720.0">
          <font>
-            <Font name="Lato Regular" size="20.0" />
+            <Font name="Lato Bold" size="50.0" />
+         </font>
+      </Text>
+      <Text layoutX="250.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You have:" textAlignment="CENTER" wrappingWidth="300.0">
+         <font>
+            <Font name="Lato Regular" size="40.0" />
+         </font>
+      </Text>
+      <Text fx:id="numTransactionsDueText" layoutX="40.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NUMTRANSACTIONSDUE" textAlignment="CENTER" wrappingWidth="720.0">
+         <font>
+            <Font name="Lato Bold" size="50.0" />
+         </font>
+      </Text>
+      <Text fx:id="transactionsDueText" layoutX="40.0" layoutY="410.0" strokeType="OUTSIDE" strokeWidth="0.0" text="transactions due today." textAlignment="CENTER" wrappingWidth="720.0">
+         <font>
+            <Font name="Lato Regular" size="40.0" />
+         </font>
+      </Text>
+      <TableView fx:id="transactionsDueTableView" layoutX="50.0" layoutY="480.0" prefHeight="150.0" prefWidth="700.0">
+         <columns>
+            <TableColumn fx:id="nameCol" minWidth="0.0" prefWidth="167.0" resizable="false" text="Transaction Name" />
+            <TableColumn fx:id="accountCol" minWidth="0.0" prefWidth="132.0" resizable="false" text="Account" />
+            <TableColumn fx:id="typeCol" minWidth="0.0" prefWidth="106.0" resizable="false" text="Type" />
+            <TableColumn fx:id="freqCol" minWidth="0.0" resizable="false" text="Frequency" />
+            <TableColumn fx:id="dateCol" minWidth="0.0" prefWidth="93.0" resizable="false" text="Due Date (Day)" />
+            <TableColumn fx:id="payCol" minWidth="0.0" prefWidth="120.0" resizable="false" text="Amount" />
+         </columns>
+      </TableView>
+      <Text fx:id="noTransactionsDueText" layoutX="-20.0" layoutY="540.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You have nothing to worry about!" textAlignment="CENTER" wrappingWidth="840.0">
+         <font>
+            <Font name="Lato Regular" size="40.0" />
          </font>
       </Text>
    </children>
