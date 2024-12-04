@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.AccountReportController">
+   <children>
+      <Pane prefHeight="720.0" prefWidth="800.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+         <children>
+            <Pane layoutY="80.0">
+               <children>
+                  <TableView layoutX="-6.0" layoutY="30.0" prefHeight="400.0" prefWidth="700.0">
+                     <columns>
+                        <TableColumn fx:id="typeCol" minWidth="0.0" prefWidth="122.0" resizable="false" text="Transaction Type" />
+                        <TableColumn fx:id="dateCol" minWidth="0.0" prefWidth="129.0" resizable="false" text="Transaction Date" />
+                        <TableColumn fx:id="descCol" prefWidth="211.0" resizable="false" text="Transaction Description" />
+                        <TableColumn fx:id="payCol" prefWidth="116.0" resizable="false" text="Payment" />
+                        <TableColumn fx:id="depositCol" prefWidth="121.0" resizable="false" text="Deposit" />
+                     </columns>
+                  </TableView>
+                  <ChoiceBox fx:id="accountName" layoutX="99.0" layoutY="2.0" prefWidth="150.0" />
+                  <Text layoutX="14.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account Name" />
+               </children>
+            </Pane>
+            <Text layoutX="61.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account Activity Report" textAlignment="CENTER" wrappingWidth="578.0">
+               <font>
+                  <Font name="Lato Bold" size="50.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

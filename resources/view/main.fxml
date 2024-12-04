@@ -26,7 +26,7 @@
                      <content>
                         <AnchorPane maxHeight="1.7976931348623157E308" prefHeight="436.0" prefWidth="350.0">
                            <children>
-                              <VBox layoutX="19.0" layoutY="13.0" prefHeight="80.0" prefWidth="330.0" spacing="30.0" styleClass="buttonPanel" stylesheets="@../css/application.css" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0">
+                              <VBox layoutX="19.0" layoutY="13.0" prefHeight="270.0" prefWidth="330.0" spacing="30.0" styleClass="buttonPanel" stylesheets="@../css/application.css" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0">
                                  <children>
                                     <Button mnemonicParsing="false" onAction="#switchToHome" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-button" stylesheets="@../css/application.css" text="Homepage" />
                                    <VBox spacing="13.0">
@@ -54,6 +54,16 @@
                   						        </VBox>
                   						    </children>
                   						</VBox>
+                                    <VBox spacing="13.0">
+                                       <children>
+                                          <Button fx:id="toggleReportButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-button" stylesheets="@../css/application.css" text="Show Report" />
+                                          <VBox fx:id="reportSection" managed="false" spacing="10.0" visible="false">
+                                             <children>
+                                                <Button mnemonicParsing="false" onAction="#switchToAccountReport" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-child-button" stylesheets="@../css/application.css" text="View Reports" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </VBox>
                                  </children>
                                  <padding>
                                     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

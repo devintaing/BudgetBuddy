@@ -24,7 +24,10 @@ public class MainController {
 
     @FXML
     private VBox newSection; // The VBox containing the "New Account", "New Transaction", etc.
-
+    
+    @FXML 
+    private VBox reportSection;
+    
     @FXML
     private VBox editSection;
     
@@ -35,12 +38,16 @@ public class MainController {
     private Button toggleNewButton; // Button that toggles "New" section
     
     @FXML
-    private Button toggleEditButton;
+    private Button toggleEditButton; // Button that toggles "Edit" section
 
+    @FXML
+    private Button toggleReportButton; // Button that toggles "Report" section
+    
     @FXML
     public void initialize() {
         new CollapsibleSectionController(viewSection, toggleViewButton);
         new CollapsibleSectionController(newSection, toggleNewButton);
+        new CollapsibleSectionController(reportSection, toggleReportButton);
         // Show the homepage on startup
         switchToHome();
     }
@@ -131,6 +138,11 @@ public class MainController {
 	public void switchToEditScheduledTransaction() {
         sidebar.getStyleClass().setAll("orange-sidebar");
 		loadScene("/view/editScheduledTransaction.fxml");
+	}
+	@FXML
+	public void switchToAccountReport() {
+        sidebar.getStyleClass().setAll("orange-sidebar");
+		loadScene("/view/viewAccountReport.fxml");
 	}
 }
 
