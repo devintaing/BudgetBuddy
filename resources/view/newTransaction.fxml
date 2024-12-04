@@ -19,48 +19,48 @@
                   <Font name="Lato Bold" size="50.0" />
                </font>
             </Text>
-            <Text layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account (required)" wrappingWidth="261.0001220703125">
+            <Text layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account (required)" wrappingWidth="261.0001220703125">
                <font>
                   <Font name="Lato Regular" size="16.0" />
                </font>
             </Text>
-            <ChoiceBox fx:id="accountName" layoutY="107.0" prefHeight="26.0" prefWidth="179.0" />
+            <ChoiceBox fx:id="accountName" layoutY="110.0" prefHeight="25.0" prefWidth="200.0" />
             <Text layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Type (required)" wrappingWidth="261.0001220703125">
                <font>
                   <Font name="Lato Regular" size="16.0" />
                </font>
             </Text>
-            <ChoiceBox fx:id="transactionType" layoutY="175.0" prefHeight="26.0" prefWidth="179.0" />
-            <Text layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Date (required)" wrappingWidth="261.0001220703125">
+            <ChoiceBox fx:id="transactionType" layoutY="175.0" prefHeight="25.0" prefWidth="200.0" />
+            <Text layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Date (required)" wrappingWidth="261.0001220703125">
                <font>
                   <Font name="Lato Regular" size="16.0" />
                </font>
             </Text>
-            <DatePicker fx:id="transactionDate" layoutY="243.0" prefHeight="26.0" prefWidth="225.0" />
-            <Text layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Description (required)" wrappingWidth="261.0001220703125">
+            <DatePicker fx:id="transactionDate" layoutY="240.0" prefHeight="25.0" prefWidth="200.0" />
+            <Text layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Description (required)" wrappingWidth="261.0001220703125">
                <font>
                   <Font name="Lato Regular" size="16.0" />
                </font>
             </Text>
-            <TextField fx:id="transactionDescription" layoutY="311.0" prefHeight="26.0" prefWidth="347.0" />
-            <Text layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter at least one of the following:" wrappingWidth="391.0">
+            <TextField fx:id="transactionDescription" layoutY="305.0" prefHeight="25.0" prefWidth="350.0" />
+            <Text layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter at least one of the following:" wrappingWidth="391.0">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Text>
-            <Text layoutY="416.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Amount" wrappingWidth="261.0001220703125">
+            <Text layoutY="420.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Amount" wrappingWidth="261.0001220703125">
                <font>
                   <Font name="Lato Regular" size="16.0" />
                </font>
             </Text>
-            <TextField fx:id="paymentAmount" layoutY="426.0" prefHeight="26.0" prefWidth="179.0" promptText="\$0.00" />
-            <Text layoutY="484.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Deposit Amount" wrappingWidth="261.0001220703125">
+            <TextField fx:id="paymentAmount" layoutY="430.0" prefHeight="25.0" prefWidth="200.0" promptText="\$0.00" />
+            <Text layoutY="485.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Deposit Amount" wrappingWidth="261.0001220703125">
                <font>
                   <Font name="Lato Regular" size="16.0" />
                </font>
             </Text>
-            <TextField fx:id="depositAmount" layoutY="494.0" prefHeight="26.0" prefWidth="179.0" promptText="\$0.00" />
-            <Button layoutY="550.0" onAction="#switchToHome" prefHeight="29.0" prefWidth="110.0" stylesheets="@../css/application.css" text="Cancel">
+            <TextField fx:id="depositAmount" layoutY="495.0" prefHeight="25.0" prefWidth="200.0" promptText="\$0.00" />
+            <Button layoutY="550.0" onAction="#switchToHome" prefHeight="30.0" prefWidth="110.0" stylesheets="@../css/application.css" text="Cancel">
                <font>
                   <Font size="50.0" />
                </font>
