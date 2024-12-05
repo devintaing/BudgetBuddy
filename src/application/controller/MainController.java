@@ -139,10 +139,17 @@ public class MainController {
         sidebar.getStyleClass().setAll("orange-sidebar");
 		loadScene("/view/editScheduledTransaction.fxml");
 	}
+	// Switches to the "Account Report" screen
 	@FXML
 	public void switchToAccountReport() {
         sidebar.getStyleClass().setAll("orange-sidebar");
 		loadScene("/view/viewAccountReport.fxml");
+	}
+	// Switches to the "Transaction type report" screen
+	@FXML
+	public void switchToTransactionReport() {
+        sidebar.getStyleClass().setAll("orange-sidebar");
+		loadScene("/view/viewTransactionTypeReport.fxml");
 	}
 }
 
