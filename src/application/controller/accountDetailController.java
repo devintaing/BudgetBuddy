@@ -27,30 +27,38 @@ public class accountDetailController {
 	private CommonObjs commonObjs = CommonObjs.getInstance();
     private HBox mainBox = commonObjs.getMainBox();
     
-  	private void loadScene(String fxmlFile){
-      	URL url = getClass().getResource(fxmlFile);
-      	
-      	try {
-  			AnchorPane paneHome = (AnchorPane)FXMLLoader.load(url);
-  			
-  			if (mainBox.getChildren().size() >1)
-  				mainBox.getChildren().remove(1);
-  			
-  			mainBox.getChildren().add(paneHome);
-  			
-  		} catch (IOException e) {
-  			System.out.println("error loading scene from " + fxmlFile);
-  			e.printStackTrace();
-  		}
-      }
+    private String curAccountName;
   	
     public void switchToViewAccountReport() {
-        loadScene("/view/viewAccountReport.fxml");
+      	try {
+  	        // Load the FXML for the edit transaction view
+  	        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/viewAccountReport.fxml"));
+  	        AnchorPane pane = loader.load();
+
+  	        // Get the controller for the edit view
+  	        AccountReportController controller = loader.getController();
+
+  	        // Pass the selected transaction to the controller
+  	        controller.setAccount(curAccountName);
+
+  	        // Replace the current view with the edit view
+  	        if (mainBox.getChildren().size() > 1) {
+  	            mainBox.getChildren().remove(1);
+  	        }
+  	        mainBox.getChildren().add(pane);
+
+  	    } catch (IOException e) {
+  	        System.out.println("Error returning to account report results.");
+  	        e.printStackTrace();
+  	    }
     }
     
     // Method to populate the labels with transaction details
-    public void setTransactionDetails(TransactionBean transaction) {
-        type.setText(transaction.getTransactionType());
+    public void setTransactionDetails(TransactionBean transaction, String curAccountName) {
+        //save state
+    	this.curAccountName = curAccountName;
+    	
+    	type.setText(transaction.getTransactionType());
         date.setText(transaction.getTransactionDate());
         description.setText(transaction.getTransactionDescription());
 

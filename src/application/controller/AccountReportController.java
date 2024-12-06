@@ -48,6 +48,7 @@ public class AccountReportController {
 	
     private ObservableList<TransactionBean> transactionList; // All transactions
     private ArrayList<String> accountNames; // Account names
+    private String curAccountName;
 
     private CommonObjs commonObjs = CommonObjs.getInstance();
     private HBox mainBox = commonObjs.getMainBox(); // Ensure mainBox is correctly initialized
@@ -163,7 +164,7 @@ public class AccountReportController {
                         accountDetailController controller = loader.getController();
 
                         // Pass the selected transaction to the detail controller
-                        controller.setTransactionDetails(selectedTransaction);
+                        controller.setTransactionDetails(selectedTransaction, curAccountName);
 
                         // Switch to the account detail page
                         if (mainBox.getChildren().size() > 1) {
@@ -187,7 +188,9 @@ public class AccountReportController {
             transactionTableView.setItems(FXCollections.emptyObservableList());
             return;
         }
-
+        //save to send to transaction view to preserve state
+        curAccountName = selectedAccountName;
+        
         // Filter transactions by selected account name
         ObservableList<TransactionBean> filteredTransactions = transactionList.filtered(
                 transaction -> transaction.getAccountName().equalsIgnoreCase(selectedAccountName));
@@ -203,4 +206,8 @@ public class AccountReportController {
     	alert.setContentText(message);
     	alert.showAndWait();
     }
+
+	public void setAccount(String prevAccountName) {
+		updateTableView(prevAccountName);
+	}
 }
