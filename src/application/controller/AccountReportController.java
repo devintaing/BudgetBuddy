@@ -160,13 +160,14 @@ public class AccountReportController {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/viewTransaction.fxml"));
                         AnchorPane pane = loader.load();
 
-                        // Get the controller for the account detail page
+                        // Get the controller for the transaction view page
                         ViewTransactionController controller = loader.getController();
 
-                        // Pass the selected transaction to the detail controller
+                        // Pass the selected transaction and current account name to the detail controller
                         controller.setTransactionDetails(selectedTransaction);
                         controller.setPrevAccountName(curAccountName);
-                        // Switch to the account detail page
+                        
+                        // Switch to transaction view page
                         if (mainBox.getChildren().size() > 1) {
                             mainBox.getChildren().remove(1);
                         }
@@ -207,6 +208,7 @@ public class AccountReportController {
     	alert.showAndWait();
     }
 
+    //updates the report to display the results for input account name
 	public void setAccount(String prevAccountName) {
 		updateTableView(prevAccountName);
 		accountName.setValue(prevAccountName);
