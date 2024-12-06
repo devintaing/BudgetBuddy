@@ -1,18 +1,14 @@
 package application.controller;
 
 import java.io.IOException;
-import java.net.URL;
 import java.time.LocalDate;
 
 import application.CommonObjs;
-import application.DAOs.AccountDAO;
-import application.DAOs.TransactionTypeDAO;
 import application.beans.TransactionBean;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;

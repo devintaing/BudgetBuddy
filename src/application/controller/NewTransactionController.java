@@ -90,7 +90,7 @@ public class NewTransactionController {
     public void submitButton(ActionEvent event) {
         // Prevents user from leaving the required fields empty
         if(accountName.getValue()==null || transactionType.getValue()==null|| transactionDate.getValue()==null || 
-        		transactionDescription.getText().isEmpty() || (paymentAmount.getText().isEmpty() && depositAmount.getText().isEmpty())) {
+        		transactionDescription.getText().isBlank() || (paymentAmount.getText().isBlank() && depositAmount.getText().isBlank())) {
         	
         	showAlert("Please fill in the required fields.");
         	return;

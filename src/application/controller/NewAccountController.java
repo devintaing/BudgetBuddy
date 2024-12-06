@@ -61,14 +61,14 @@ public class NewAccountController {
     //handler for user submitting the form
 	public void submitButton(ActionEvent event) {
 		// Prevents user from leaving the required fields empty
-        if (accountName.getText().isEmpty() || openingBalance.getText().isEmpty() || openingDate.getValue() == null) {
+        if (accountName.getText().isBlank() || openingBalance.getText().isBlank() || openingDate.getValue() == null) {
             showAlert("All fields are required!");
             return;
         }
 		
         // Collect form information
         String name = accountName.getText().trim();
-        String balanceStr = openingBalance.getText().trim();
+        String balanceStr = openingBalance.getText();
         String dateStr = openingDate.getValue().toString();
         
         // Duplicate name handling

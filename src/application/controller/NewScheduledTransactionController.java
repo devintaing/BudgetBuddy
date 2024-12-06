@@ -90,8 +90,8 @@ public class NewScheduledTransactionController {
     
     public void submitButton(ActionEvent event) {
         // Prevents user from leaving the required fields empty
-        if(scheduleName.getText().isEmpty() || accountName.getValue()==null || transactionType.getValue()==null || 
-        	frequency.getValue()==null || dueDate.getText().isEmpty() || paymentAmount.getText().isEmpty()) {
+        if(scheduleName.getText().isBlank() || accountName.getValue()==null || transactionType.getValue()==null || 
+        	frequency.getValue()==null || dueDate.getText().isBlank() || paymentAmount.getText().isBlank()) {
         	
         	showAlert("Please fill in the required fields.");
         	return;
@@ -129,6 +129,7 @@ public class NewScheduledTransactionController {
     	}
     	if (date < 1 || date > 31) {
     		showAlert("Due date must be a valid day of the month! (between 1-31)");
+    		return;
     	}
         
         // Add scheduled transaction to DB

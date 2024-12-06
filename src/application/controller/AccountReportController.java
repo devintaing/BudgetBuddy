@@ -5,10 +5,10 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.URL;
 import java.util.ArrayList;
+
 import application.CommonObjs;
 import application.DAOs.AccountDAO;
 import application.DAOs.TransactionDAO;
-import application.beans.ScheduledTransactionBean;
 import application.beans.TransactionBean;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -53,37 +53,6 @@ public class AccountReportController {
     private CommonObjs commonObjs = CommonObjs.getInstance();
     private HBox mainBox = commonObjs.getMainBox(); // Ensure mainBox is correctly initialized
 
-    private void loadScene(String fxmlFile) {
-        URL url = getClass().getResource(fxmlFile);
-
-        if (url == null) {
-            System.out.println("Error: FXML file not found at " + fxmlFile);
-            return;
-        }
-
-        try {
-            // Load the FXML file into an AnchorPane
-            AnchorPane paneHome = FXMLLoader.load(url);
-
-            // Remove old content and add the new content
-            if (mainBox.getChildren().size() > 1) {
-                mainBox.getChildren().remove(1);
-            }
-            mainBox.getChildren().add(paneHome);
-
-        } catch (IOException e) {
-            System.out.println("Error loading scene from " + fxmlFile);
-            e.printStackTrace();
-        }
-    }
-
-    public void switchToViewAccountReport() {
-        loadScene("/view/viewAccountReport.fxml");
-    }
-    
-    public void switchToAccountDetail() {
-        loadScene("/view/accountDetail.fxml");
-    }
     
     @FXML
     public void initialize() {
@@ -160,10 +129,10 @@ public class AccountReportController {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/viewTransaction.fxml"));
                         AnchorPane pane = loader.load();
 
-                        // Get the controller for the transaction view page
+                        // Get the controller for the view transaction page
                         ViewTransactionController controller = loader.getController();
 
-                        // Pass the selected transaction and current account name to the detail controller
+                        // Pass the selected transaction and current account name to the controller
                         controller.setTransactionDetails(selectedTransaction);
                         controller.setPrevAccountName(curAccountName);
                         
@@ -189,7 +158,7 @@ public class AccountReportController {
             transactionTableView.setItems(FXCollections.emptyObservableList());
             return;
         }
-        //save to send to transaction view to preserve state
+        //save to send to transaction view to preserve state on return
         curAccountName = selectedAccountName;
         
         // Filter transactions by selected account name
@@ -208,7 +177,7 @@ public class AccountReportController {
     	alert.showAndWait();
     }
 
-    //updates the report to display the results for input account name
+    //updates the report to display the results for inputed account name
 	public void setAccount(String prevAccountName) {
 		updateTableView(prevAccountName);
 		accountName.setValue(prevAccountName);

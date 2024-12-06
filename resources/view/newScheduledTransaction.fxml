@@ -42,7 +42,7 @@
                </font>
             </Text>
             <ChoiceBox fx:id="frequency" layoutY="311.0" prefHeight="26.0" prefWidth="179.0" />
-            <Text layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Due Date (in days, required)" wrappingWidth="261.0001220703125">
+            <Text layoutY="372.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Due Date (day of the month, required)" wrappingWidth="298.71441650390625">
                <font>
                   <Font name="Lato Regular" size="16.0" />
                </font>

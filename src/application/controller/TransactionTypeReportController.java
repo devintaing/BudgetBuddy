@@ -3,12 +3,11 @@ package application.controller;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.net.URL;
 import java.util.ArrayList;
 
 import application.CommonObjs;
-import application.DAOs.TransactionTypeDAO;
 import application.DAOs.TransactionDAO;
+import application.DAOs.TransactionTypeDAO;
 import application.beans.TransactionBean;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -52,34 +51,6 @@ public class TransactionTypeReportController {
 
     private CommonObjs commonObjs = CommonObjs.getInstance();
     private HBox mainBox = commonObjs.getMainBox(); // Ensure mainBox is correctly initialized
-
-    private void loadScene(String fxmlFile) {
-        URL url = getClass().getResource(fxmlFile);
-
-        if (url == null) {
-            System.out.println("Error: FXML file not found at " + fxmlFile);
-            return;
-        }
-
-        try {
-            // Load the FXML file into an AnchorPane
-            AnchorPane paneHome = FXMLLoader.load(url);
-
-            // Remove old content and add the new content
-            if (mainBox.getChildren().size() > 1) {
-                mainBox.getChildren().remove(1);
-            }
-            mainBox.getChildren().add(paneHome);
-
-        } catch (IOException e) {
-            System.out.println("Error loading scene from " + fxmlFile);
-            e.printStackTrace();
-        }
-    }
-
-    public void switchToTransactionTypeReport() {
-        loadScene("/view/viewTransactionTypeReport.fxml");
-    }
 
     @FXML
     public void initialize() {
@@ -156,14 +127,14 @@ public class TransactionTypeReportController {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/viewTransaction.fxml"));
                         AnchorPane pane = loader.load();
 
-                        // Get the controller for the account detail page
+                        // Get the controller for the view transaction page
                         ViewTransactionController controller = loader.getController();
 
-                        // Pass the selected transaction to the detail controller
+                        // Pass the selected transaction and current transaction type to the controller
                         controller.setTransactionDetails(selectedTransaction);
                         controller.setPrevTransactionType(curTransactionType);
 
-                        // Switch to the account detail page
+                        // Switch to the transaction view page
                         if (mainBox.getChildren().size() > 1) {
                             mainBox.getChildren().remove(1);
                         }
@@ -184,6 +155,7 @@ public class TransactionTypeReportController {
             transactionTableView.setItems(FXCollections.emptyObservableList());
             return;
         }
+        //save to send to transaction view to preserve state on return
         curTransactionType = selectedTransactionType;
 
         // Filter transactions by selected transaction type
@@ -202,6 +174,7 @@ public class TransactionTypeReportController {
     	alert.showAndWait();
     }
     
+    //updates the report to display the results for inputed transaction type
     public void setTransactionType(String prevTransactionType) {
 		updateTableView(prevTransactionType);
 		transactionType.setValue(prevTransactionType);
