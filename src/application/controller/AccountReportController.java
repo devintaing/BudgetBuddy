@@ -8,11 +8,13 @@ import java.util.ArrayList;
 import application.CommonObjs;
 import application.DAOs.AccountDAO;
 import application.DAOs.TransactionDAO;
+import application.beans.ScheduledTransactionBean;
 import application.beans.TransactionBean;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -78,6 +80,10 @@ public class AccountReportController {
         loadScene("/view/viewAccountReport.fxml");
     }
     
+    public void switchToAccountDetail() {
+        loadScene("/view/accountDetail.fxml");
+    }
+    
     @FXML
     public void initialize() {
         // Load account names
@@ -104,6 +110,7 @@ public class AccountReportController {
                 updateTableView(newValue);
             }
         });
+		handleRowDoubleClick();
     }
 
     private void initializeTableColumns() {
@@ -141,7 +148,40 @@ public class AccountReportController {
             }
         });
     }
+    
+    @FXML
+    private void handleRowDoubleClick() {
+        transactionTableView.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) { // Check for double click
+                TransactionBean selectedTransaction = transactionTableView.getSelectionModel().getSelectedItem();
+                if (selectedTransaction != null) {
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/accountDetail.fxml"));
+                        AnchorPane pane = loader.load();
 
+                        // Get the controller for the account detail page
+                        accountDetailController controller = loader.getController();
+
+                        // Pass the selected transaction to the detail controller
+                        controller.setTransactionDetails(selectedTransaction);
+
+                        // Switch to the account detail page
+                        if (mainBox.getChildren().size() > 1) {
+                            mainBox.getChildren().remove(1);
+                        }
+                        mainBox.getChildren().add(pane);
+                    } catch (IOException e) {
+                        System.out.println("Error loading account detail view.");
+                        e.printStackTrace();
+                    }
+                } else {
+                    showAlert("No transaction selected.");
+                }
+            }
+        });
+    }
+
+	
     private void updateTableView(String selectedAccountName) {
         if (selectedAccountName == null || selectedAccountName.isEmpty()) {
             transactionTableView.setItems(FXCollections.emptyObservableList());
@@ -154,5 +194,13 @@ public class AccountReportController {
 
         // Update the TableView with filtered data
         transactionTableView.setItems(filteredTransactions);
+    }
+    
+    private void showAlert(String message) {
+    	Alert alert = new Alert(Alert.AlertType.ERROR);
+    	alert.setTitle("Error");
+    	alert.setHeaderText(null);
+    	alert.setContentText(message);
+    	alert.showAndWait();
     }
 }

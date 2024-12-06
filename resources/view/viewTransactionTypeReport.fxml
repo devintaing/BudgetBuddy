@@ -16,11 +16,11 @@
                <children>
                   <TableView fx:id="transactionTableView" layoutX="-6.0" layoutY="30.0" prefHeight="400.0" prefWidth="700.0">
                      <columns>
-                        <TableColumn fx:id="accountCol" prefWidth="130.0" resizable="false" text="Account" />
-                        <TableColumn fx:id="dateCol" minWidth="0.0" prefWidth="129.0" resizable="false" text="Transaction Date" />
-                        <TableColumn fx:id="descCol" prefWidth="211.0" resizable="false" text="Transaction Description" />
-                        <TableColumn fx:id="payCol" prefWidth="116.0" resizable="false" text="Payment" />
-                        <TableColumn fx:id="depositCol" prefWidth="121.0" resizable="false" text="Deposit" />
+                        <TableColumn fx:id="accountCol" editable="false" prefWidth="130.0" resizable="false" text="Account" />
+                        <TableColumn fx:id="dateCol" editable="false" minWidth="0.0" prefWidth="129.0" resizable="false" text="Transaction Date" />
+                        <TableColumn fx:id="descCol" editable="false" prefWidth="211.0" resizable="false" text="Transaction Description" />
+                        <TableColumn fx:id="payCol" editable="false" prefWidth="116.0" resizable="false" text="Payment" />
+                        <TableColumn fx:id="depositCol" editable="false" prefWidth="121.0" resizable="false" text="Deposit" />
                      </columns>
                   </TableView>
                   <ChoiceBox fx:id="transactionType" layoutX="121.0" layoutY="1.0" prefWidth="150.0" />
