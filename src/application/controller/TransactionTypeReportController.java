@@ -153,11 +153,11 @@ public class TransactionTypeReportController {
                 TransactionBean selectedTransaction = transactionTableView.getSelectionModel().getSelectedItem();
                 if (selectedTransaction != null) {
                     try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/accountDetail.fxml"));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/viewTransaction.fxml"));
                         AnchorPane pane = loader.load();
 
                         // Get the controller for the account detail page
-                        accountDetailController controller = loader.getController();
+                        ViewTransactionController controller = loader.getController();
 
                         // Pass the selected transaction to the detail controller
                         controller.setTransactionDetails(selectedTransaction);
@@ -204,5 +204,7 @@ public class TransactionTypeReportController {
     
     public void setTransactionType(String prevTransactionType) {
 		updateTableView(prevTransactionType);
+		transactionType.setValue(prevTransactionType);
+		
 	}
 }
