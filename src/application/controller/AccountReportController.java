@@ -48,7 +48,7 @@ public class AccountReportController {
 	
     private ObservableList<TransactionBean> transactionList; // All transactions
     private ArrayList<String> accountNames; // Account names
-    private String curAccountName;
+    private String curAccountName; //Current Account Name
 
     private CommonObjs commonObjs = CommonObjs.getInstance();
     private HBox mainBox = commonObjs.getMainBox(); // Ensure mainBox is correctly initialized
@@ -164,8 +164,8 @@ public class AccountReportController {
                         accountDetailController controller = loader.getController();
 
                         // Pass the selected transaction to the detail controller
-                        controller.setTransactionDetails(selectedTransaction, curAccountName);
-
+                        controller.setTransactionDetails(selectedTransaction);
+                        controller.setPrevAccountName(curAccountName);
                         // Switch to the account detail page
                         if (mainBox.getChildren().size() > 1) {
                             mainBox.getChildren().remove(1);

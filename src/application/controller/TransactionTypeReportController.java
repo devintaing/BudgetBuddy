@@ -14,6 +14,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -47,6 +48,7 @@ public class TransactionTypeReportController {
 
     private ObservableList<TransactionBean> transactionList; // All transactions
     private ArrayList<String> transactionTypes; // Transaction types
+    private String curTransactionType; // Current Transaction Type
 
     private CommonObjs commonObjs = CommonObjs.getInstance();
     private HBox mainBox = commonObjs.getMainBox(); // Ensure mainBox is correctly initialized
@@ -105,6 +107,7 @@ public class TransactionTypeReportController {
                 updateTableView(newValue);
             }
         });
+        handleRowDoubleClick();
     }
 
     private void initializeTableColumns() {
@@ -142,12 +145,46 @@ public class TransactionTypeReportController {
             }
         });
     }
+    
+    @FXML
+    private void handleRowDoubleClick() {
+        transactionTableView.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) { // Check for double click
+                TransactionBean selectedTransaction = transactionTableView.getSelectionModel().getSelectedItem();
+                if (selectedTransaction != null) {
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/accountDetail.fxml"));
+                        AnchorPane pane = loader.load();
+
+                        // Get the controller for the account detail page
+                        accountDetailController controller = loader.getController();
+
+                        // Pass the selected transaction to the detail controller
+                        controller.setTransactionDetails(selectedTransaction);
+                        controller.setPrevTransactionType(curTransactionType);
+
+                        // Switch to the account detail page
+                        if (mainBox.getChildren().size() > 1) {
+                            mainBox.getChildren().remove(1);
+                        }
+                        mainBox.getChildren().add(pane);
+                    } catch (IOException e) {
+                        System.out.println("Error loading transaction type detail view.");
+                        e.printStackTrace();
+                    }
+                } else {
+                    showAlert("No transaction selected.");
+                }
+            }
+        });
+    }
 
     private void updateTableView(String selectedTransactionType) {
         if (selectedTransactionType == null || selectedTransactionType.isEmpty()) {
             transactionTableView.setItems(FXCollections.emptyObservableList());
             return;
         }
+        curTransactionType = selectedTransactionType;
 
         // Filter transactions by selected transaction type
         ObservableList<TransactionBean> filteredTransactions = transactionList.filtered(
@@ -156,4 +193,16 @@ public class TransactionTypeReportController {
         // Update the TableView with filtered data
         transactionTableView.setItems(filteredTransactions);
     }
+    
+    private void showAlert(String message) {
+    	Alert alert = new Alert(Alert.AlertType.ERROR);
+    	alert.setTitle("Error");
+    	alert.setHeaderText(null);
+    	alert.setContentText(message);
+    	alert.showAndWait();
+    }
+    
+    public void setTransactionType(String prevTransactionType) {
+		updateTableView(prevTransactionType);
+	}
 }

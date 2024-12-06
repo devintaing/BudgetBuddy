@@ -27,36 +27,61 @@ public class accountDetailController {
 	private CommonObjs commonObjs = CommonObjs.getInstance();
     private HBox mainBox = commonObjs.getMainBox();
     
-    private String curAccountName;
+    private String prevAccountName;
+    private String prevTransactionType;
+    boolean accountReport;
   	
-    public void switchToViewAccountReport() {
+    public void switchToViewReport() {
       	try {
-  	        // Load the FXML for the edit transaction view
-  	        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/viewAccountReport.fxml"));
+      		
+      		//Decide which report to return to
+      		String reportURL;
+      		accountReport = false;
+      		if(prevAccountName != null) {
+      			reportURL = "/view/viewAccountReport.fxml";
+      			accountReport = true;
+      		}
+      		else {
+      			reportURL = "/view/viewTransactionTypeReport.fxml";
+      		}
+  	        // Load the FXML for the report view
+  	        FXMLLoader loader = new FXMLLoader(getClass().getResource(reportURL));
   	        AnchorPane pane = loader.load();
 
   	        // Get the controller for the edit view
-  	        AccountReportController controller = loader.getController();
+  	        // Pass the previous Account/Transaction to the controller
+  	        if (accountReport) {
+  	        	AccountReportController controller = loader.getController();
+  	        	controller.setAccount(prevAccountName);
+  	        }
+  	        else {
+  	        	TransactionTypeReportController controller = loader.getController();
+  	        	controller.setTransactionType(prevTransactionType);
+  	        }
 
-  	        // Pass the selected transaction to the controller
-  	        controller.setAccount(curAccountName);
-
-  	        // Replace the current view with the edit view
+  	        // Replace the current view with the report view
   	        if (mainBox.getChildren().size() > 1) {
   	            mainBox.getChildren().remove(1);
   	        }
   	        mainBox.getChildren().add(pane);
 
   	    } catch (IOException e) {
-  	        System.out.println("Error returning to account report results.");
+  	    	String reportType;
+  	    	if (accountReport) {
+  	    		reportType = "Account";
+  	    	}
+  	    	else {
+  	    		reportType = "Transaction Type";
+  	    	}
+  	    	System.out.println("Error returning to "+ reportType +" report results.");
   	        e.printStackTrace();
   	    }
     }
     
+    
+    
     // Method to populate the labels with transaction details
-    public void setTransactionDetails(TransactionBean transaction, String curAccountName) {
-        //save state
-    	this.curAccountName = curAccountName;
+    public void setTransactionDetails(TransactionBean transaction) {
     	
     	type.setText(transaction.getTransactionType());
         date.setText(transaction.getTransactionDate());
@@ -66,5 +91,14 @@ public class accountDetailController {
         payment.setText(String.format("$%.2f", transaction.getPaymentAmount()));
         deposit.setText(String.format("$%.2f", transaction.getDepositAmount()));
     }
+
+	public void setPrevAccountName(String AccountName) {
+		//save state
+    	this.prevAccountName = AccountName;
+	}
+	public void setPrevTransactionType(String TransactionType) {
+		//save state
+    	this.prevTransactionType = TransactionType;
+	}
 
 }
