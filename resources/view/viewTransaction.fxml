@@ -19,31 +19,31 @@
                   <Font name="Lato Bold" size="50.0" />
                </font>
             </Text>
-            <Text layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account" wrappingWidth="261.0001220703125">
+            <Text layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account" wrappingWidth="261.0001220703125">
                <font>
                   <Font name="Lato Regular" size="16.0" />
                </font>
             </Text>
-            <ChoiceBox fx:id="accountName" disable="true" layoutY="110.0" opacity="0.99" prefHeight="25.0" prefWidth="200.0" />
-            <Text layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Type" wrappingWidth="261.0001220703125">
+            <ChoiceBox fx:id="accountName" disable="true" layoutY="145.0" opacity="0.99" prefHeight="25.0" prefWidth="200.0" />
+            <Text layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Type" wrappingWidth="261.0001220703125">
                <font>
                   <Font name="Lato Regular" size="16.0" />
                </font>
             </Text>
-            <ChoiceBox fx:id="transactionType" disable="true" layoutY="175.0" opacity="0.99" prefHeight="25.0" prefWidth="200.0" />
-            <Text layoutY="229.87109375" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Date " wrappingWidth="261.0001220703125">
+            <ChoiceBox fx:id="transactionType" disable="true" layoutY="210.0" opacity="0.99" prefHeight="25.0" prefWidth="200.0" />
+            <Text layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Date " wrappingWidth="261.0001220703125">
                <font>
                   <Font name="Lato Regular" size="16.0" />
                </font>
             </Text>
-            <DatePicker fx:id="transactionDate" disable="true" editable="false" layoutY="240.0" opacity="0.99" prefHeight="25.0" prefWidth="200.0" />
-            <Text layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Description " wrappingWidth="261.0001220703125">
+            <DatePicker fx:id="transactionDate" disable="true" editable="false" layoutY="275.0" opacity="0.99" prefHeight="25.0" prefWidth="200.0" />
+            <Text layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Description " wrappingWidth="261.0001220703125">
                <font>
                   <Font name="Lato Regular" size="16.0" />
                </font>
             </Text>
-            <TextField fx:id="transactionDescription" disable="true" editable="false" layoutY="305.0" prefHeight="25.0" prefWidth="350.0" />
-            <Button layoutY="550.0" onAction="#switchToViewReport" prefHeight="30.0" prefWidth="110.0" stylesheets="@../css/application.css" text="Cancel">
+            <TextField fx:id="transactionDescription" disable="true" editable="false" layoutY="340.0" prefHeight="25.0" prefWidth="350.0" />
+            <Button layoutY="550.0" onAction="#switchToViewReport" prefHeight="40.0" prefWidth="110.0" stylesheets="@../css/application.css" text="Cancel">
                <font>
                   <Font size="50.0" />
                </font>
@@ -53,23 +53,23 @@
                   <String fx:value="rounded-button" />
                </styleClass>
             </Button>
-            <Text fill="RED" layoutX="350.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*All Fields Are Read Only" wrappingWidth="391.0">
+            <Text fill="RED" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*All Fields Are Read Only" wrappingWidth="391.0">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Text>
-            <Text layoutY="420.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Amount" wrappingWidth="261.0001220703125">
+            <Text layoutY="395.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Amount" wrappingWidth="261.0001220703125">
                <font>
                   <Font name="Lato Regular" size="16.0" />
                </font>
             </Text>
-            <TextField fx:id="paymentAmount" disable="true" editable="false" layoutY="430.0" prefHeight="25.0" prefWidth="200.0" promptText="\$0.00" />
-            <Text layoutY="485.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Deposit Amount" wrappingWidth="261.0001220703125">
+            <TextField fx:id="paymentAmount" disable="true" editable="false" layoutY="405.0" prefHeight="25.0" prefWidth="200.0" promptText="\$0.00" />
+            <Text layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Deposit Amount" wrappingWidth="261.0001220703125">
                <font>
                   <Font name="Lato Regular" size="16.0" />
                </font>
             </Text>
-            <TextField fx:id="depositAmount" disable="true" editable="false" layoutY="495.0" prefHeight="25.0" prefWidth="200.0" promptText="\$0.00" />
+            <TextField fx:id="depositAmount" disable="true" editable="false" layoutY="470.0" prefHeight="25.0" prefWidth="200.0" promptText="\$0.00" />
          </children>
       </Pane>
    </children>

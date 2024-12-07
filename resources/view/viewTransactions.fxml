@@ -18,18 +18,18 @@
                   <TextField fx:id="transactionSearchTextBox" prefHeight="26.0" prefWidth="700.0" promptText="Search by transaction description..." />
                   <TableView fx:id="transactionTableView" layoutY="30.0" prefHeight="400.0" prefWidth="700.0">
                      <columns>
-                        <TableColumn fx:id="accountCol" prefWidth="120.0" resizable="false" text="Account Name" />
-                        <TableColumn fx:id="typeCol" minWidth="0.0" prefWidth="122.0" resizable="false" text="Transaction Type" />
-                        <TableColumn fx:id="dateCol" minWidth="0.0" prefWidth="120.0" resizable="false" text="Transaction Date" />
-                        <TableColumn fx:id="descCol" prefWidth="180.0" resizable="false" text="Transaction Description" />
-                        <TableColumn fx:id="payCol" resizable="false" text="Payment" />
-                        <TableColumn fx:id="depositCol" resizable="false" text="Deposit" />
+                        <TableColumn fx:id="accountCol" prefWidth="120.0" text="Account Name" />
+                        <TableColumn fx:id="typeCol" minWidth="0.0" prefWidth="120.0" resizable="false" text="Transaction Type" />
+                        <TableColumn fx:id="dateCol" minWidth="0.0" prefWidth="118.0" resizable="false" text="Transaction Date" />
+                        <TableColumn fx:id="descCol" minWidth="0.0" prefWidth="180.0" resizable="false" text="Transaction Description" />
+                        <TableColumn fx:id="payCol" minWidth="0.0" resizable="false" text="Payment" />
+                        <TableColumn fx:id="depositCol" minWidth="0.0" resizable="false" text="Deposit" />
                      </columns>
                   </TableView>
                   <Button fx:id="editButton" layoutY="435.0" mnemonicParsing="false" onAction="#switchToEditTransaction" text="Edit Transaction" />
                </children>
             </Pane>
-            <Text layoutX="61.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transactions" textAlignment="CENTER" wrappingWidth="578.0">
+            <Text layoutX="75.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transactions" textAlignment="CENTER" wrappingWidth="550.0">
                <font>
                   <Font name="Lato Bold" size="50.0" />
                </font>

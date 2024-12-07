@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox fx:id="mainBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1180.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
+<HBox fx:id="mainBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1180.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
    <children>
       <SplitPane fx:id="sidebar" dividerPositions="0.3756868131868132" orientation="VERTICAL" prefHeight="734.0" prefWidth="380.0" styleClass="default-sidebar" stylesheets="@../css/application.css">
         <items>
@@ -56,7 +56,7 @@
                   						</VBox>
                                     <VBox spacing="13.0">
                                        <children>
-                                          <Button fx:id="toggleReportButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-button" stylesheets="@../css/application.css" text="Show Report" />
+                                          <Button fx:id="toggleReportButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-button" stylesheets="@../css/application.css" text="Show Reports" />
                                           <VBox fx:id="reportSection" managed="false" spacing="10.0" visible="false">
                                              <children>
                                                 <Button mnemonicParsing="false" onAction="#switchToAccountReport" prefHeight="40.0" prefWidth="380.0" styleClass="sidebar-child-button" stylesheets="@../css/application.css" text="View Account Report" />

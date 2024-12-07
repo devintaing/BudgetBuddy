@@ -17,13 +17,13 @@
                   <Font name="Lato Bold" size="50.0" />
                </font>
             </Text>
-            <Text layoutX="1.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Type Name" wrappingWidth="261.0001220703125">
+            <Text layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Type (required)" wrappingWidth="261.0001220703125">
                <font>
                   <Font name="Lato Regular" size="16.0" />
                </font>
             </Text>
-            <TextField fx:id="TypeName" layoutX="1.0" layoutY="107.0" prefHeight="26.0" prefWidth="347.0" promptText="e.g. Car, House, Education etc." />
-            <Button layoutY="550.0" onAction="#switchToHome" prefHeight="29.0" prefWidth="110.0" stylesheets="@../css/application.css" text="Cancel">
+            <TextField fx:id="TypeName" layoutY="110.0" prefHeight="25.0" prefWidth="200.0" promptText="Car, House, Education etc." />
+            <Button layoutY="550.0" onAction="#switchToHome" prefHeight="40.0" prefWidth="110.0" stylesheets="@../css/application.css" text="Cancel">
                <font>
                   <Font size="50.0" />
                </font>
@@ -33,7 +33,7 @@
                   <String fx:value="rounded-button" />
                </styleClass>
             </Button>
-            <Button layoutX="119.0" layoutY="550.0" onAction="#submitButton" prefHeight="40.0" prefWidth="110.0" stylesheets="@../css/application.css" text="Submit" textFill="WHITE">
+            <Button layoutX="120.0" layoutY="550.0" onAction="#submitButton" prefHeight="40.0" prefWidth="110.0" stylesheets="@../css/application.css" text="Submit" textFill="WHITE">
                <font>
                   <Font size="25.0" />
                </font>

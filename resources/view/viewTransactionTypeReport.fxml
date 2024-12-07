@@ -8,28 +8,28 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.TransactionTypeReportController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.TransactionTypeReportController">
    <children>
       <Pane prefHeight="720.0" prefWidth="800.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
          <children>
-            <Pane layoutY="80.0">
-               <children>
-                  <TableView fx:id="transactionTableView" layoutX="-6.0" layoutY="30.0" prefHeight="400.0" prefWidth="700.0">
-                     <columns>
-                        <TableColumn fx:id="accountCol" editable="false" prefWidth="130.0" resizable="false" text="Account" />
-                        <TableColumn fx:id="dateCol" editable="false" minWidth="0.0" prefWidth="129.0" resizable="false" text="Transaction Date" />
-                        <TableColumn fx:id="descCol" editable="false" prefWidth="211.0" resizable="false" text="Transaction Description" />
-                        <TableColumn fx:id="payCol" editable="false" prefWidth="116.0" resizable="false" text="Payment" />
-                        <TableColumn fx:id="depositCol" editable="false" prefWidth="121.0" resizable="false" text="Deposit" />
-                     </columns>
-                  </TableView>
-                  <ChoiceBox fx:id="transactionType" layoutX="121.0" layoutY="1.0" prefWidth="150.0" />
-                  <Text layoutX="14.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Type" />
-               </children>
-            </Pane>
-            <Text layoutX="71.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Type Report" textAlignment="CENTER" wrappingWidth="578.0">
+            <Text layoutX="50.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Type Report" textAlignment="CENTER" wrappingWidth="600.0">
                <font>
                   <Font name="Lato Bold" size="50.0" />
+               </font>
+            </Text>
+            <TableView fx:id="transactionTableView" layoutY="80.0" prefHeight="450.0" prefWidth="700.0">
+               <columns>
+                  <TableColumn fx:id="accountCol" editable="false" prefWidth="130.0" resizable="false" text="Account" />
+                  <TableColumn fx:id="dateCol" editable="false" minWidth="0.0" prefWidth="130.0" resizable="false" text="Transaction Date" />
+                  <TableColumn fx:id="descCol" editable="false" prefWidth="210.0" resizable="false" text="Transaction Description" />
+                  <TableColumn fx:id="payCol" editable="false" prefWidth="114.0" resizable="false" text="Payment" />
+                  <TableColumn fx:id="depositCol" editable="false" prefWidth="114.0" resizable="false" text="Deposit" />
+               </columns>
+            </TableView>
+            <ChoiceBox fx:id="transactionType" layoutX="500.0" layoutY="540.0" prefHeight="25.0" prefWidth="200.0" />
+            <Text layoutX="350.0" layoutY="560.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Type:">
+               <font>
+                  <Font name="Lato Regular" size="18.0" />
                </font>
             </Text>
          </children>

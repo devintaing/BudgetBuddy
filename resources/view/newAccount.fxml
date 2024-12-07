@@ -13,17 +13,9 @@
    <children>
       <Pane layoutX="75.0" layoutY="124.66015625" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
          <children>
-            <DatePicker fx:id="openingDate" layoutY="195.0" prefHeight="40.0" prefWidth="550.0" promptText="MM/DD/YYYY" />
-            <TextField fx:id="accountName" layoutY="107.0" prefHeight="40.0" prefWidth="550.0" promptText="e.g. Chase Checking, BoA Savings, etc.">
-               <font>
-                  <Font name="Inter Regular" size="16.0" />
-               </font>
-            </TextField>
-            <TextField fx:id="openingBalance" layoutY="283.0" prefHeight="40.0" prefWidth="550.0" promptText="\$0.00">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </TextField>
+            <DatePicker fx:id="openingDate" layoutY="175.0" prefHeight="25.0" prefWidth="200.0" promptText="MM/DD/YYYY" />
+            <TextField fx:id="accountName" layoutY="107.0" prefHeight="25.0" prefWidth="200.0" promptText="Chase Checking, BoA Savings, etc." />
+            <TextField fx:id="openingBalance" layoutY="240.0" prefHeight="25.0" prefWidth="200.0" promptText="\$0.00" />
             <Text layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Account" wrappingWidth="402.0">
                <font>
                   <Font name="Lato Bold" size="50.0" />
@@ -38,7 +30,7 @@
                   <String fx:value="rounded-button" />
                </styleClass>
             </Button>
-            <Button fx:id="cancel" layoutY="550.0" onAction="#switchToHome" prefHeight="29.0" prefWidth="110.0" stylesheets="@../css/application.css" text="Cancel">
+            <Button fx:id="cancel" layoutY="550.0" onAction="#switchToHome" prefHeight="40.0" prefWidth="110.0" stylesheets="@../css/application.css" text="Cancel">
                <font>
                   <Font size="50.0" />
                </font>
@@ -48,17 +40,17 @@
                   <String fx:value="rounded-button" />
                </styleClass>
             </Button>
-            <Text layoutX="2.0" layoutY="273.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opening Balance (required)" wrappingWidth="261.0001220703125">
+            <Text layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opening Balance (required)" wrappingWidth="261.0001220703125">
                <font>
                   <Font name="Lato Regular" size="16.0" />
                </font>
             </Text>
-            <Text layoutX="3.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opening Date (required)" wrappingWidth="261.0001220703125">
+            <Text layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opening Date (required)" wrappingWidth="261.0001220703125">
                <font>
                   <Font name="Lato Regular" size="16.0" />
                </font>
             </Text>
-            <Text layoutX="2.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account Name (required)" wrappingWidth="261.0001220703125">
+            <Text layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account Name (required)" wrappingWidth="261.0001220703125">
                <font>
                   <Font name="Lato Regular" size="16.0" />
                </font>

@@ -36,13 +36,13 @@
                   <Font name="Lato Regular" size="16.0" />
                </font>
             </Text>
-            <DatePicker fx:id="transactionDate" layoutY="240.0" prefHeight="25.0" prefWidth="200.0" />
+            <DatePicker fx:id="transactionDate" layoutY="240.0" prefHeight="25.0" prefWidth="200.0" promptText="MM/DD/YYYY" />
             <Text layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Description (required)" wrappingWidth="261.0001220703125">
                <font>
                   <Font name="Lato Regular" size="16.0" />
                </font>
             </Text>
-            <TextField fx:id="transactionDescription" layoutY="305.0" prefHeight="25.0" prefWidth="350.0" />
+            <TextField fx:id="transactionDescription" layoutY="305.0" prefHeight="25.0" prefWidth="350.0" promptText="Lunch at In-N-Out, Weekly groceries, etc." />
             <Text layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter at least one of the following:" wrappingWidth="391.0">
                <font>
                   <Font name="System Bold" size="16.0" />
@@ -60,7 +60,7 @@
                </font>
             </Text>
             <TextField fx:id="depositAmount" layoutY="495.0" prefHeight="25.0" prefWidth="200.0" promptText="\$0.00" />
-            <Button layoutY="550.0" onAction="#switchToHome" prefHeight="30.0" prefWidth="110.0" stylesheets="@../css/application.css" text="Cancel">
+            <Button layoutY="550.0" onAction="#switchToHome" prefHeight="40.0" prefWidth="110.0" stylesheets="@../css/application.css" text="Cancel">
                <font>
                   <Font size="50.0" />
                </font>

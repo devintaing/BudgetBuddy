@@ -16,7 +16,7 @@
                   <Font name="Lato Bold" size="50.0" />
                </font>
             </Text>
-            <TableView fx:id="accountTableView" layoutY="80.0" prefHeight="447.0" prefWidth="700.0">
+            <TableView fx:id="accountTableView" layoutY="80.0" prefHeight="450.0" prefWidth="700.0">
                <columns>
                   <TableColumn fx:id="accountCol" prefWidth="233.0" resizable="false" text="Account Name" />
                   <TableColumn fx:id="dateCol" minWidth="0.0" prefWidth="169.0" resizable="false" text="Opening Date" />

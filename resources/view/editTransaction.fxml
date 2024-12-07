@@ -36,14 +36,14 @@
                   <Font name="Lato Regular" size="16.0" />
                </font>
             </Text>
-            <DatePicker fx:id="transactionDate" layoutY="240.0" prefHeight="25.0" prefWidth="200.0" />
+            <DatePicker fx:id="transactionDate" layoutY="240.0" prefHeight="25.0" prefWidth="200.0" promptText="MM/DD/YYYY" />
             <Text layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Description (required)" wrappingWidth="261.0001220703125">
                <font>
                   <Font name="Lato Regular" size="16.0" />
                </font>
             </Text>
-            <TextField fx:id="transactionDescription" layoutY="305.0" prefHeight="25.0" prefWidth="350.0" />
-            <Button layoutY="550.0" onAction="#switchToViewTransactions" prefHeight="30.0" prefWidth="110.0" stylesheets="@../css/application.css" text="Cancel">
+            <TextField fx:id="transactionDescription" layoutY="305.0" prefHeight="25.0" prefWidth="350.0" promptText="Lunch at In-N-Out, Weekly groceries, etc." />
+            <Button layoutY="550.0" onAction="#switchToViewTransactions" prefHeight="40.0" prefWidth="110.0" stylesheets="@../css/application.css" text="Cancel">
                <font>
                   <Font size="50.0" />
                </font>
@@ -53,7 +53,7 @@
                   <String fx:value="rounded-button" />
                </styleClass>
             </Button>
-            <Button fx:id="save" layoutX="120.0" layoutY="550.0" onAction="#saveTransactionHandler" prefHeight="40.0" prefWidth="110.0" stylesheets="@../css/application.css" text="Save" textFill="WHITE">
+            <Button fx:id="save" layoutX="120.0" layoutY="550.0" onAction="#saveTransactionHandler" prefHeight="40.0" prefWidth="110.0" stylesheets="@../css/application.css" text="Submit" textFill="WHITE">
                <font>
                   <Font size="25.0" />
                </font>
