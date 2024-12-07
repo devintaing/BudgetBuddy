@@ -56,14 +56,7 @@ public class ViewTransactionController {
 
   	        // Get the controller for the edit view
   	        // Pass the previous Account/Transaction to the controller
-//  	        if (accountReport) {
-//  	        	AccountReportController controller = loader.getController();
-//  	        	controller.setAccount(prevAccountName);
-//  	        }
-//  	        else {
-//  	        	TransactionTypeReportController controller = loader.getController();
-//  	        	controller.setTransactionType(prevTransactionType);
-//  	        }
+
   	        ReportControllerInt controller = loader.getController();
   	        controller.setState(prevState);
 

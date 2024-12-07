@@ -51,25 +51,8 @@ public class TransactionTableController implements Initializable {
 	
 	private CommonObjs commonObjs = CommonObjs.getInstance();
     private HBox mainBox = commonObjs.getMainBox();
+    private ObservableList<TransactionBean> list;
     
-  	private void loadScene(String fxmlFile){
-      	URL url = getClass().getResource(fxmlFile);
-      	
-      	try {
-  			AnchorPane paneHome = (AnchorPane)FXMLLoader.load(url);
-  			
-  			if (mainBox.getChildren().size() >1)
-  				mainBox.getChildren().remove(1);
-  			
-  			mainBox.getChildren().add(paneHome);
-  			
-  		} catch (IOException e) {
-  			System.out.println("error loading scene from " + fxmlFile);
-  			e.printStackTrace();
-  		}
-      }
-  	
-  	
   	public void switchToEditTransaction() {
   	    // Get the selected transaction
   	    TransactionBean selectedTransaction = transactionTableView.getSelectionModel().getSelectedItem();
@@ -101,11 +84,7 @@ public class TransactionTableController implements Initializable {
   	        e.printStackTrace();
   	    }
   	}
-
-    
-	ObservableList<TransactionBean> list;
 			
-	
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		

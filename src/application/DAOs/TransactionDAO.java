@@ -1,8 +1,5 @@
 package application.DAOs;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,7 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import application.CommonObjs;
-import application.beans.TransactionBean;
 import application.beans.TransactionBean;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

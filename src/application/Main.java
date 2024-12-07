@@ -1,5 +1,8 @@
 package application;
 	
+import java.sql.Connection;
+import java.util.Objects;
+
 import application.DAOs.AccountDAO;
 import application.DAOs.ScheduledTransactionDAO;
 import application.DAOs.TransactionDAO;
@@ -9,12 +12,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-
-import java.sql.Connection;
-import java.util.Objects;
 
 
 public class Main extends Application {
