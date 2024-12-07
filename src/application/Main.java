@@ -8,17 +8,19 @@ import application.connection.SqliteConnection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.sql.Connection;
+import java.util.Objects;
 
 
 public class Main extends Application {
-	private CommonObjs commonObjs = CommonObjs.getInstance();
+	private final CommonObjs commonObjs = CommonObjs.getInstance();
 	private Connection connection;
-	
+
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -40,13 +42,15 @@ public class Main extends Application {
 			// Create a new scene using the loaded layout
 			// Load and apply CSS stylesheet to the scene
 			// Sets up the main stage (window)
-			HBox mainBox = (HBox)FXMLLoader.load(getClass().getResource("/view/main.fxml"));
+			HBox mainBox = (HBox)FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/main.fxml")));
 			
 			Scene scene = new Scene(mainBox);
 			
-			String css = this.getClass().getResource("/css/application.css").toExternalForm();
+			String css = Objects.requireNonNull(this.getClass().getResource("/css/application.css")).toExternalForm();
 			scene.getStylesheets().add(css);
-			
+
+			primaryStage.getIcons().add(new Image("/images/icon.png"));
+
 			primaryStage.setTitle("Budget Buddy");
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
