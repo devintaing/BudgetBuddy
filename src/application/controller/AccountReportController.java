@@ -23,7 +23,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
-public class AccountReportController {
+public class AccountReportController implements ReportControllerInt{
 	
 	@FXML
 	private TableView<TransactionBean> transactionTableView;
@@ -179,6 +179,12 @@ public class AccountReportController {
 
     //updates the report to display the results for inputed account name
 	public void setAccount(String prevAccountName) {
+		updateTableView(prevAccountName);
+		accountName.setValue(prevAccountName);
+	}
+
+	@Override
+	public void setState(String prevAccountName) {
 		updateTableView(prevAccountName);
 		accountName.setValue(prevAccountName);
 	}

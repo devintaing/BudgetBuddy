@@ -36,8 +36,7 @@ public class ViewTransactionController {
 	private CommonObjs commonObjs = CommonObjs.getInstance();
     private HBox mainBox = commonObjs.getMainBox();
     
-    private String prevAccountName;
-    private String prevTransactionType;
+    private String prevState;
     boolean accountReport;
   	
     public void switchToViewReport() {
@@ -45,10 +44,8 @@ public class ViewTransactionController {
       		
       		//Decide which report to return to
       		String reportURL;
-      		accountReport = false;
-      		if(prevAccountName != null) {
+      		if(accountReport) {
       			reportURL = "/view/viewAccountReport.fxml";
-      			accountReport = true;
       		}
       		else {
       			reportURL = "/view/viewTransactionTypeReport.fxml";
@@ -59,14 +56,16 @@ public class ViewTransactionController {
 
   	        // Get the controller for the edit view
   	        // Pass the previous Account/Transaction to the controller
-  	        if (accountReport) {
-  	        	AccountReportController controller = loader.getController();
-  	        	controller.setAccount(prevAccountName);
-  	        }
-  	        else {
-  	        	TransactionTypeReportController controller = loader.getController();
-  	        	controller.setTransactionType(prevTransactionType);
-  	        }
+//  	        if (accountReport) {
+//  	        	AccountReportController controller = loader.getController();
+//  	        	controller.setAccount(prevAccountName);
+//  	        }
+//  	        else {
+//  	        	TransactionTypeReportController controller = loader.getController();
+//  	        	controller.setTransactionType(prevTransactionType);
+//  	        }
+  	        ReportControllerInt controller = loader.getController();
+  	        controller.setState(prevState);
 
   	        // Replace the current view with the report view
   	        if (mainBox.getChildren().size() > 1) {
@@ -108,11 +107,14 @@ public class ViewTransactionController {
 
 	public void setPrevAccountName(String AccountName) {
 		//save state
-    	this.prevAccountName = AccountName;
+    	this.prevState = AccountName;
+    	accountReport = true;
 	}
+	
 	public void setPrevTransactionType(String TransactionType) {
 		//save state
-    	this.prevTransactionType = TransactionType;
+    	this.prevState = TransactionType;
+    	accountReport = false;
 	}
 
 }

@@ -22,7 +22,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
-public class TransactionTypeReportController {
+public class TransactionTypeReportController implements ReportControllerInt{
 
     @FXML
     private TableView<TransactionBean> transactionTableView;
@@ -179,5 +179,11 @@ public class TransactionTypeReportController {
 		updateTableView(prevTransactionType);
 		transactionType.setValue(prevTransactionType);
 		
+	}
+
+	@Override
+	public void setState(String prevTransactionType) {
+		updateTableView(prevTransactionType);
+		transactionType.setValue(prevTransactionType);
 	}
 }
