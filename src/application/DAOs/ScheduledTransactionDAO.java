@@ -10,7 +10,6 @@ import java.util.HashSet;
 
 import application.CommonObjs;
 import application.beans.ScheduledTransactionBean;
-import application.beans.TransactionBean;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
