@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.ViewTransactionController">
+   <children>
+      <Pane layoutX="-1.0" layoutY="-1.0" prefHeight="722.0" prefWidth="803.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+         <children>
+            <Text layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View Transaction" wrappingWidth="450.0">
+               <font>
+                  <Font name="Lato Bold" size="50.0" />
+               </font>
+            </Text>
+            <Text layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account" wrappingWidth="261.0001220703125">
+               <font>
+                  <Font name="Lato Regular" size="16.0" />
+               </font>
+            </Text>
+            <ChoiceBox fx:id="accountName" disable="true" layoutY="145.0" opacity="0.99" prefHeight="25.0" prefWidth="200.0" />
+            <Text layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Type" wrappingWidth="261.0001220703125">
+               <font>
+                  <Font name="Lato Regular" size="16.0" />
+               </font>
+            </Text>
+            <ChoiceBox fx:id="transactionType" disable="true" layoutY="210.0" opacity="0.99" prefHeight="25.0" prefWidth="200.0" />
+            <Text layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Date " wrappingWidth="261.0001220703125">
+               <font>
+                  <Font name="Lato Regular" size="16.0" />
+               </font>
+            </Text>
+            <DatePicker fx:id="transactionDate" disable="true" editable="false" layoutY="275.0" opacity="0.99" prefHeight="25.0" prefWidth="200.0" />
+            <Text layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Description " wrappingWidth="261.0001220703125">
+               <font>
+                  <Font name="Lato Regular" size="16.0" />
+               </font>
+            </Text>
+            <TextField fx:id="transactionDescription" disable="true" editable="false" layoutY="340.0" prefHeight="25.0" prefWidth="350.0" />
+            <Button layoutY="550.0" onAction="#switchToViewReport" prefHeight="40.0" prefWidth="110.0" stylesheets="@../css/application.css" text="Cancel">
+               <font>
+                  <Font size="50.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="rounded-cancel-button" />
+                  <String fx:value="formButton" />
+                  <String fx:value="rounded-button" />
+               </styleClass>
+            </Button>
+            <Text fill="RED" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*All Fields Are Read Only" wrappingWidth="391.0">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Text>
+            <Text layoutY="395.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Amount" wrappingWidth="261.0001220703125">
+               <font>
+                  <Font name="Lato Regular" size="16.0" />
+               </font>
+            </Text>
+            <TextField fx:id="paymentAmount" disable="true" editable="false" layoutY="405.0" prefHeight="25.0" prefWidth="200.0" promptText="\$0.00" />
+            <Text layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Deposit Amount" wrappingWidth="261.0001220703125">
+               <font>
+                  <Font name="Lato Regular" size="16.0" />
+               </font>
+            </Text>
+            <TextField fx:id="depositAmount" disable="true" editable="false" layoutY="470.0" prefHeight="25.0" prefWidth="200.0" promptText="\$0.00" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

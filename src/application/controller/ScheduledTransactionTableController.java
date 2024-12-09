@@ -9,7 +9,6 @@ import java.util.ResourceBundle;
 import application.CommonObjs;
 import application.DAOs.ScheduledTransactionDAO;
 import application.beans.ScheduledTransactionBean;
-import application.beans.TransactionBean;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -55,24 +54,6 @@ public class ScheduledTransactionTableController implements Initializable {
 	private CommonObjs commonObjs = CommonObjs.getInstance();
     private HBox mainBox = commonObjs.getMainBox();
     
-  	private void loadScene(String fxmlFile){
-      	URL url = getClass().getResource(fxmlFile);
-      	
-      	try {
-  			AnchorPane paneHome = (AnchorPane)FXMLLoader.load(url);
-  			
-  			if (mainBox.getChildren().size() >1)
-  				mainBox.getChildren().remove(1);
-  			
-  			mainBox.getChildren().add(paneHome);
-  			
-  		} catch (IOException e) {
-  			System.out.println("error loading scene from " + fxmlFile);
-  			e.printStackTrace();
-  		}
-      }
-  	
-  	
   	public void switchToEditScheduledTransaction() {
   	    // Get the selected transaction
   	    ScheduledTransactionBean selectedTransaction = schedTransTableView.getSelectionModel().getSelectedItem();

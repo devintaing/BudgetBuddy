@@ -3,7 +3,6 @@ package application.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashSet;
 
 import application.CommonObjs;
 import application.DAOs.AccountDAO;
@@ -111,7 +110,7 @@ public class EditScheduledTransactionController {
 
 	private Pair<Boolean, String> saveScheduledTransaction() {
 		// Prevents user from leaving the required fields empty
-		if (scheduleName.getText().isEmpty() || accountName.getValue() == null || transactionType.getValue() == null || frequency.getValue() == null || dueDate.getText().isEmpty() || paymentAmount.getText().isEmpty()) {
+		if (scheduleName.getText().isBlank() || accountName.getValue() == null || transactionType.getValue() == null || frequency.getValue() == null || dueDate.getText().isBlank() || paymentAmount.getText().isBlank()) {
 			return new Pair<>(false, "Please fill in the required fields.");
 		}
 		
@@ -153,7 +152,7 @@ public class EditScheduledTransactionController {
 			newData.add(transactionType.getValue().toString()); // TransactionType
 			newData.add(frequency.getValue().toString()); // Frequency
 			newData.add(dueDate.getText()); // Date
-			newData.add(paymentAmount.getText().isEmpty() ? null : paymentAmount.getText()); // PaymentAmount
+			newData.add(paymentAmount.getText().isBlank() ? null : paymentAmount.getText()); // PaymentAmount
 
 
 			// Attempt the edit on data record entry

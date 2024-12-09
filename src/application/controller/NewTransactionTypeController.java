@@ -47,7 +47,7 @@ public class NewTransactionTypeController {
   //handler for user submitting the form
   	public void submitButton() {
   		// Prevents user from leaving the required fields empty
-  		if(TypeName.getText().isEmpty()) {
+  		if(TypeName.getText().isBlank()) {
   			showAlert("Transaction type name is required!");
   			return;
   		}

@@ -14,48 +14,48 @@
    <children>
       <Pane layoutX="-2.0" prefHeight="722.0" prefWidth="803.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
          <children>
-            <Text layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Scheduled Transaction" wrappingWidth="700.0">
+            <Text layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Scheduled Transaction" wrappingWidth="700.0">
                <font>
                   <Font name="Lato Bold" size="50.0" />
                </font>
             </Text>
-            <Text layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Schedule's Name (required)" wrappingWidth="261.0001220703125">
+            <Text layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Schedule's Name (required)" wrappingWidth="261.0001220703125">
                <font>
                   <Font name="Lato Regular" size="16.0" />
                </font>
             </Text>
-            <TextField fx:id="scheduleName" layoutY="101.0" prefHeight="26.0" prefWidth="179.0" />
+            <TextField fx:id="scheduleName" layoutY="110.0" prefHeight="25.0" prefWidth="200.0" promptText="Rent, Mortgage, Leasing, etc." />
             <Text layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account (required)" wrappingWidth="261.0001220703125">
                <font>
                   <Font name="Lato Regular" size="16.0" />
                </font>
             </Text>
-            <ChoiceBox fx:id="accountName" layoutY="169.0" prefHeight="26.0" prefWidth="179.0" />
+            <ChoiceBox fx:id="accountName" layoutY="175.0" prefHeight="25.0" prefWidth="200.0" />
             <Text layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Type (required)" wrappingWidth="261.0001220703125">
                <font>
                   <Font name="Lato Regular" size="16.0" />
                </font>
             </Text>
-            <ChoiceBox fx:id="transactionType" layoutY="234.0" prefHeight="26.0" prefWidth="179.0" />
-            <Text layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Frequency" wrappingWidth="261.0001220703125">
+            <ChoiceBox fx:id="transactionType" layoutY="240.0" prefHeight="25.0" prefWidth="200.0" />
+            <Text layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Frequency (required)" wrappingWidth="261.0001220703125">
                <font>
                   <Font name="Lato Regular" size="16.0" />
                </font>
             </Text>
-            <ChoiceBox fx:id="frequency" layoutY="297.0" prefHeight="26.0" prefWidth="179.0" />
-            <Text layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Due Date (in days, required)" wrappingWidth="261.0001220703125">
+            <ChoiceBox fx:id="frequency" layoutY="305.0" prefHeight="25.0" prefWidth="200.0" />
+            <Text layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Due Date (day of the month, required)" wrappingWidth="275.0001220703125">
                <font>
                   <Font name="Lato Regular" size="16.0" />
                </font>
             </Text>
-            <TextField fx:id="dueDate" layoutY="369.0" prefHeight="26.0" prefWidth="179.0" />
-            <Text layoutY="427.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Amount" wrappingWidth="261.0001220703125">
+            <TextField fx:id="dueDate" layoutY="370.0" prefHeight="25.0" prefWidth="200.0" promptText="1, 15, 30, etc." />
+            <Text layoutY="425.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Amount (required)" wrappingWidth="261.0001220703125">
                <font>
                   <Font name="Lato Regular" size="16.0" />
                </font>
             </Text>
-            <TextField fx:id="paymentAmount" layoutX="-4.0" layoutY="437.0" prefHeight="26.0" prefWidth="179.0" promptText="\$0.00" />
-            <Button layoutY="550.0" onAction="#switchToViewScheduledTransactions" prefHeight="40.0" prefWidth="140.0" stylesheets="@../css/application.css" text="Back to View">
+            <TextField fx:id="paymentAmount" layoutY="435.0" prefHeight="25.0" prefWidth="200.0" promptText="\$0.00" />
+            <Button layoutY="550.0" onAction="#switchToViewScheduledTransactions" prefHeight="40.0" prefWidth="110.0" stylesheets="@../css/application.css" text="Cancel">
                <font>
                   <Font size="50.0" />
                </font>
@@ -65,7 +65,7 @@
                   <String fx:value="rounded-button" />
                </styleClass>
             </Button>
-            <Button fx:id="save" layoutX="150.0" layoutY="550.0" onAction="#saveScheduledTransactionHandler" prefHeight="40.0" prefWidth="110.0" stylesheets="@../css/application.css" text="Save" textFill="WHITE">
+            <Button fx:id="save" layoutX="120.0" layoutY="550.0" onAction="#saveScheduledTransactionHandler" prefHeight="40.0" prefWidth="110.0" stylesheets="@../css/application.css" text="Submit" textFill="WHITE">
                <font>
                   <Font size="25.0" />
                </font>

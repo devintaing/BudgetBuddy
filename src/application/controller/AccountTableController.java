@@ -28,7 +28,7 @@ public class AccountTableController implements Initializable {
 	@FXML
 	private TableColumn<AccountBean, Double> balCol;
 	
-	ObservableList<AccountBean> list;
+	private ObservableList<AccountBean> list;
 			
 	
 	@Override

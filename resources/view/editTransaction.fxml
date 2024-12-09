@@ -14,57 +14,36 @@
    <children>
       <Pane layoutX="-1.0" layoutY="-1.0" prefHeight="722.0" prefWidth="803.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
          <children>
-            <Text layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Transaction" wrappingWidth="450.0">
+            <Text layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Transaction" wrappingWidth="450.0">
                <font>
                   <Font name="Lato Bold" size="50.0" />
                </font>
             </Text>
-            <Text layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account (required)" wrappingWidth="261.0001220703125">
+            <Text layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account (required)" wrappingWidth="261.0001220703125">
                <font>
                   <Font name="Lato Regular" size="16.0" />
                </font>
             </Text>
-            <ChoiceBox fx:id="accountName" layoutY="101.0" prefHeight="26.0" prefWidth="179.0" />
-            <Text layoutY="164.87109375" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Type (required)" wrappingWidth="261.0001220703125">
+            <ChoiceBox fx:id="accountName" layoutY="110.0" prefHeight="25.0" prefWidth="200.0" />
+            <Text layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Type (required)" wrappingWidth="261.0001220703125">
                <font>
                   <Font name="Lato Regular" size="16.0" />
                </font>
             </Text>
-            <ChoiceBox fx:id="transactionType" layoutY="169.0" prefHeight="26.0" prefWidth="179.0" />
+            <ChoiceBox fx:id="transactionType" layoutY="175.0" prefHeight="25.0" prefWidth="200.0" />
             <Text layoutY="229.87109375" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Date (required)" wrappingWidth="261.0001220703125">
                <font>
                   <Font name="Lato Regular" size="16.0" />
                </font>
             </Text>
-            <DatePicker fx:id="transactionDate" layoutY="235.33984375" prefHeight="26.0" prefWidth="225.0" />
-            <Text layoutY="294.87109375" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Description (required)" wrappingWidth="261.0001220703125">
+            <DatePicker fx:id="transactionDate" layoutY="240.0" prefHeight="25.0" prefWidth="200.0" promptText="MM/DD/YYYY" />
+            <Text layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Description (required)" wrappingWidth="261.0001220703125">
                <font>
                   <Font name="Lato Regular" size="16.0" />
                </font>
             </Text>
-            <TextField fx:id="transactionDescription" layoutY="300.33984375" prefHeight="26.0" prefWidth="347.0" />
-            <Text layoutX="1.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter Payment Amount, Deposit Amount, or both" wrappingWidth="357.0">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Text>
-            <Pane layoutY="364.40234375">
-               <children>
-                  <Text layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Amount" wrappingWidth="261.0001220703125">
-                     <font>
-                        <Font name="Lato Regular" size="16.0" />
-                     </font>
-                  </Text>
-                  <TextField fx:id="paymentAmount" layoutY="63.0" prefHeight="26.0" prefWidth="179.0" promptText="\$0.00" />
-                  <Text layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Deposit Amount" wrappingWidth="261.0001220703125">
-                     <font>
-                        <Font name="Lato Regular" size="16.0" />
-                     </font>
-                  </Text>
-                  <TextField fx:id="depositAmount" layoutY="129.0" prefHeight="26.0" prefWidth="179.0" promptText="\$0.00" />
-               </children>
-            </Pane>
-            <Button layoutY="550.0" onAction="#switchToViewTransactions" prefHeight="29.0" prefWidth="140.0" stylesheets="@../css/application.css" text="Back to View">
+            <TextField fx:id="transactionDescription" layoutY="305.0" prefHeight="25.0" prefWidth="350.0" promptText="Lunch at In-N-Out, Weekly groceries, etc." />
+            <Button layoutY="550.0" onAction="#switchToViewTransactions" prefHeight="40.0" prefWidth="110.0" stylesheets="@../css/application.css" text="Cancel">
                <font>
                   <Font size="50.0" />
                </font>
@@ -74,7 +53,7 @@
                   <String fx:value="rounded-button" />
                </styleClass>
             </Button>
-            <Button fx:id="save" layoutX="150.0" layoutY="550.0" onAction="#saveTransactionHandler" prefHeight="40.0" prefWidth="110.0" stylesheets="@../css/application.css" text="Save" textFill="WHITE">
+            <Button fx:id="save" layoutX="120.0" layoutY="550.0" onAction="#saveTransactionHandler" prefHeight="40.0" prefWidth="110.0" stylesheets="@../css/application.css" text="Submit" textFill="WHITE">
                <font>
                   <Font size="25.0" />
                </font>
@@ -83,6 +62,23 @@
                   <String fx:value="rounded-button" />
                </styleClass>
             </Button>
+            <Text layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter at least one of the following:" wrappingWidth="391.0">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Text>
+            <Text layoutY="420.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Amount" wrappingWidth="261.0001220703125">
+               <font>
+                  <Font name="Lato Regular" size="16.0" />
+               </font>
+            </Text>
+            <TextField fx:id="paymentAmount" layoutY="430.0" prefHeight="25.0" prefWidth="200.0" promptText="\$0.00" />
+            <Text layoutY="485.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Deposit Amount" wrappingWidth="261.0001220703125">
+               <font>
+                  <Font name="Lato Regular" size="16.0" />
+               </font>
+            </Text>
+            <TextField fx:id="depositAmount" layoutY="495.0" prefHeight="25.0" prefWidth="200.0" promptText="\$0.00" />
          </children>
       </Pane>
    </children>

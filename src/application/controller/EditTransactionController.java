@@ -109,7 +109,7 @@ public class EditTransactionController {
 
 	private Pair<Boolean, String> saveTransaction() {
 		// Check if text entries required are present, if not alert user to fill them again and resubmit
-		if (accountName.getValue() == null || transactionType.getValue() == null || transactionDate.getValue() == null || transactionDescription.getText().isEmpty() || (paymentAmount.getText().isEmpty() && depositAmount.getText().isEmpty())) {
+		if (accountName.getValue() == null || transactionType.getValue() == null || transactionDate.getValue() == null || transactionDescription.getText().isBlank()|| (paymentAmount.getText().isBlank() && depositAmount.getText().isBlank())) {
 			return new Pair<>(false, "Please fill in the required fields.");
 		}
 		
